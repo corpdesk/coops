@@ -15,7 +15,7 @@
 # ssh -i ~/.ssh/aws_frontend.pem ubuntu@asdap.net
 # Variables
 PROJ_NAME="coops"
-UPDATE_FILE_NAME="updateCdUser.sh"
+UPDATE_FILE_NAME="updateCoops.sh"
 
 # user at digitalochean
 # REMOTE_USER="root"
