@@ -12,32 +12,28 @@ import { environment } from '../../../environments/environment';
 import { CdPushModule, BaseModule, UserModule } from '@corpdesk/core';
 import { NazUiModule, NazTableModule, NazCreateModule, 
   NazEditModule, NazDeleteModule } from '@corpdesk/naz';
-import { UserRoutingModule } from './user-front-routing.module';
+import { CoopsRoutingModule } from './coops-front-routing.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
 import { CreateComponent } from './create/create.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DeleteComponent } from './delete/delete.component';
 import { EditComponent } from './edit/edit.component';
 import { ListComponent } from './list/list.component';
-import { VerifyEmailComponent } from './verify-email/verify-email.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent,
-    UserProfileComponent,
     CreateComponent,
     DashboardComponent,
     DeleteComponent,
     EditComponent,
     ListComponent,
-    VerifyEmailComponent
   ],
   imports: [
     CommonModule,
-    UserRoutingModule,
+    CoopsRoutingModule,
     FormsModule, ReactiveFormsModule,
     LoggerModule.forRoot({
       level: NgxLoggerLevel.TRACE,
@@ -60,13 +56,11 @@ import { VerifyEmailComponent } from './verify-email/verify-email.component';
   exports: [
     LoginComponent,
     RegisterComponent,
-    UserProfileComponent,
     CreateComponent,
     DashboardComponent,
     DeleteComponent,
     EditComponent,
     ListComponent,
-    VerifyEmailComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

@@ -5,7 +5,7 @@ import {
   NotificationService, CdPushEnvelop, BaseModel, BaseService, DEFAULT_PUSH_RECEPIENTS
 } from '@corpdesk/core';
 import { PageService } from '@corpdesk/naz';
-import { USER_STEP_MODEL } from '../user.model';
+import { USER_STEP_MODEL } from '../coops.model';
 
 @Component({
   selector: 'app-edit',

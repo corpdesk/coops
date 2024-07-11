@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: '', component: LayoutComponent, loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule), canActivate: [AuthGuard] },
   {
     path: 'user',
-    loadChildren: () => import('./modules/user/user-front.module').then(m => m.UserFrontModule)
+    loadChildren: () => import('./modules/coops/coops-front.module').then(m => m.UserFrontModule)
   },
 ];
 

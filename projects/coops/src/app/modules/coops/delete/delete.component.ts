@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AclService, CdPushEnvelop, IQuery, NotificationService, 
   BaseModel, BaseService, DEFAULT_PUSH_RECEPIENTS, SessService } from '@corpdesk/core';
 import { PageService } from '@corpdesk/naz';
-import { USER_STEP_MODEL } from '../user.model';
+import { USER_STEP_MODEL } from '../coops.model';
 
 @Component({
   selector: 'app-delete',

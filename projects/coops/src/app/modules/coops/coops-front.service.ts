@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AWizardStep, BaseModel, BaseService, FieldInfo } from '@corpdesk/core';
-import { userDdlCtx, userGetQuery } from './user.model';
+import { userDdlCtx, userGetQuery } from './coops.model';
 import { UserBaseService } from '../user-base.service';
 
 @Injectable({

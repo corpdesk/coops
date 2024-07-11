@@ -6,11 +6,11 @@ import {
   FormsService, AWizardStep, AclService,NotificationService, 
   FieldFor, EmittedDdlSelection, BaseModel, CdPushService, BaseService, SessService
 } from '@corpdesk/core';
-import { IUserModel, UserModel, UserWizardModel, DEFAULT_INSERTABLE_USER, USER_STEP_MODEL } from '../user.model';
+import { IUserModel, UserModel, UserWizardModel, DEFAULT_INSERTABLE_USER, USER_STEP_MODEL } from '../coops.model';
 import { Observable } from 'rxjs';
 // import { DEFAULT_INSERTABLE_MODULE, IModuleModel } from '../../module/module.model';
 import { PageService } from '@corpdesk/naz';
-import { UserFrontService } from '../user-front.service';
+import { UserFrontService } from '../coops-front.service';
 // import { UserModService } from '../user-mod.service';
 
 @Component({

@@ -5,7 +5,7 @@ import {
   TDS, TPD, DsEmittData,  DEFAULT_TPD, BaseModel, BaseService, SessService
  } from '@corpdesk/core';
 import { NazTableComponent, NazTableService, PageService } from '@corpdesk/naz';
-import { UserModel, USER_STEP_MODEL, DEFAULT_DDLD } from '../user.model';
+import { UserModel, USER_STEP_MODEL, DEFAULT_DDLD } from '../coops.model';
 
 @Component({
   selector: 'app-list',

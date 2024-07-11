@@ -1,0 +1,1 @@
+{"ast":null,"code":"// export layout related constants\nexport const LAYOUT_VERTICAL = 'vertical';\nexport const LAYOUT_HORIZONTAL = 'horizontal';","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}
