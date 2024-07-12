@@ -10,7 +10,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PasswordresetComponent } from './passwordreset/passwordreset.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'profile', pathMatch: 'full' },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'list', component: ListComponent },
@@ -26,9 +26,9 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class CoopsRoutingModule {
-  constructor(private router: Router){
+  constructor(private router: Router) {
     router.events.subscribe((routeState) => {
-        console.log('Coops::CoopsRoutingModule::constructor()/routeState:', routeState) 
+      console.log('Coops::CoopsRoutingModule::constructor()/routeState:', routeState)
     });
   }
- }
+}

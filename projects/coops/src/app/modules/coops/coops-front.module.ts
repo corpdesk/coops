@@ -64,4 +64,4 @@ import { ListComponent } from './list/list.component';
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class UserFrontModule { }
+export class CoopsFrontModule { }

@@ -9,8 +9,8 @@ const routes: Routes = [
   // tslint:disable-next-line: max-line-length
   { path: '', component: LayoutComponent, loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule), canActivate: [AuthGuard] },
   {
-    path: 'user',
-    loadChildren: () => import('./modules/coops/coops-front.module').then(m => m.UserFrontModule)
+    path: 'coops',
+    loadChildren: () => import('./modules/coops/coops-front.module').then(m => m.CoopsFrontModule)
   },
 ];
 

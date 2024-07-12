@@ -8,7 +8,7 @@ module.exports = withModuleFederationPlugin({
     './Component': './projects/coops/src/app/app.component.ts',
     './PagesModule': './projects/coops/src/app/pages/pages.module.ts',
     './LoginComponent': './projects/coops/src/app/account/auth/login/login.component.ts',
-    './UserFrontModule': './projects/coops/src/app/modules/coops/coops-front.module.ts',
+    './CoopsFrontModule': './projects/coops/src/app/modules/coops/coops-front.module.ts',
   },
 
   shared: {
