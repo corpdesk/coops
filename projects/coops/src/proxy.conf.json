@@ -1,0 +1,12 @@
+{
+    "/": {
+        "target": "https://cd-api.co.ke:3001/api",
+        "secure": false,
+        "logLevel": "debug"
+    },
+    "/": {
+        "target": "https://cd-api.co.ke:3002/sio",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

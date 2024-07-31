@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../apex/apex.component.scss"
+    ],
+    "names": [],
+    "file": "apex.component.min.css"
+}

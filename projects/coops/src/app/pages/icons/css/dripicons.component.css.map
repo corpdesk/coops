@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../dripicons/dripicons.component.scss"
+    ],
+    "names": [],
+    "file": "dripicons.component.css"
+}

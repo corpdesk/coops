@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../fontawesome/fontawesome.component.scss"
+    ],
+    "names": [],
+    "file": "fontawesome.component.min.css"
+}

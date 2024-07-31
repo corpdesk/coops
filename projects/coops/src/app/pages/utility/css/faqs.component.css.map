@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../faqs/faqs.component.scss"
+    ],
+    "names": [],
+    "file": "faqs.component.css"
+}
