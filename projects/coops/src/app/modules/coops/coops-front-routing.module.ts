@@ -8,6 +8,12 @@ import { DeleteComponent } from './delete/delete.component';
 import { CreateComponent } from './create/create.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PasswordresetComponent } from './passwordreset/passwordreset.component';
+import { DatamanComponent } from './dataman/dataman.component';
+import { AdminComponent } from './admin/admin.component';
+import { DocumentationComponent } from './documentation/documentation.component';
+import { IssuesComponent } from './issues/issues.component';
+import { ForumComponent } from './forum/forum.component';
+import { TrainingComponent } from './training/training.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -19,6 +25,13 @@ const routes: Routes = [
   { path: 'create', component: CreateComponent },
   { path: 'passwordreset', component: PasswordresetComponent },
   { path: 'dashboard', component: DashboardComponent },
+
+  { path: 'dataman', component: DatamanComponent },
+  { path: 'admin', component: AdminComponent },
+  { path: 'documentation', component: DocumentationComponent },
+  { path: 'issues', component: IssuesComponent },
+  { path: 'forum', component: ForumComponent },
+  { path: 'training', component: TrainingComponent },
 ];
 
 @NgModule({

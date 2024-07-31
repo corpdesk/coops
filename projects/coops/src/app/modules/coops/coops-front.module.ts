@@ -20,6 +20,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { DeleteComponent } from './delete/delete.component';
 import { EditComponent } from './edit/edit.component';
 import { ListComponent } from './list/list.component';
+import { DatamanComponent } from './dataman/dataman.component';
+import { AdminComponent } from './admin/admin.component';
+import { DocumentationComponent } from './documentation/documentation.component';
+import { ForumComponent } from './forum/forum.component';
+import { TrainingComponent } from './training/training.component';
+import { IssuesComponent } from './issues/issues.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +36,12 @@ import { ListComponent } from './list/list.component';
     DeleteComponent,
     EditComponent,
     ListComponent,
+    DatamanComponent,
+    AdminComponent,
+    DocumentationComponent,
+    IssuesComponent,
+    ForumComponent,
+    TrainingComponent,
   ],
   imports: [
     CommonModule,
@@ -61,6 +73,12 @@ import { ListComponent } from './list/list.component';
     DeleteComponent,
     EditComponent,
     ListComponent,
+    DatamanComponent,
+    AdminComponent,
+    DocumentationComponent,
+    IssuesComponent,
+    ForumComponent,
+    TrainingComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

@@ -4,17 +4,20 @@ clear
 
 # Source and destination directories
 PROJ_NAME="coops"
-PROJ_DIR="$HOME/cd-projects/$PROJ_NAME"
-DIST_DIR="$HOME/cd-projects/$PROJ_NAME-dist"
-SOURCE_DIR="$HOME/cd-projects/$PROJ_NAME/dist/$PROJ_NAME"
-DEST_DIR="$HOME/cd-projects/$PROJ_NAME-dist"
+PROJ_VERSION="0.2"
+CD_LIB_VERSION="^0.2.100"
+COLLECTION_DIR="cd-front-v$PROJ_VERSION"
+PROJ_DIR="$HOME/$COLLECTION_DIR/$PROJ_NAME-v$PROJ_VERSION"
+DIST_DIR="$HOME/$COLLECTION_DIR/$PROJ_NAME-dist"
+SOURCE_DIR="$HOME/$COLLECTION_DIR/$PROJ_NAME-v$PROJ_VERSION/dist/$PROJ_NAME"
+DEST_DIR="$HOME/$COLLECTION_DIR/$PROJ_NAME-dist"
 
 cd "$PROJ_DIR"
 
 echo "\n----------------------------------------------------"
 echo "UPDATE cd libs"
 echo "----------------------------------------------------"
-npm i @corpdesk/core@latest @corpdesk/naz@latest --legacy-peer-deps
+npm i @corpdesk/core@$CD_LIB_VERSION @corpdesk/naz@$CD_LIB_VERSION --legacy-peer-deps
 
 echo "\n----------------------------------------------------"
 echo "BUILD $PROJ_NAME"
