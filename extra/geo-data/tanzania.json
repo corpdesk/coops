@@ -1,0 +1,560 @@
+[
+    {
+        "objectId": "GlIatlMiq0",
+        "Country_Code": "TZ",
+        "Subdivision_Code": "29",
+        "Subdivision_Name": "Njombe",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.666Z",
+        "updatedAt": "2020-02-19T14:46:22.452Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "UIOtsTw0oX"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "ghoQQSmDUk",
+        "Country_Code": "TZ",
+        "Subdivision_Code": "30",
+        "Subdivision_Name": "Simiyu",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.666Z",
+        "updatedAt": "2020-02-19T14:46:22.711Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "UIOtsTw0oX"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "HrBYixpcSE",
+        "Country_Code": "TZ",
+        "Subdivision_Code": "1",
+        "Subdivision_Name": "Arusha",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.632Z",
+        "updatedAt": "2020-02-19T14:46:15.619Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "UIOtsTw0oX"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "Jyfr3ynRtC",
+        "Country_Code": "TZ",
+        "Subdivision_Code": "17",
+        "Subdivision_Name": "Mtwara",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.632Z",
+        "updatedAt": "2020-02-19T14:46:17.020Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "UIOtsTw0oX"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "4gubs0Bbhh",
+        "Country_Code": "TZ",
+        "Subdivision_Code": "11",
+        "Subdivision_Name": "Kusini Unguja",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.632Z",
+        "updatedAt": "2020-02-19T14:46:17.489Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "UIOtsTw0oX"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "mwqlAed2vJ",
+        "Country_Code": "TZ",
+        "Subdivision_Code": "4",
+        "Subdivision_Name": "Iringa",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.632Z",
+        "updatedAt": "2020-02-19T14:46:16.318Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "UIOtsTw0oX"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "z4FBocFIKq",
+        "Country_Code": "TZ",
+        "Subdivision_Code": "7",
+        "Subdivision_Name": "Kaskazini Unguja",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.632Z",
+        "updatedAt": "2020-02-19T14:46:15.293Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "UIOtsTw0oX"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "mnnm4W4jWG",
+        "Country_Code": "TZ",
+        "Subdivision_Code": "3",
+        "Subdivision_Name": "Dodoma",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.632Z",
+        "updatedAt": "2020-02-19T14:46:16.088Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "UIOtsTw0oX"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "9lApku26Mi",
+        "Country_Code": "TZ",
+        "Subdivision_Code": "13",
+        "Subdivision_Name": "Mara",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.632Z",
+        "updatedAt": "2020-02-19T14:46:18.422Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "UIOtsTw0oX"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "QYXUXGGOzm",
+        "Country_Code": "TZ",
+        "Subdivision_Code": "16",
+        "Subdivision_Name": "Morogoro",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.632Z",
+        "updatedAt": "2020-02-19T14:46:18.657Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "UIOtsTw0oX"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "evMAlkYSJO",
+        "Country_Code": "TZ",
+        "Subdivision_Code": "19",
+        "Subdivision_Name": "Pwani",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.632Z",
+        "updatedAt": "2020-02-19T14:46:18.896Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "UIOtsTw0oX"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "VWvbEgiOi1",
+        "Country_Code": "TZ",
+        "Subdivision_Code": "14",
+        "Subdivision_Name": "Mbeya",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.632Z",
+        "updatedAt": "2020-02-19T14:46:17.722Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "UIOtsTw0oX"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "gmryADRzvt",
+        "Country_Code": "TZ",
+        "Subdivision_Code": "9",
+        "Subdivision_Name": "Kilimanjaro",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.632Z",
+        "updatedAt": "2020-02-19T14:46:16.780Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "UIOtsTw0oX"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "S4DSVpyIKh",
+        "Country_Code": "TZ",
+        "Subdivision_Code": "24",
+        "Subdivision_Name": "Tabora",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.632Z",
+        "updatedAt": "2020-02-19T14:46:19.838Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "UIOtsTw0oX"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "BRqcUrlxQK",
+        "Country_Code": "TZ",
+        "Subdivision_Code": "21",
+        "Subdivision_Name": "Ruvuma",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.632Z",
+        "updatedAt": "2020-02-19T14:46:19.595Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "UIOtsTw0oX"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "gatqnFfruI",
+        "Country_Code": "TZ",
+        "Subdivision_Code": "23",
+        "Subdivision_Name": "Singida",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.632Z",
+        "updatedAt": "2020-02-19T14:46:21.106Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "UIOtsTw0oX"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "NrWikJI3aG",
+        "Country_Code": "TZ",
+        "Subdivision_Code": "18",
+        "Subdivision_Name": "Mwanza",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.632Z",
+        "updatedAt": "2020-02-19T14:46:20.073Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "UIOtsTw0oX"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "6sMlZD9UvE",
+        "Country_Code": "TZ",
+        "Subdivision_Code": "15",
+        "Subdivision_Name": "Mjini Magharibi",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.632Z",
+        "updatedAt": "2020-02-19T14:46:20.304Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "UIOtsTw0oX"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "HHEDhjdMjv",
+        "Country_Code": "TZ",
+        "Subdivision_Code": "10",
+        "Subdivision_Name": "Kusini Pemba",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.632Z",
+        "updatedAt": "2020-02-19T14:46:19.132Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "UIOtsTw0oX"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "YznImf4SzZ",
+        "Country_Code": "TZ",
+        "Subdivision_Code": "27",
+        "Subdivision_Name": "Geita",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.632Z",
+        "updatedAt": "2020-02-19T14:46:19.364Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "UIOtsTw0oX"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "mI24iE3frA",
+        "Country_Code": "TZ",
+        "Subdivision_Code": "2",
+        "Subdivision_Name": "Dar es Salaam",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.632Z",
+        "updatedAt": "2020-02-19T14:46:14.693Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "UIOtsTw0oX"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "tLSBOf9uVd",
+        "Country_Code": "TZ",
+        "Subdivision_Code": "5",
+        "Subdivision_Name": "Kagera",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.632Z",
+        "updatedAt": "2020-02-19T14:46:17.958Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "UIOtsTw0oX"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "J8zsrcP1nX",
+        "Country_Code": "TZ",
+        "Subdivision_Code": "12",
+        "Subdivision_Name": "Lindi",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.632Z",
+        "updatedAt": "2020-02-19T14:46:15.853Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "UIOtsTw0oX"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "ViXPXPFdnP",
+        "Country_Code": "TZ",
+        "Subdivision_Code": "6",
+        "Subdivision_Name": "Kaskazini Pemba",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.632Z",
+        "updatedAt": "2020-02-19T14:46:16.550Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "UIOtsTw0oX"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "rFsAzxt4DJ",
+        "Country_Code": "TZ",
+        "Subdivision_Code": "25",
+        "Subdivision_Name": "Tanga",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.632Z",
+        "updatedAt": "2020-02-19T14:46:21.938Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "UIOtsTw0oX"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "3HmraXbsa2",
+        "Country_Code": "TZ",
+        "Subdivision_Code": "20",
+        "Subdivision_Name": "Rukwa",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.632Z",
+        "updatedAt": "2020-02-19T14:46:21.447Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "UIOtsTw0oX"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "nry3Me0zSC",
+        "Country_Code": "TZ",
+        "Subdivision_Code": "26",
+        "Subdivision_Name": "Manyara",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.632Z",
+        "updatedAt": "2020-02-19T14:46:20.770Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "UIOtsTw0oX"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "8SZjjWtTY6",
+        "Country_Code": "TZ",
+        "Subdivision_Code": "8",
+        "Subdivision_Name": "Kigoma",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.632Z",
+        "updatedAt": "2020-02-19T14:46:17.258Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "UIOtsTw0oX"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "E9rvvt5BTK",
+        "Country_Code": "TZ",
+        "Subdivision_Code": "31",
+        "Subdivision_Name": "Songwe",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.666Z",
+        "updatedAt": "2020-02-19T14:46:22.972Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "UIOtsTw0oX"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "3mCztyd7sx",
+        "Country_Code": "TZ",
+        "Subdivision_Code": "28",
+        "Subdivision_Name": "Katavi",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.666Z",
+        "updatedAt": "2020-02-19T14:46:22.191Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "UIOtsTw0oX"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "jGEEJdJjKE",
+        "Country_Code": "TZ",
+        "Subdivision_Code": "22",
+        "Subdivision_Name": "Shinyanga",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.632Z",
+        "updatedAt": "2020-02-19T14:46:18.192Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "UIOtsTw0oX"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    }
+]

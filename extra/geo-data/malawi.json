@@ -1,0 +1,560 @@
+[
+    {
+        "objectId": "4nbyQRpRvJ",
+        "Country_Code": "MW",
+        "Subdivision_Code": "CK",
+        "Subdivision_Name": "Chikwawa",
+        "Subdivion_Type": "District",
+        "createdAt": "2020-02-17T21:53:48.198Z",
+        "updatedAt": "2020-02-19T14:38:03.024Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "clpCIxZu1P"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "P1t38yMPiu",
+        "Country_Code": "MW",
+        "Subdivision_Code": "DE",
+        "Subdivision_Name": "Dedza",
+        "Subdivion_Type": "District",
+        "createdAt": "2020-02-17T21:53:48.198Z",
+        "updatedAt": "2020-02-19T14:38:03.955Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "clpCIxZu1P"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "GTKB4yMSA7",
+        "Country_Code": "MW",
+        "Subdivision_Code": "MG",
+        "Subdivision_Name": "Mangochi",
+        "Subdivion_Type": "District",
+        "createdAt": "2020-02-17T21:53:48.198Z",
+        "updatedAt": "2020-02-19T14:38:05.098Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "clpCIxZu1P"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "2SN2jHUHwM",
+        "Country_Code": "MW",
+        "Subdivision_Code": "BL",
+        "Subdivision_Name": "Blantyre",
+        "Subdivion_Type": "District",
+        "createdAt": "2020-02-17T21:53:48.198Z",
+        "updatedAt": "2020-02-19T14:38:02.589Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "clpCIxZu1P"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "bcO0Hl9EOs",
+        "Country_Code": "MW",
+        "Subdivision_Code": "DO",
+        "Subdivision_Name": "Dowa",
+        "Subdivion_Type": "District",
+        "createdAt": "2020-02-17T21:53:48.198Z",
+        "updatedAt": "2020-02-19T14:38:04.421Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "clpCIxZu1P"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "eYHRoKIzS1",
+        "Country_Code": "MW",
+        "Subdivision_Code": "NE",
+        "Subdivision_Name": "Neno",
+        "Subdivion_Type": "District",
+        "createdAt": "2020-02-17T21:53:48.199Z",
+        "updatedAt": "2020-02-19T14:38:07.102Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "clpCIxZu1P"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "vI80Sp4xEW",
+        "Country_Code": "MW",
+        "Subdivision_Code": "LI",
+        "Subdivision_Name": "Lilongwe",
+        "Subdivion_Type": "District",
+        "createdAt": "2020-02-17T21:53:48.198Z",
+        "updatedAt": "2020-02-19T14:38:04.870Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "clpCIxZu1P"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "IqGPoFigyt",
+        "Country_Code": "MW",
+        "Subdivision_Code": "CR",
+        "Subdivision_Name": "Chiradzulu",
+        "Subdivion_Type": "District",
+        "createdAt": "2020-02-17T21:53:48.198Z",
+        "updatedAt": "2020-02-19T14:38:03.246Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "clpCIxZu1P"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "D08CRDyzac",
+        "Country_Code": "MW",
+        "Subdivision_Code": "KR",
+        "Subdivision_Name": "Karonga",
+        "Subdivion_Type": "District",
+        "createdAt": "2020-02-17T21:53:48.198Z",
+        "updatedAt": "2020-02-19T14:38:04.177Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "clpCIxZu1P"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "luD0HmzlAO",
+        "Country_Code": "MW",
+        "Subdivision_Code": "NU",
+        "Subdivision_Name": "Ntcheu",
+        "Subdivion_Type": "District",
+        "createdAt": "2020-02-17T21:53:48.199Z",
+        "updatedAt": "2020-02-19T14:38:07.984Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "clpCIxZu1P"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "q5tjuwR7J8",
+        "Country_Code": "MW",
+        "Subdivision_Code": "TH",
+        "Subdivision_Name": "Thyolo",
+        "Subdivion_Type": "District",
+        "createdAt": "2020-02-17T21:53:48.199Z",
+        "updatedAt": "2020-02-19T14:38:09.118Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "clpCIxZu1P"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "Mjnsv4H589",
+        "Country_Code": "MW",
+        "Subdivision_Code": "NS",
+        "Subdivision_Name": "Nsanje",
+        "Subdivion_Type": "District",
+        "createdAt": "2020-02-17T21:53:48.199Z",
+        "updatedAt": "2020-02-19T14:38:07.767Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "clpCIxZu1P"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "BXsHmGZElO",
+        "Country_Code": "MW",
+        "Subdivision_Code": "SA",
+        "Subdivision_Name": "Salima",
+        "Subdivion_Type": "District",
+        "createdAt": "2020-02-17T21:53:48.199Z",
+        "updatedAt": "2020-02-19T14:38:08.877Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "clpCIxZu1P"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "pyWMGmI1Qn",
+        "Country_Code": "MW",
+        "Subdivision_Code": "ZO",
+        "Subdivision_Name": "Zomba",
+        "Subdivion_Type": "District",
+        "createdAt": "2020-02-17T21:53:48.199Z",
+        "updatedAt": "2020-02-19T14:38:09.350Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "clpCIxZu1P"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "ghJTIQf56A",
+        "Country_Code": "MW",
+        "Subdivision_Code": "MC",
+        "Subdivision_Name": "Mchinji",
+        "Subdivion_Type": "District",
+        "createdAt": "2020-02-17T21:53:48.198Z",
+        "updatedAt": "2020-02-19T14:38:05.317Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "clpCIxZu1P"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "UChjHANAO4",
+        "Country_Code": "MW",
+        "Subdivision_Code": "CT",
+        "Subdivision_Name": "Chitipa",
+        "Subdivion_Type": "District",
+        "createdAt": "2020-02-17T21:53:48.198Z",
+        "updatedAt": "2020-02-19T14:38:03.713Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "clpCIxZu1P"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "6YBXJGC9LR",
+        "Country_Code": "MW",
+        "Subdivision_Code": "BA",
+        "Subdivision_Name": "Balaka",
+        "Subdivion_Type": "District",
+        "createdAt": "2020-02-17T21:53:48.198Z",
+        "updatedAt": "2020-02-19T14:38:02.805Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "clpCIxZu1P"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "Z3iuDmUcjU",
+        "Country_Code": "MW",
+        "Subdivision_Code": "MH",
+        "Subdivision_Name": "Machinga",
+        "Subdivion_Type": "District",
+        "createdAt": "2020-02-17T21:53:48.199Z",
+        "updatedAt": "2020-02-19T14:38:05.760Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "clpCIxZu1P"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "au6VcBX8QS",
+        "Country_Code": "MW",
+        "Subdivision_Code": "C",
+        "Subdivision_Name": "Central",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.198Z",
+        "updatedAt": "2020-02-19T14:38:03.501Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "clpCIxZu1P"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "7amHOCVwV8",
+        "Country_Code": "MW",
+        "Subdivision_Code": "KS",
+        "Subdivision_Name": "Kasungu",
+        "Subdivion_Type": "District",
+        "createdAt": "2020-02-17T21:53:48.198Z",
+        "updatedAt": "2020-02-19T14:38:04.645Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "clpCIxZu1P"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "wzLwo03EEp",
+        "Country_Code": "MW",
+        "Subdivision_Code": "S",
+        "Subdivision_Name": "Southern",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.199Z",
+        "updatedAt": "2020-02-19T14:38:08.630Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "clpCIxZu1P"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "daFJuP6OSy",
+        "Country_Code": "MW",
+        "Subdivision_Code": "NK",
+        "Subdivision_Name": "Nkhotakota",
+        "Subdivion_Type": "District",
+        "createdAt": "2020-02-17T21:53:48.199Z",
+        "updatedAt": "2020-02-19T14:38:07.324Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "clpCIxZu1P"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "0YeWuuOlg9",
+        "Country_Code": "MW",
+        "Subdivision_Code": "N",
+        "Subdivision_Name": "Northern",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:48.199Z",
+        "updatedAt": "2020-02-19T14:38:06.208Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "clpCIxZu1P"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "XdemY1kMDs",
+        "Country_Code": "MW",
+        "Subdivision_Code": "MZ",
+        "Subdivision_Name": "Mzimba",
+        "Subdivion_Type": "District",
+        "createdAt": "2020-02-17T21:53:48.199Z",
+        "updatedAt": "2020-02-19T14:38:06.439Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "clpCIxZu1P"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "JCLnuwmgeJ",
+        "Country_Code": "MW",
+        "Subdivision_Code": "MW",
+        "Subdivision_Name": "Mwanza",
+        "Subdivion_Type": "District",
+        "createdAt": "2020-02-17T21:53:48.199Z",
+        "updatedAt": "2020-02-19T14:38:06.671Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "clpCIxZu1P"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "ccYtSka0CE",
+        "Country_Code": "MW",
+        "Subdivision_Code": "RU",
+        "Subdivision_Name": "Rumphi",
+        "Subdivion_Type": "District",
+        "createdAt": "2020-02-17T21:53:48.199Z",
+        "updatedAt": "2020-02-19T14:38:08.413Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "clpCIxZu1P"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "S9SllfHZ8c",
+        "Country_Code": "MW",
+        "Subdivision_Code": "NB",
+        "Subdivision_Name": "Nkhata Bay",
+        "Subdivion_Type": "District",
+        "createdAt": "2020-02-17T21:53:48.199Z",
+        "updatedAt": "2020-02-19T14:38:06.887Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "clpCIxZu1P"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "Cfe3eeKeKc",
+        "Country_Code": "MW",
+        "Subdivision_Code": "LK",
+        "Subdivision_Name": "Likoma",
+        "Subdivion_Type": "District",
+        "createdAt": "2020-02-17T21:53:48.198Z",
+        "updatedAt": "2020-02-19T14:38:05.541Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "clpCIxZu1P"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "jPHyBwJtIN",
+        "Country_Code": "MW",
+        "Subdivision_Code": "MU",
+        "Subdivision_Name": "Mulanje",
+        "Subdivion_Type": "District",
+        "createdAt": "2020-02-17T21:53:48.199Z",
+        "updatedAt": "2020-02-19T14:38:05.988Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "clpCIxZu1P"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "oTTkjcEYKD",
+        "Country_Code": "MW",
+        "Subdivision_Code": "NI",
+        "Subdivision_Name": "Ntchisi",
+        "Subdivion_Type": "District",
+        "createdAt": "2020-02-17T21:53:48.199Z",
+        "updatedAt": "2020-02-19T14:38:07.542Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "clpCIxZu1P"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "OJVDdjg8jK",
+        "Country_Code": "MW",
+        "Subdivision_Code": "PH",
+        "Subdivision_Name": "Phalombe",
+        "Subdivion_Type": "District",
+        "createdAt": "2020-02-17T21:53:48.199Z",
+        "updatedAt": "2020-02-19T14:38:08.201Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "clpCIxZu1P"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    }
+]

@@ -1,0 +1,110 @@
+[
+    {
+        "objectId": "BmDABFHgIx",
+        "Country_Code": "GM",
+        "Subdivision_Code": "W",
+        "Subdivision_Name": "Western",
+        "Subdivion_Type": "Division",
+        "createdAt": "2020-02-17T21:53:47.663Z",
+        "updatedAt": "2020-02-19T14:31:25.569Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "DGGLf2Q1tS"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "cVgBGkNycF",
+        "Country_Code": "GM",
+        "Subdivision_Code": "L",
+        "Subdivision_Name": "Lower River",
+        "Subdivion_Type": "Division",
+        "createdAt": "2020-02-17T21:53:47.663Z",
+        "updatedAt": "2020-02-19T14:31:25.793Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "DGGLf2Q1tS"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "sSThnMBcpd",
+        "Country_Code": "GM",
+        "Subdivision_Code": "N",
+        "Subdivision_Name": "North Bank",
+        "Subdivion_Type": "Division",
+        "createdAt": "2020-02-17T21:53:47.663Z",
+        "updatedAt": "2020-02-19T14:31:25.333Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "DGGLf2Q1tS"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "fnKR6LhrgR",
+        "Country_Code": "GM",
+        "Subdivision_Code": "B",
+        "Subdivision_Name": "Banjul",
+        "Subdivion_Type": "City",
+        "createdAt": "2020-02-17T21:53:47.663Z",
+        "updatedAt": "2020-02-19T14:31:24.877Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "DGGLf2Q1tS"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "A6WFXXboF3",
+        "Country_Code": "GM",
+        "Subdivision_Code": "U",
+        "Subdivision_Name": "Upper River",
+        "Subdivion_Type": "Division",
+        "createdAt": "2020-02-17T21:53:47.663Z",
+        "updatedAt": "2020-02-19T14:31:25.104Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "DGGLf2Q1tS"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "0oimd04U8q",
+        "Country_Code": "GM",
+        "Subdivision_Code": "M",
+        "Subdivision_Name": "Central River",
+        "Subdivion_Type": "Division",
+        "createdAt": "2020-02-17T21:53:47.663Z",
+        "updatedAt": "2020-02-19T14:31:26.025Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "DGGLf2Q1tS"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    }
+]

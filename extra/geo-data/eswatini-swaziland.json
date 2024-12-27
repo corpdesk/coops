@@ -1,0 +1,470 @@
+[
+    {
+        "objectId": "cYqSaSHl7W",
+        "Country_Code": "CH",
+        "Subdivision_Code": "BL",
+        "Subdivision_Name": "Basel-Landschaft (de)",
+        "Subdivion_Type": "Canton",
+        "createdAt": "2020-02-17T21:53:47.366Z",
+        "updatedAt": "2020-02-19T14:27:33.952Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "c2ZdW21DZq"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "10uytjXt4B",
+        "Country_Code": "CH",
+        "Subdivision_Code": "VD",
+        "Subdivision_Name": "Vaud (fr)",
+        "Subdivion_Type": "Canton",
+        "createdAt": "2020-02-17T21:53:47.367Z",
+        "updatedAt": "2020-02-19T14:27:38.985Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "c2ZdW21DZq"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "ERHitxYb2I",
+        "Country_Code": "CH",
+        "Subdivision_Code": "GE",
+        "Subdivision_Name": "Gen�ve (fr)",
+        "Subdivion_Type": "Canton",
+        "createdAt": "2020-02-17T21:53:47.366Z",
+        "updatedAt": "2020-02-19T14:27:34.610Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "c2ZdW21DZq"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "fszRigFBy5",
+        "Country_Code": "CH",
+        "Subdivision_Code": "FR",
+        "Subdivision_Name": "Fribourg (fr)",
+        "Subdivion_Type": "Canton",
+        "createdAt": "2020-02-17T21:53:47.366Z",
+        "updatedAt": "2020-02-19T14:27:34.168Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "c2ZdW21DZq"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "tFtanURIVi",
+        "Country_Code": "CH",
+        "Subdivision_Code": "TG",
+        "Subdivision_Name": "Thurgau (de)",
+        "Subdivion_Type": "Canton",
+        "createdAt": "2020-02-17T21:53:47.367Z",
+        "updatedAt": "2020-02-19T14:27:37.446Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "c2ZdW21DZq"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "ibZzNUV85x",
+        "Country_Code": "CH",
+        "Subdivision_Code": "TI",
+        "Subdivision_Name": "Ticino (it)",
+        "Subdivion_Type": "Canton",
+        "createdAt": "2020-02-17T21:53:47.367Z",
+        "updatedAt": "2020-02-19T14:27:37.218Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "c2ZdW21DZq"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "ZDOLvYe5Z0",
+        "Country_Code": "CH",
+        "Subdivision_Code": "AR",
+        "Subdivision_Name": "Appenzell Ausserrhoden (de)",
+        "Subdivion_Type": "Canton",
+        "createdAt": "2020-02-17T21:53:47.366Z",
+        "updatedAt": "2020-02-19T14:27:33.517Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "c2ZdW21DZq"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "3eMtLB0Xxf",
+        "Country_Code": "CH",
+        "Subdivision_Code": "AI",
+        "Subdivision_Name": "Appenzell Innerrhoden (de)",
+        "Subdivion_Type": "Canton",
+        "createdAt": "2020-02-17T21:53:47.366Z",
+        "updatedAt": "2020-02-19T14:27:33.088Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "c2ZdW21DZq"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "x6LqLYdjOh",
+        "Country_Code": "CH",
+        "Subdivision_Code": "JU",
+        "Subdivision_Name": "Jura (fr)",
+        "Subdivion_Type": "Canton",
+        "createdAt": "2020-02-17T21:53:47.366Z",
+        "updatedAt": "2020-02-19T14:27:34.822Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "c2ZdW21DZq"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "50X1ZBUDCL",
+        "Country_Code": "CH",
+        "Subdivision_Code": "ZH",
+        "Subdivision_Name": "Z�rich (de)",
+        "Subdivion_Type": "Canton",
+        "createdAt": "2020-02-17T21:53:47.367Z",
+        "updatedAt": "2020-02-19T14:27:38.320Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "c2ZdW21DZq"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "ijF6DFR849",
+        "Country_Code": "CH",
+        "Subdivision_Code": "BE",
+        "Subdivision_Name": "Bern (de)",
+        "Subdivion_Type": "Canton",
+        "createdAt": "2020-02-17T21:53:47.366Z",
+        "updatedAt": "2020-02-19T14:27:34.382Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "c2ZdW21DZq"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "H30NsbdK9y",
+        "Country_Code": "CH",
+        "Subdivision_Code": "AG",
+        "Subdivision_Name": "Aargau (de)",
+        "Subdivion_Type": "Canton",
+        "createdAt": "2020-02-17T21:53:47.366Z",
+        "updatedAt": "2020-02-19T14:27:33.303Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "c2ZdW21DZq"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "8kRHil9WKl",
+        "Country_Code": "CH",
+        "Subdivision_Code": "GL",
+        "Subdivision_Name": "Glarus (de)",
+        "Subdivion_Type": "Canton",
+        "createdAt": "2020-02-17T21:53:47.366Z",
+        "updatedAt": "2020-02-19T14:27:35.848Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "c2ZdW21DZq"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "VQZz1OIrPw",
+        "Country_Code": "CH",
+        "Subdivision_Code": "BS",
+        "Subdivision_Name": "Basel-Stadt (de)",
+        "Subdivion_Type": "Canton",
+        "createdAt": "2020-02-17T21:53:47.366Z",
+        "updatedAt": "2020-02-19T14:27:33.737Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "c2ZdW21DZq"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "oCpfNGtPDE",
+        "Country_Code": "CH",
+        "Subdivision_Code": "OW",
+        "Subdivision_Name": "Obwalden (de)",
+        "Subdivion_Type": "Canton",
+        "createdAt": "2020-02-17T21:53:47.367Z",
+        "updatedAt": "2020-02-19T14:27:36.515Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "c2ZdW21DZq"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "Lq4dmVc2d1",
+        "Country_Code": "CH",
+        "Subdivision_Code": "NW",
+        "Subdivision_Name": "Nidwalden (de)",
+        "Subdivion_Type": "Canton",
+        "createdAt": "2020-02-17T21:53:47.367Z",
+        "updatedAt": "2020-02-19T14:27:36.965Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "c2ZdW21DZq"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "FCeBgEDgwF",
+        "Country_Code": "CH",
+        "Subdivision_Code": "GR",
+        "Subdivision_Name": "Graub�nden (de)",
+        "Subdivion_Type": "Canton",
+        "createdAt": "2020-02-17T21:53:47.366Z",
+        "updatedAt": "2020-02-19T14:27:35.046Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "c2ZdW21DZq"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "cA1lvpcEk6",
+        "Country_Code": "CH",
+        "Subdivision_Code": "SH",
+        "Subdivision_Name": "Schaffhausen (de)",
+        "Subdivion_Type": "Canton",
+        "createdAt": "2020-02-17T21:53:47.367Z",
+        "updatedAt": "2020-02-19T14:27:36.748Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "c2ZdW21DZq"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "TNX4dxSU9V",
+        "Country_Code": "CH",
+        "Subdivision_Code": "SG",
+        "Subdivision_Name": "Sankt Gallen (de)",
+        "Subdivion_Type": "Canton",
+        "createdAt": "2020-02-17T21:53:47.367Z",
+        "updatedAt": "2020-02-19T14:27:36.297Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "c2ZdW21DZq"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "XeEzVvgTnd",
+        "Country_Code": "CH",
+        "Subdivision_Code": "UR",
+        "Subdivision_Name": "Uri (de)",
+        "Subdivion_Type": "Canton",
+        "createdAt": "2020-02-17T21:53:47.367Z",
+        "updatedAt": "2020-02-19T14:27:37.665Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "c2ZdW21DZq"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "mLzuzQHyQY",
+        "Country_Code": "CH",
+        "Subdivision_Code": "ZG",
+        "Subdivision_Name": "Zug (de)",
+        "Subdivion_Type": "Canton",
+        "createdAt": "2020-02-17T21:53:47.367Z",
+        "updatedAt": "2020-02-19T14:27:38.538Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "c2ZdW21DZq"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "z1KGScquOm",
+        "Country_Code": "CH",
+        "Subdivision_Code": "NE",
+        "Subdivision_Name": "Neuch�tel (fr)",
+        "Subdivion_Type": "Canton",
+        "createdAt": "2020-02-17T21:53:47.367Z",
+        "updatedAt": "2020-02-19T14:27:36.068Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "c2ZdW21DZq"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "eXTFA6ZlHw",
+        "Country_Code": "CH",
+        "Subdivision_Code": "SO",
+        "Subdivision_Name": "Solothurn (de)",
+        "Subdivion_Type": "Canton",
+        "createdAt": "2020-02-17T21:53:47.367Z",
+        "updatedAt": "2020-02-19T14:27:37.883Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "c2ZdW21DZq"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "Uf8GUH3peu",
+        "Country_Code": "CH",
+        "Subdivision_Code": "LU",
+        "Subdivision_Name": "Luzern (de)",
+        "Subdivion_Type": "Canton",
+        "createdAt": "2020-02-17T21:53:47.367Z",
+        "updatedAt": "2020-02-19T14:27:35.502Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "c2ZdW21DZq"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "cINNDoD8Gm",
+        "Country_Code": "CH",
+        "Subdivision_Code": "VS",
+        "Subdivision_Name": "Valais (fr)",
+        "Subdivion_Type": "Canton",
+        "createdAt": "2020-02-17T21:53:47.367Z",
+        "updatedAt": "2020-02-19T14:27:38.774Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "c2ZdW21DZq"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "RXFDoBrEB7",
+        "Country_Code": "CH",
+        "Subdivision_Code": "SZ",
+        "Subdivision_Name": "Schwyz (de)",
+        "Subdivion_Type": "Canton",
+        "createdAt": "2020-02-17T21:53:47.367Z",
+        "updatedAt": "2020-02-19T14:27:38.102Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "c2ZdW21DZq"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    }
+]

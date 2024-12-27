@@ -1,0 +1,16 @@
+[Unit]
+Description=asdap application
+
+[Service]
+ExecStart=/home/devops/cd-api/node_modules/.bin/ts-node /home/devops/cd-api/src/app.ts 
+Restart=always
+User=devops
+# Note Debian/Ubuntu uses 'nogroup', RHEL/Fedora uses 'nobody'
+Group=nogroup
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+WorkingDirectory=/home/devops/cd-api/
+
+[Install]
+WantedBy=multi-user.target
+

@@ -1,0 +1,140 @@
+1. SSL
+3. Continous running of corpdesk
+    - run as system daemon
+        - auto restart
+    - monitor status
+        - view logs
+    - auto restart (nodemon, forever)
+    - run via sysdemon
+
+CREDIT UNIONS & FINANCIAL COOPERATIVES 
+MEMBERS 
+SAVINGS & SHARES (USD) 
+LOANS (USD) 
+RESERVES (USD) 
+ASSETS (USD) 
+PENETRATION 
+
+1. sys config
+    - run dummy data for nationals
+    - run dummy data for subdivisions
+    - run dummy data for cd-econ
+    - remove dummy data
+    - re-generate dummy data
+2. Provide data fro sub-division of given country
+2. (a) Do we have the data sent directly or do online entry. NB This can be managed by the respective sub regions for their own data
+
+2. Penetration rate is calculated by dividing the total number of reported credit union members by the
+economically active population age 15–64 years old.
+2. (a) population statistics of 15-64: https://data.worldbank.org/indicator/SP.POP.1564.TO?locations=ZG&most_recent_year_desc=false
+2. (b) Data for population statistics for each subdivision from 2017-2022 of ages 15-64
+
+3. Tanzania Data for Sacco numbers and 
+
+4. cd-econ
+- population stats
+- gdp
+- other standard indicators: see doc 'standard economic indicators'
+
+5. interface and privileges for data entry
+
+Additional Fields for Consideration:
+Tanzania 2022 report, page 19
+THE SAVINGS AND CREDIT COOPERATIVE SOCIETIES(SACCOS)
+ANNUAL REPORT FOR 202219
+S/No    Narration                                   Data
+1.      Number of SACCOS applications received      1,177
+2.      Number of SACCOS applications approved      759
+3.      Number of SACCOS applications rejected      418
+
+
+S/No    Narration                       Category A  Category B  Total
+1.      No. of Applications received    1009        168         1,177
+2.      No. of Applications Approved    623         136         759
+3.      Number of Applications Rejected 386         32          418
+4.      Number of revoked licenses 1                0           1
+
+
+S/No. NAME OF
+REGION
+NUMBER OF
+SACCOS
+REGISTERED
+NUMBER OF
+SACCOS LICENSED
+% OF LICENSED
+SACCOS AGAINST
+REGISTERED
+SACCOS
+1 ARUSHA 142 92 64.8
+2 DAR ES SALAAM 517 211 40.8
+3 DODOMA 57 35 61.4
+4 GEITA 203 5 2.5
+5 IRINGA 78 31 39.7
+6 KAGERA 57 30 52.6
+7 KATAVI 5 2 40.0
+8 KIGOMA 36 4 11.1
+9 KILIMANJARO 122 64 52.5
+10 LINDI 12 3 25.0
+11 MANYARA 74 27 36.5
+12 MARA 38 15 39.5
+13 MBEYA 105 53 50.5
+14 MOROGORO 104 36 34.6
+15 MTWARA 8 4 50.0
+16 MWANZA 64 24 37.5
+17 NJOMBE 74 25 33.8
+18 PWANI 37 21 56.8
+19 RUKWA 21 7 33.3
+20 RUVUMA 62 14 22.6
+21 SHINYANGA 20 11 55.0
+22 SIMIYU 35 3 8.6
+23 SINGIDA 18 7 38.9
+24 SONGWE 9 5 55.6
+25 TABORA 43 4 9.3
+26 TANGA 93 26 28.0
+TOTAL 2,034 759 37.3
+
+
+//////////////////////////////
+
+REGION TOTAL CAPITAL %
+TOTAL
+SHARE
+CAPI-
+TAL
+TOTAL ASSET %
+TOTAL
+ASSET
+LOANS
+OUTSTANDING
+%
+LOANS
+OUT
+STAND-
+ING
+TOTAL SAVINGS &
+DEPOSIT
+% TOTAL
+SAVINGS
+&
+DEPOSIT
+ARUSHA 6,571,184,935.27 3.23 38,051,217,299.14 3.11 30,752,965,745.81 2.94 23,362,610,554.51 2.68
+DAR ES
+SALAAM
+15,503,779,252.69 56.70 797,878,587,361.54 65.06 708,493,674,659.15 67.80 576,816,857,295.84 66.20
+DODOMA 4,904,110,810.60 2.40 24,416,335,001.78 1.99 19,001,113,111.07 1.82 14,327,873,530.32 1.64
+GEITA 1,368,631,099.31 0.67 3,021,888,179.82 0.25 1,853,250,783.84 0.18 1,188,013,172.16 0.14
+IRINGA 3,370,769,431.86 1.65 13,804,089,211.10 1.13 10,580,106,274.91 1.01 8,151,310,662.65 0.94
+KAGERA 13,945,315,893.09 6.85 34,090,314,381.73 2.78 28,561,693,785.10 2.73 17,174,827,299.62 1.97
+KATAVI 14,780,248.51 0.01 196,808,970.87 1.12 24,251,561.04 0.00 24,879,433.12 0.00
+KIGOMA 13,164,711.02 0.01 37,224,036.64 0.00 36,489,919.83 0.00 20,781,468.86 0.00
+KILIMAN-
+JARO
+17,414,145,899.40 8.55 112,788,134,209.38 9.21 92,472,850,401.40 8.85 86,996,022,357.80 9.98
+LINDI 475,502,789.50 0.23 1,411,560,298.57 0.12 582,239,697.48 0.06 527,435,983.27 0.06
+MANYARA 693,677,237.32 0.34 3,444,709,006.34 0.28 2,497,251,859.30 0.24 1,125,772,387.66 0.13
+MARA 1,663,275,271.94 0.82 7,113,478,744.36 0.54 5,923,372,662.36 0.57 5,019,321,535.21 0.58
+MBEYA 12,874,169,978.73 6.32 64,649,686,878.96 5.28 50,119,781,420.81 4.80 45,539,129,229.76 5.23
+MORO-
+GORO
+5,771,427,010.35 2.83 39,605,304,832.41 3.23 32,448,089,879.26 3.11 46,460,884,243.34 5.33

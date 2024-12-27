@@ -1,0 +1,74 @@
+[
+    {
+        "cdGeoLocationName": "Western",
+        "cdGeoPoliticalParentId": 114,
+        "cdGeoLocationCode": "W",
+        "cdGeoLocationIcon": {},
+        "back4appObectId": "BmDABFHgIx",
+        "cdGeoPoliticalTypeId": 14,
+        "cdGeoLocationNameAlt": {},
+        "cdGeoLocationEnabled": true,
+        "cdGeoLocationAssoc":{},
+        "cdGeoBoundaryData": {}
+    },
+    {
+        "cdGeoLocationName": "Lower River",
+        "cdGeoPoliticalParentId": 114,
+        "cdGeoLocationCode": "L",
+        "cdGeoLocationIcon": {},
+        "back4appObectId": "cVgBGkNycF",
+        "cdGeoPoliticalTypeId": 14,
+        "cdGeoLocationNameAlt": {},
+        "cdGeoLocationEnabled": true,
+        "cdGeoLocationAssoc":{},
+        "cdGeoBoundaryData": {}
+    },
+    {
+        "cdGeoLocationName": "North Bank",
+        "cdGeoPoliticalParentId": 114,
+        "cdGeoLocationCode": "N",
+        "cdGeoLocationIcon": {},
+        "back4appObectId": "sSThnMBcpd",
+        "cdGeoPoliticalTypeId": 14,
+        "cdGeoLocationNameAlt": {},
+        "cdGeoLocationEnabled": true,
+        "cdGeoLocationAssoc":{},
+        "cdGeoBoundaryData": {}
+    },
+    {
+        "cdGeoLocationName": "Banjul",
+        "cdGeoPoliticalParentId": 114,
+        "cdGeoLocationCode": "B",
+        "cdGeoLocationIcon": {},
+        "back4appObectId": "fnKR6LhrgR",
+        "cdGeoPoliticalTypeId": 14,
+        "cdGeoLocationNameAlt": {},
+        "cdGeoLocationEnabled": true,
+        "cdGeoLocationAssoc":{},
+        "cdGeoBoundaryData": {}
+    },
+    {
+        "cdGeoLocationName": "Upper River",
+        "cdGeoPoliticalParentId": 114,
+        "cdGeoLocationCode": "U",
+        "cdGeoLocationIcon": {},
+        "back4appObectId": "A6WFXXboF3",
+        "cdGeoPoliticalTypeId": 14,
+        "cdGeoLocationNameAlt": {},
+        "cdGeoLocationEnabled": true,
+        "cdGeoLocationAssoc":{},
+        "cdGeoBoundaryData": {}
+    },
+    {
+        "cdGeoLocationName": "Central River",
+        "cdGeoPoliticalParentId": 114,
+        "cdGeoLocationCode": "M",
+        "cdGeoLocationIcon": {},
+        "back4appObectId": "0oimd04U8q",
+        "cdGeoPoliticalTypeId": 14,
+        "cdGeoLocationNameAlt": {},
+        "cdGeoLocationEnabled": true,
+        "cdGeoLocationAssoc":{},
+        "cdGeoBoundaryData": {}
+    }
+]

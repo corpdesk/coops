@@ -1,0 +1,123 @@
+[
+    {
+        "cdGeoLocationName": "Upper West",
+        "cdGeoPoliticalParentId": 113,
+        "cdGeoLocationCode": "UW",
+        "cdGeoLocationIcon": {},
+        "back4appObectId": "Ywm3G6a71B",
+        "cdGeoPoliticalTypeId": 16,
+        "cdGeoLocationNameAlt": {},
+        "cdGeoLocationEnabled": true,
+        "cdGeoLocationAssoc":{},
+        "cdGeoBoundaryData": {}
+    },
+    {
+        "cdGeoLocationName": "Eastern",
+        "cdGeoPoliticalParentId": 113,
+        "cdGeoLocationCode": "EP",
+        "cdGeoLocationIcon": {},
+        "back4appObectId": "KehYaAfhMk",
+        "cdGeoPoliticalTypeId": 16,
+        "cdGeoLocationNameAlt": {},
+        "cdGeoLocationEnabled": true,
+        "cdGeoLocationAssoc":{},
+        "cdGeoBoundaryData": {}
+    },
+    {
+        "cdGeoLocationName": "Greater Accra",
+        "cdGeoPoliticalParentId": 113,
+        "cdGeoLocationCode": "AA",
+        "cdGeoLocationIcon": {},
+        "back4appObectId": "KqVKAQfeKb",
+        "cdGeoPoliticalTypeId": 16,
+        "cdGeoLocationNameAlt": {},
+        "cdGeoLocationEnabled": true,
+        "cdGeoLocationAssoc":{},
+        "cdGeoBoundaryData": {}
+    },
+    {
+        "cdGeoLocationName": "Central",
+        "cdGeoPoliticalParentId": 113,
+        "cdGeoLocationCode": "CP",
+        "cdGeoLocationIcon": {},
+        "back4appObectId": "m432EKHjZy",
+        "cdGeoPoliticalTypeId": 16,
+        "cdGeoLocationNameAlt": {},
+        "cdGeoLocationEnabled": true,
+        "cdGeoLocationAssoc":{},
+        "cdGeoBoundaryData": {}
+    },
+    {
+        "cdGeoLocationName": "Northern",
+        "cdGeoPoliticalParentId": 113,
+        "cdGeoLocationCode": "NP",
+        "cdGeoLocationIcon": {},
+        "back4appObectId": "icEAp0Vr6j",
+        "cdGeoPoliticalTypeId": 16,
+        "cdGeoLocationNameAlt": {},
+        "cdGeoLocationEnabled": true,
+        "cdGeoLocationAssoc":{},
+        "cdGeoBoundaryData": {}
+    },
+    {
+        "cdGeoLocationName": "Western",
+        "cdGeoPoliticalParentId": 113,
+        "cdGeoLocationCode": "WP",
+        "cdGeoLocationIcon": {},
+        "back4appObectId": "0KES6jGb0O",
+        "cdGeoPoliticalTypeId": 16,
+        "cdGeoLocationNameAlt": {},
+        "cdGeoLocationEnabled": true,
+        "cdGeoLocationAssoc":{},
+        "cdGeoBoundaryData": {}
+    },
+    {
+        "cdGeoLocationName": "Volta",
+        "cdGeoPoliticalParentId": 113,
+        "cdGeoLocationCode": "TV",
+        "cdGeoLocationIcon": {},
+        "back4appObectId": "oMBQ748XZo",
+        "cdGeoPoliticalTypeId": 16,
+        "cdGeoLocationNameAlt": {},
+        "cdGeoLocationEnabled": true,
+        "cdGeoLocationAssoc":{},
+        "cdGeoBoundaryData": {}
+    },
+    {
+        "cdGeoLocationName": "Brong-Ahafo",
+        "cdGeoPoliticalParentId": 113,
+        "cdGeoLocationCode": "BA",
+        "cdGeoLocationIcon": {},
+        "back4appObectId": "W521W8DYeT",
+        "cdGeoPoliticalTypeId": 16,
+        "cdGeoLocationNameAlt": {},
+        "cdGeoLocationEnabled": true,
+        "cdGeoLocationAssoc":{},
+        "cdGeoBoundaryData": {}
+    },
+    {
+        "cdGeoLocationName": "Ashanti",
+        "cdGeoPoliticalParentId": 113,
+        "cdGeoLocationCode": "AH",
+        "cdGeoLocationIcon": {},
+        "back4appObectId": "RvXPAT5QsL",
+        "cdGeoPoliticalTypeId": 16,
+        "cdGeoLocationNameAlt": {},
+        "cdGeoLocationEnabled": true,
+        "cdGeoLocationAssoc":{},
+        "cdGeoBoundaryData": {}
+    },
+    {
+        "cdGeoLocationName": "Upper East",
+        "cdGeoPoliticalParentId": 113,
+        "cdGeoLocationCode": "UE",
+        "cdGeoLocationIcon": {},
+        "back4appObectId": "GF4FYNDWEG",
+        "cdGeoPoliticalTypeId": 16,
+        "cdGeoLocationNameAlt": {},
+        "cdGeoLocationEnabled": true,
+        "cdGeoLocationAssoc":{},
+        "cdGeoBoundaryData": {}
+    }
+ 
+]

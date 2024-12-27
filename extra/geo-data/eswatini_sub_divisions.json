@@ -1,0 +1,51 @@
+[
+    {
+        "cdGeoLocationName": "Hhohho",
+        "cdGeoPoliticalParentId": 112,
+        "cdGeoLocationCode": "SZ1",
+        "cdGeoLocationIcon": {},
+        "back4appObectId": "",
+        "cdGeoPoliticalTypeId": 16,
+        "cdGeoLocationNameAlt": {},
+        "cdGeoLocationEnabled": true,
+        "cdGeoLocationAssoc":{},
+        "cdGeoBoundaryData": {}
+    },
+    {
+        "cdGeoLocationName": "Lubombo",
+        "cdGeoPoliticalParentId": 112,
+        "cdGeoLocationCode": "SZ2",
+        "cdGeoLocationIcon": {},
+        "back4appObectId": "",
+        "cdGeoPoliticalTypeId": 16,
+        "cdGeoLocationNameAlt": {},
+        "cdGeoLocationEnabled": true,
+        "cdGeoLocationAssoc":{},
+        "cdGeoBoundaryData": {}
+    },
+    {
+        "cdGeoLocationName": "Manzini",
+        "cdGeoPoliticalParentId": 112,
+        "cdGeoLocationCode": "SZ3",
+        "cdGeoLocationIcon": {},
+        "back4appObectId": "",
+        "cdGeoPoliticalTypeId": 16,
+        "cdGeoLocationNameAlt": {},
+        "cdGeoLocationEnabled": true,
+        "cdGeoLocationAssoc":{},
+        "cdGeoBoundaryData": {}
+    },
+    {
+        "cdGeoLocationName": "Shiselweni",
+        "cdGeoPoliticalParentId": 112,
+        "cdGeoLocationCode": "SZ4",
+        "cdGeoLocationIcon": {},
+        "back4appObectId": "",
+        "cdGeoPoliticalTypeId": 16,
+        "cdGeoLocationNameAlt": {},
+        "cdGeoLocationEnabled": true,
+        "cdGeoLocationAssoc":{},
+        "cdGeoBoundaryData": {}
+    }
+ 
+]

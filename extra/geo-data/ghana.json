@@ -1,0 +1,182 @@
+[
+    {
+        "objectId": "Ywm3G6a71B",
+        "Country_Code": "GH",
+        "Subdivision_Code": "UW",
+        "Subdivision_Name": "Upper West",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:47.663Z",
+        "updatedAt": "2020-02-19T14:31:22.186Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "vCIN9WyEHn"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "KehYaAfhMk",
+        "Country_Code": "GH",
+        "Subdivision_Code": "EP",
+        "Subdivision_Name": "Eastern",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:47.663Z",
+        "updatedAt": "2020-02-19T14:31:21.070Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "vCIN9WyEHn"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "KqVKAQfeKb",
+        "Country_Code": "GH",
+        "Subdivision_Code": "AA",
+        "Subdivision_Name": "Greater Accra",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:47.663Z",
+        "updatedAt": "2020-02-19T14:31:20.849Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "vCIN9WyEHn"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "m432EKHjZy",
+        "Country_Code": "GH",
+        "Subdivision_Code": "CP",
+        "Subdivision_Name": "Central",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:47.663Z",
+        "updatedAt": "2020-02-19T14:31:21.509Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "vCIN9WyEHn"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "icEAp0Vr6j",
+        "Country_Code": "GH",
+        "Subdivision_Code": "NP",
+        "Subdivision_Name": "Northern",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:47.663Z",
+        "updatedAt": "2020-02-19T14:31:21.288Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "vCIN9WyEHn"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "0KES6jGb0O",
+        "Country_Code": "GH",
+        "Subdivision_Code": "WP",
+        "Subdivision_Name": "Western",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:47.663Z",
+        "updatedAt": "2020-02-19T14:31:21.961Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "vCIN9WyEHn"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "oMBQ748XZo",
+        "Country_Code": "GH",
+        "Subdivision_Code": "TV",
+        "Subdivision_Name": "Volta",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:47.663Z",
+        "updatedAt": "2020-02-19T14:31:22.627Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "vCIN9WyEHn"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "W521W8DYeT",
+        "Country_Code": "GH",
+        "Subdivision_Code": "BA",
+        "Subdivision_Name": "Brong-Ahafo",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:47.663Z",
+        "updatedAt": "2020-02-19T14:31:22.408Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "vCIN9WyEHn"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "RvXPAT5QsL",
+        "Country_Code": "GH",
+        "Subdivision_Code": "AH",
+        "Subdivision_Name": "Ashanti",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:47.663Z",
+        "updatedAt": "2020-02-19T14:31:21.731Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "vCIN9WyEHn"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    },
+    {
+        "objectId": "GF4FYNDWEG",
+        "Country_Code": "GH",
+        "Subdivision_Code": "UE",
+        "Subdivision_Name": "Upper East",
+        "Subdivion_Type": "Region",
+        "createdAt": "2020-02-17T21:53:47.663Z",
+        "updatedAt": "2020-02-19T14:31:22.844Z",
+        "country": {
+            "__type": "Pointer",
+            "className": "Continentscountriescities_Country",
+            "objectId": "vCIN9WyEHn"
+        },
+        "cities": {
+            "__type": "Relation",
+            "className": "Continentscountriescities_City"
+        }
+    }
+]
