@@ -824,50 +824,64 @@ export class CoopStatService extends CdService {
     
 
     async StatsByGeoLocation(req, res, q: IQuery = null) {
-        if (q === null) {
-            q = this.b.getQuery(req);
+        try{
+            if (q === null) {
+                q = this.b.getQuery(req);
+            }
+    
+            let svCoopStatPublicFilter = new CoopStatPublicFilterService();
+            let svCdGeoLocationService = new CdGeoLocationService();
+    
+            // Apply public filter
+            q = await svCoopStatPublicFilter.applyCoopStatFilter(req, res, q);
+            console.log('CoopStatService::StatsByGeoLocation()/q1:', q);
+    
+            // Create a clean copy of q for validation
+            let qCdGeoLocation = cloneDeep(q);
+    
+            // Make sure the query is compliant to CdGeoLocationModel
+            qCdGeoLocation = await this.b.validateQuery(qCdGeoLocation, CdGeoLocationModel);
+            console.log('CoopStatService::StatsByGeoLocation()/q2:', q);
+            console.log('CoopStatService::StatsByGeoLocation()/qCdGeoLocation:', qCdGeoLocation);
+    
+            // Fetch geo data
+            let gData = await svCdGeoLocationService.getGeoLocationI(req, res, qCdGeoLocation);
+    
+            // Set order for results
+            q.order = { "coopStatDateLabel": "ASC" };
+    
+            // Create a clean copy of q for validation
+            let qCoopStatView = cloneDeep(q);
+            console.log('CoopStatService::StatsByGeoLocation()/qCoopStatView1:', qCoopStatView);
+            // Make sure the query is compliant with CoopStatViewModel
+            qCoopStatView = await this.b.validateQuery(qCoopStatView, CoopStatViewModel);
+            console.log('CoopStatService::StatsByGeoLocation()/qCoopStatView2:', qCoopStatView);
+            console.log('CoopStatService::StatsByGeoLocation()/q3:', q);
+    
+            // Get statistical data
+            let cData = await this.getCoopI(req, res, q);
+    
+            // Set data response format
+            let ret = {
+                geoLocationData: gData.data,
+                coopData: cData.data,
+            };
+            this.logger.logInfo('CoopService::StatsByGeoLocation()/ret:', ret);
+            this.b.cdResp.app_state.success = true;
+            this.b.cdResp.data = await ret;
+            this.b.respond(req, res);
+        } catch(e){
+            this.b.err.push(e.toString());
+            const i = {
+                messages: this.b.err,
+                code: 'CoopStateService:StatsByGeoLocation',
+                app_msg: ''
+            };
+            await this.b.serviceErr(req, res, e, i.code)
+            await this.b.respond(req, res)
         }
 
-        let svCoopStatPublicFilter = new CoopStatPublicFilterService();
-        let svCdGeoLocationService = new CdGeoLocationService();
-
-        // Apply public filter
-        q = await svCoopStatPublicFilter.applyCoopStatFilter(req, res, q);
-        console.log('CoopStatService::StatsByGeoLocation()/q1:', q);
-
-        // Create a clean copy of q for validation
-        let qCdGeoLocation = cloneDeep(q);
-
-        // Make sure the query is compliant to CdGeoLocationModel
-        qCdGeoLocation = await this.b.validateQuery(qCdGeoLocation, CdGeoLocationModel);
-        console.log('CoopStatService::StatsByGeoLocation()/q2:', q);
-        console.log('CoopStatService::StatsByGeoLocation()/qCdGeoLocation:', qCdGeoLocation);
-
-        // Fetch geo data
-        let gData = await svCdGeoLocationService.getGeoLocationI(req, res, qCdGeoLocation);
-
-        // Set order for results
-        q.order = { "coopStatDateLabel": "ASC" };
-
-        // Create a clean copy of q for validation
-        let qCoopStatView = cloneDeep(q);
-        console.log('CoopStatService::StatsByGeoLocation()/qCoopStatView1:', qCoopStatView);
-        // Make sure the query is compliant with CoopStatViewModel
-        qCoopStatView = await this.b.validateQuery(qCoopStatView, CoopStatViewModel);
-        console.log('CoopStatService::StatsByGeoLocation()/qCoopStatView2:', qCoopStatView);
-        console.log('CoopStatService::StatsByGeoLocation()/q3:', q);
-
-        // Get statistical data
-        let cData = await this.getCoopI(req, res, q);
-
-        // Set data response format
-        let ret = {
-            geoLocationData: gData.data,
-            coopData: cData.data,
-        };
-        this.logger.logInfo('CoopService::StatsByGeoLocation()/ret:', ret);
-        this.b.cdResp.data = await ret;
-        this.b.respond(req, res);
+        
     }
 
 }
