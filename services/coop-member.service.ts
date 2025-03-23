@@ -334,7 +334,7 @@ export class CoopMemberService extends CdService {
     //
   }
 
-  async activateCoop(req, res) {
+  async activateCoop(req, res, byToken?:boolean) {
     try {
       if (!this.validateActiveCoop(req, res)) {
         const e = "could not validate the request";
@@ -404,7 +404,7 @@ export class CoopMemberService extends CdService {
         retActivate
       );
       this.b.cdResp.data = {
-        coopCoopMemberProfile: await this.getCoopMemberProfileI(req, res),
+        coopCoopMemberProfile: await this.getCoopMemberProfileI(req, res, byToken),
       };
       this.b.respond(req, res);
     } catch (e) {
@@ -524,9 +524,9 @@ export class CoopMemberService extends CdService {
     }
   }
 
-  async getCoopMemberProfile(req, res) {
+  async getCoopMemberProfile(req, res, byToken?: boolean) {
     try {
-      if (!this.validateGetCoopMemberProfile(req, res)) {
+      if (!this.validateGetCoopMemberProfile(req, res, byToken)) {
         const e = "could not validate the request";
         this.b.err.push(e.toString());
         const i = {
@@ -537,7 +537,7 @@ export class CoopMemberService extends CdService {
         await this.b.serviceErr(req, res, e, i.code);
         await this.b.respond(req, res);
       }
-      await this.setCoopMemberProfileI(req, res);
+      await this.setCoopMemberProfileI(req, res, byToken);
       this.b.i.code = "CoopMemberController::getCoopMemberProfile";
       const svSess = new SessionService();
       svSess.sessResp.cd_token = req.post.dat.token;
@@ -558,9 +558,10 @@ export class CoopMemberService extends CdService {
     }
   }
 
-  async validateGetCoopMemberProfile(req, res) {
+  async validateGetCoopMemberProfile(req, res, byToken: boolean) {
     let ret = true;
     if (
+      !byToken ||
       req.post.a !== "GetMemberProfile" ||
       !("userId" in this.b.getPlData(req))
     ) {
@@ -581,9 +582,9 @@ export class CoopMemberService extends CdService {
     return ret;
   }
 
-  async getCoopMemberProfileI(req, res) {
+  async getCoopMemberProfileI(req, res, byToken:boolean) {
     try {
-      await this.setCoopMemberProfileI(req, res);
+      await this.setCoopMemberProfileI(req, res, byToken);
       return this.mergedProfile;
     } catch (e) {
       console.log("CoopMemberService::getCoopMemberProfileI()/e:", e);
@@ -738,7 +739,7 @@ export class CoopMemberService extends CdService {
    * @param req
    * @param res
    */
-  async setCoopMemberProfileI(req, res) {
+  async setCoopMemberProfileI(req, res, byToken:boolean) {
     console.log("CoopMemberService::setCoopMemberProfileI()/01");
 
     // note that 'ignoreCache' is set to true because old data may introduce confussion
@@ -784,7 +785,9 @@ export class CoopMemberService extends CdService {
     // }
     const plQuery = await this.b.getPlQuery(req);
     console.log("CoopMemberService::setCoopMemberProfileI()/plQuery:", plQuery);
-    uid = plQuery.where.userId;
+    if(!byToken){
+        uid = plQuery.where.userId;
+    }
     console.log("CoopMemberService::setCoopMemberProfileI()/uid0:", uid);
     const svUser = new UserService();
     const existingUserProfile = await svUser.existingUserProfile(req, res, uid);
@@ -800,7 +803,8 @@ export class CoopMemberService extends CdService {
       this.mergedProfile = await this.mergeUserProfile(
         req,
         res,
-        existingUserProfile
+        existingUserProfile,
+        byToken
       );
       console.log(
         "CoopMemberService::setCoopMemberProfileI()/this.mergedProfile1:",
@@ -808,7 +812,7 @@ export class CoopMemberService extends CdService {
       );
     } else {
       console.log("CoopMemberService::setCoopMemberProfileI()/04");
-      if (this.validateGetCoopMemberProfile(req, res)) {
+      if (this.validateGetCoopMemberProfile(req, res, byToken)) {
         console.log("CoopMemberService::setCoopMemberProfileI()/05");
         console.log("CoopMemberService::setCoopMemberProfile()/uid:", uid);
         const uRet = await svUser.getUserByID(req, res, uid);
@@ -855,7 +859,8 @@ export class CoopMemberService extends CdService {
       this.mergedProfile = await this.mergeUserProfile(
         req,
         res,
-        modifiedUserProfile
+        modifiedUserProfile,
+        byToken
       );
       console.log(
         "CoopMemberService::setCoopMemberProfile()/this.mergedProfile2:",
@@ -864,7 +869,7 @@ export class CoopMemberService extends CdService {
     }
   }
 
-  async resetCoopMemberProfileI(req, res) {
+  async resetCoopMemberProfileI(req, res, byToken:boolean) {
     console.log("CoopMemberService::resetCoopMemberProfileI()/01");
     // note that 'ignoreCache' is set to true because old data may introduce confusion
     const svSess = new SessionService();
@@ -920,7 +925,8 @@ export class CoopMemberService extends CdService {
       this.mergedProfile = await this.mergeUserProfile(
         req,
         res,
-        modifiedUserProfile
+        modifiedUserProfile,
+        byToken
       );
       console.log(
         "CoopMemberService::resetCoopMemberProfileI()/this.mergedProfile1:",
@@ -953,7 +959,8 @@ export class CoopMemberService extends CdService {
       this.mergedProfile = await this.mergeUserProfile(
         req,
         res,
-        modifiedUserProfile
+        modifiedUserProfile,
+        byToken
       );
       console.log(
         "CoopMemberService::resetCoopMemberProfileI()/this.mergedProfile2:",
@@ -962,7 +969,7 @@ export class CoopMemberService extends CdService {
     }
   }
 
-  async mergeUserProfile(req, res, userProfile): Promise<ICoopMemberProfile> {
+  async mergeUserProfile(req, res, userProfile, byToken): Promise<ICoopMemberProfile> {
     console.log("CoopMemberService::mergeUserProfile()/01");
     const svSess = new SessionService();
     console.log("CoopMemberService::mergeUserProfile()/02");
@@ -985,7 +992,9 @@ export class CoopMemberService extends CdService {
     //   uid = plQuery.where.userId;
     // }
     const plQuery = this.b.getPlQuery(req);
-    uid = plQuery.where.userId;
+    if(!byToken){
+        uid = plQuery.where.userId;
+    }
     console.log("CoopMemberService::mergeUserProfile()/uid:", uid);
     const q = { where: { userId: uid } };
     console.log("CoopMemberService::mergeUserProfile()/q:", q);
@@ -1014,7 +1023,7 @@ export class CoopMemberService extends CdService {
     return await mergedProfile;
   }
 
-  async updateCoopMemberProfile(req, res): Promise<void> {
+  async updateCoopMemberProfile(req, res, byToken): Promise<void> {
     try {
       const svSess = new SessionService();
       const sessionDataExt: ISessionDataExt = await svSess.getSessionDataExt(
@@ -1040,7 +1049,7 @@ export class CoopMemberService extends CdService {
        * 1. profile data from current user coop_member entity.
        * 2. membership data
        */
-      await this.setCoopMemberProfileI(req, res);
+      await this.setCoopMemberProfileI(req, res, byToken);
 
       if (await this.validateProfileData(req, res, this.mergedProfile)) {
         /*
@@ -1320,7 +1329,7 @@ export class CoopMemberService extends CdService {
     return await coopMember;
   }
 
-  async resetCoopMemberProfile(req, res): Promise<void> {
+  async resetCoopMemberProfile(req, res, byToken): Promise<void> {
     try {
       const svSess = new SessionService();
       const sessionDataExt: ISessionDataExt = await svSess.getSessionDataExt(
@@ -1345,7 +1354,7 @@ export class CoopMemberService extends CdService {
        * 1. profile data from current user coop_member entity.
        * 2. membership data
        */
-      await this.resetCoopMemberProfileI(req, res);
+      await this.resetCoopMemberProfileI(req, res, byToken);
 
       if (await this.validateProfileData(req, res, this.mergedProfile)) {
         /*

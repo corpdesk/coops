@@ -101,6 +101,14 @@ export class CoopMemberController extends CdController {
         }
     }
 
+    async GetCoopMemberProfileByToken(req, res) {
+        try {
+            await this.svCoopMember.getCoopMemberProfile(req, res, true);
+        } catch (e) {
+            await this.b.serviceErr(req, res, e, 'CoopMemberController:GetProfile');
+        }
+    }
+
     /**
      * 
      * {
@@ -307,7 +315,7 @@ export class CoopMemberController extends CdController {
         console.log('CoopMemberController::UpdateCoopMemberProfile()/01');
         try {
             console.log('CoopMemberController::UpdateCoopMemberProfile()/02');
-            await this.svCoopMember.updateCoopMemberProfile(req, res);
+            await this.svCoopMember.updateCoopMemberProfile(req, res, false);
         } catch (e) {
             await this.b.serviceErr(req, res, e, 'CoopMemberController::UpdateCoopMemberProfile');
         }
