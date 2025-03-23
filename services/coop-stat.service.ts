@@ -491,7 +491,7 @@ export class CoopStatService extends CdService {
         this.logger.logInfo('CoopService::getCoop/f:', q);
         // const serviceInput = siGet(q,this)
         this.serviceModel = new CoopStatModel();
-        const serviceInput: IServiceInput = this.b.siGet(q, this)
+        const serviceInput: IServiceInput = this.b.siGet(q,'CoopStatService:getCoop' , CoopStatModel)
         serviceInput.serviceModelInstance = this.serviceModel
         serviceInput.serviceModel = CoopStatModel
         try {
@@ -750,7 +750,7 @@ export class CoopStatService extends CdService {
         }
         this.logger.logInfo('CoopService::getCoopI/q:', q);
         let serviceModel = new CoopStatViewModel();
-        const serviceInput: IServiceInput = this.b.siGet(q, this)
+        const serviceInput: IServiceInput = this.b.siGet(q, 'CoopStatService:getCoopI' ,CoopStatViewModel)
         serviceInput.serviceModelInstance = serviceModel
         serviceInput.serviceModel = CoopStatViewModel
         try {

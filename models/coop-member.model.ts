@@ -66,7 +66,7 @@ export class CoopMemberModel {
             nullable: true
         }
     )
-    docId: number;
+    docId?: number;
 
     @Column(
         {

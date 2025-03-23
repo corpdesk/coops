@@ -43,27 +43,27 @@ export class CoopMemberController extends CdController {
         }
     }
 
-    // /**
-    //  * {
-    //         "ctx": "Sys",
-    //         "m": "Moduleman",
-    //         "c": "CoopMember",
-    //         "a": "Get",
-    //         "dat": {
-    //             "f_vals": [
-    //                 {
-    //                     "query": {
-    //                         "where": {"companyId": 45763}
-    //                     }
-    //                 }
-    //             ],
-    //             "token": "08f45393-c10e-4edd-af2c-bae1746247a1"
-    //         },
-    //         "args": null
-    //     }
-    //  * @param req
-    //  * @param res
-    //  */
+    /**
+     * {
+            "ctx": "Sys",
+            "m": "Coops",
+            "c": "CoopMember",
+            "a": "Get",
+            "dat": {
+                "f_vals": [
+                    {
+                        "query": {
+                            "where": {"companyId": 45763}
+                        }
+                    }
+                ],
+                "token": "08f45393-c10e-4edd-af2c-bae1746247a1"
+            },
+            "args": null
+        }
+     * @param req
+     * @param res
+     */
     async Get(req, res) {
         try {
             await this.svCoopMember.getCoopMember(req, res);
@@ -72,6 +72,27 @@ export class CoopMemberController extends CdController {
         }
     }
 
+    /**
+     * {
+            "ctx": "Sys",
+            "m": "Coops",
+            "c": "CoopMember",
+            "a": "GetCoopMemberProfile",
+            "dat": {
+                "f_vals": [
+                    {
+                        "query": {
+                            "where": {"userId": 1010}
+                        }
+                    }
+                ],
+                "token": "08f45393-c10e-4edd-af2c-bae1746247a1"
+            },
+            "args": null
+        }
+     * @param req 
+     * @param res 
+     */
     async GetCoopMemberProfile(req, res) {
         try {
             await this.svCoopMember.getCoopMemberProfile(req, res);
@@ -291,5 +312,14 @@ export class CoopMemberController extends CdController {
             await this.b.serviceErr(req, res, e, 'CoopMemberController::UpdateCoopMemberProfile');
         }
     }
+
+    // // getCoopMemberProfile
+    // async GetCoopMemberProfile(req, res) {
+    //     try {
+    //         await this.svCoopMember.getCoopMemberProfile(req, res);
+    //     } catch (e) {
+    //         await this.b.serviceErr(req, res, e, 'CoopController:GetSL');
+    //     }
+    // }
 
 }
