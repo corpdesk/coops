@@ -74,7 +74,7 @@ export class CoopMemberController extends CdController {
 
     /**
      * {
-            "ctx": "Sys",
+            "ctx": "App",
             "m": "Coops",
             "c": "CoopMember",
             "a": "GetCoopMemberProfile",

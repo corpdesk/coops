@@ -766,23 +766,26 @@ export class CoopMemberService extends CdService {
       "CoopMemberService::setCoopMemberProfileI()/req.post.a",
       req.post.a
     );
-    if (req.post.a === "GetCoopMemberProfile") {
-      const plData = await this.b.getPlData(req);
-      console.log("CoopMemberService::setCoopMemberProfileI()/plData:", plData);
-      uid = plData.userId;
-      console.log("CoopMemberService::setCoopMemberProfileI()/uid0:", uid);
-    }
+    // if (req.post.a === "GetCoopMemberProfile") {
+    //   const plData = await this.b.getPlQuery(req);
+    //   console.log("CoopMemberService::setCoopMemberProfileI()/plData:", plData);
+    //   uid = plData.userId;
+    //   console.log("CoopMemberService::setCoopMemberProfileI()/uid0:", uid);
+    // }
 
-    if (req.post.a === "UpdateCoopMemberProfile") {
-      const plQuery = await this.b.getPlQuery(req);
-      console.log(
-        "CoopMemberService::setCoopMemberProfileI()/plQuery:",
-        plQuery
-      );
-      uid = plQuery.where.userId;
-      console.log("CoopMemberService::setCoopMemberProfileI()/uid0:", uid);
-    }
-    console.log("CoopMemberService::setCoopMemberProfileI()/uid1:", uid);
+    // if (req.post.a === "UpdateCoopMemberProfile") {
+    //   const plQuery = await this.b.getPlQuery(req);
+    //   console.log(
+    //     "CoopMemberService::setCoopMemberProfileI()/plQuery:",
+    //     plQuery
+    //   );
+    //   uid = plQuery.where.userId;
+    //   console.log("CoopMemberService::setCoopMemberProfileI()/uid0:", uid);
+    // }
+    const plQuery = await this.b.getPlQuery(req);
+    console.log("CoopMemberService::setCoopMemberProfileI()/plQuery:", plQuery);
+    uid = plQuery.where.userId;
+    console.log("CoopMemberService::setCoopMemberProfileI()/uid0:", uid);
     const svUser = new UserService();
     const existingUserProfile = await svUser.existingUserProfile(req, res, uid);
     console.log(
@@ -973,14 +976,16 @@ export class CoopMemberService extends CdService {
      * Asses if request for self or for another user
      * - if request action is 'GetMemberProfile'
      */
-    if (req.post.a === "GetCoopMemberProfile") {
-      const plData = this.b.getPlData(req);
-      uid = plData.userId;
-    }
-    if (req.post.a === "UpdateCoopMemberProfile") {
-      const plQuery = this.b.getPlQuery(req);
-      uid = plQuery.where.userId;
-    }
+    // if (req.post.a === "GetCoopMemberProfile") {
+    //   const plData = this.b.getPlQuery(req);
+    //   uid = plData.userId;
+    // }
+    // if (req.post.a === "UpdateCoopMemberProfile") {
+    //   const plQuery = this.b.getPlQuery(req);
+    //   uid = plQuery.where.userId;
+    // }
+    const plQuery = this.b.getPlQuery(req);
+    uid = plQuery.where.userId;
     console.log("CoopMemberService::mergeUserProfile()/uid:", uid);
     const q = { where: { userId: uid } };
     console.log("CoopMemberService::mergeUserProfile()/q:", q);
@@ -1241,7 +1246,10 @@ export class CoopMemberService extends CdService {
       );
       // 2. Extract target user
       uid = plQuery.where.userId;
-      console.log("CdCliService::beforeUpdateMemberProfile()/coopMember1:", uid);
+      console.log(
+        "CdCliService::beforeUpdateMemberProfile()/coopMember1:",
+        uid
+      );
       // 3. Extract target coopId
       coopId = pl.dat.f_vals[0].jsonUpdate[0].value.coopId;
       console.log("CdCliService::beforeUpdateMemberProfile()/coopId:", coopId);
@@ -1249,21 +1257,27 @@ export class CoopMemberService extends CdService {
       const retMemberExists = await this.coopMemberExists(req, res, {
         filter: { userId: uid },
       });
-      console.log("CdCliService::beforeUpdateMemberProfile()/retMemberExists:", retMemberExists);
+      console.log(
+        "CdCliService::beforeUpdateMemberProfile()/retMemberExists:",
+        retMemberExists
+      );
       // 5. if member does not exist, create
       if (retMemberExists.length === 0) {
         // const cdCliQuery: CdCliModel = cdCliData;
         // const svCdCli = new CdCliService();
         const newCoopMember: CoopMemberModel = {
-            coopMemberGuid: this.b.getGuid(),
-            userId: uid,
-            coopId: coopId,
-            coopMemberProfile: JSON.stringify(coopMemberProfileDefault),
-            coopMemberTypeId: 103, // Initially the member should be viewed as Guest. Later to be promoted by SACCO admin
-            coopMemberEnabled: true,
-            coopActive: true
+          coopMemberGuid: this.b.getGuid(),
+          userId: uid,
+          coopId: coopId,
+          coopMemberProfile: JSON.stringify(coopMemberProfileDefault),
+          coopMemberTypeId: 103, // Initially the member should be viewed as Guest. Later to be promoted by SACCO admin
+          coopMemberEnabled: true,
+          coopActive: true,
         };
-        console.log("CdCliService::beforeUpdateMemberProfile()/newCoopMember:", newCoopMember);
+        console.log(
+          "CdCliService::beforeUpdateMemberProfile()/newCoopMember:",
+          newCoopMember
+        );
         const si = {
           serviceInstance: this,
           serviceModel: CoopMemberModel,
@@ -1276,30 +1290,32 @@ export class CoopMemberService extends CdService {
           controllerData: newCoopMember,
         };
         coopMember = await this.createI(req, res, createIParams);
-        console.log("CdCliService::beforeUpdateMemberProfile()/coopMember:", coopMember);
-      } else{
+        console.log(
+          "CdCliService::beforeUpdateMemberProfile()/coopMember:",
+          coopMember
+        );
+      } else {
         coopMember = retMemberExists[0];
       }
-    //   const getResp = await this.getI(req, res, {
-    //     where: { userId: uid, coopId: coopId },
-    //   });
-    //   console.log("CdCliService::beforeUpdateMemberProfile()/getResp:", getResp);
-    //   if (getResp && getResp.length > 0) {
-    //     coopMember = {
-    //       coopMemberId: getResp[0].coopMemberId,
-    //       coopId: getResp[0].coopId,
-    //       userId: getResp[0].userId,
-    //       coopActive: getResp[0].coopActive,
-    //       coopMemberGuid: getResp[0].coopMemberGuid,
-    //       coopMemberTypeId: getResp[0].coopMemberTypeId,
-    //       coopMemberProfile: getResp[0].coopMemberProfile,
-    //       coopMemberEnabled: getResp[0].coopMemberEnabled,
-    //     };
-    //   }
-    
+      //   const getResp = await this.getI(req, res, {
+      //     where: { userId: uid, coopId: coopId },
+      //   });
+      //   console.log("CdCliService::beforeUpdateMemberProfile()/getResp:", getResp);
+      //   if (getResp && getResp.length > 0) {
+      //     coopMember = {
+      //       coopMemberId: getResp[0].coopMemberId,
+      //       coopId: getResp[0].coopId,
+      //       userId: getResp[0].userId,
+      //       coopActive: getResp[0].coopActive,
+      //       coopMemberGuid: getResp[0].coopMemberGuid,
+      //       coopMemberTypeId: getResp[0].coopMemberTypeId,
+      //       coopMemberProfile: getResp[0].coopMemberProfile,
+      //       coopMemberEnabled: getResp[0].coopMemberEnabled,
+      //     };
+      //   }
     }
     this.logger.logInfo(
-      `CdCliService::beforeUpdateMemberProfile()/coopMember2:${ await coopMember}`
+      `CdCliService::beforeUpdateMemberProfile()/coopMember2:${await coopMember}`
     );
     return await coopMember;
   }
