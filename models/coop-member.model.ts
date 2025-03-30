@@ -84,6 +84,15 @@ export class CoopMemberModel {
     )
     coopId: number;
 
+    // coop_member_approved
+    @Column(
+        {
+            name: 'coop_member_approved',
+            nullable: true
+        }
+    )
+    coopMemberApproved?: boolean;
+
     @Column(
         {
             name: 'coop_active',
