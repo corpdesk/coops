@@ -91,7 +91,7 @@ export class CoopMemberModel {
             nullable: true
         }
     )
-    coopMemberApproved?: boolean;
+    coopMemberApproved?: string;
 
     @Column(
         {
