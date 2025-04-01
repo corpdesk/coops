@@ -45,8 +45,8 @@ export class CoopMemberService extends CdService {
    * create rules
    */
   cRules = {
-    required: ["userId", "coopId", "coopMemberTypeId"],
-    noDuplicate: ["userId", "coopId", "coopMemberTypeId"],
+    required: ["userId", "coopId"],
+    noDuplicate: ["userId", "coopId"],
   };
 
   constructor() {
@@ -100,6 +100,7 @@ export class CoopMemberService extends CdService {
       req.body.dat.f_vals = [fVal]; // Set current fVal as a single object in the array
 
       if (await this.validateCreate(req, res)) {
+        console.log("CoopMemberService::create()/this.b.err1:", this.b.err);
         await this.beforeCreate(req, res);
         const serviceInput = {
           serviceModel: CoopMemberModel,
@@ -114,17 +115,23 @@ export class CoopMemberService extends CdService {
         // Store the result for this fVal
         results.push(respData);
       } else {
+        console.log("CoopMemberService::create()/this.b.err2:", this.b.err);
         // If validation fails, push the error state
-        results.push({
-          success: false,
-          message: `Validation failed for userId: ${fVal.userId}`,
-        });
+        this.b.i.app_msg = `Validation failed`;
+        this.b.err.push(this.b.i.app_msg);
+        await this.b.setAppState(false, this.b.i, svSess.sessResp);
       }
     }
 
+    console.log("CoopMemberService::create()/this.b.err3:", this.b.err);
     // Combine the responses from all f_vals creations
-    this.b.i.app_msg = "Coop members processed";
-    this.b.setAppState(true, this.b.i, svSess.sessResp);
+    // this.b.i.app_msg = "Coop members processed";
+    if (this.b.err.length > 0) {
+      this.b.cdResp.app_state.info.messages = this.b.err;
+      await this.b.setAppState(false, this.b.i, svSess.sessResp);
+    } else {
+      await this.b.setAppState(true, this.b.i, svSess.sessResp);
+    }
     this.b.cdResp.data = results;
     await this.b.respond(req, res);
   }
@@ -138,22 +145,23 @@ export class CoopMemberService extends CdService {
     const validationParams = [
       {
         field: "userId",
-        query: { userId: pl.userId },
+        query: { where: { userId: pl.userId } },
         model: UserModel,
       },
       {
         field: "coopId",
-        query: { coopId: pl.coopId },
+        query: { where: { coopId: pl.coopId } },
         model: CoopModel,
       },
-      {
-        field: "coopMemberTypeId",
-        query: { coopMemberTypeId: pl.coopMemberTypeId },
-        model: CoopMemberTypeModel,
-      },
     ];
-
+    console.log(
+      `CoopMemberService::validateCreate()/validationParams: ${JSON.stringify(
+        validationParams
+      )}`
+    );
     const valid = await this.validateExistence(req, res, validationParams);
+    console.log(`CoopMemberService::validateCreate/valid:${valid}`);
+
     console.log(
       "CoopMemberService::validateCreate/this.b.err1:",
       JSON.stringify(this.b.err)
@@ -163,6 +171,9 @@ export class CoopMemberService extends CdService {
       this.logger.logInfo(
         "coop/CoopMemberService::validateCreate()/Validation failed"
       );
+
+      this.b.i.app_msg = `Validation failed`;
+      this.b.err.push(this.b.i.app_msg);
       await this.b.setAppState(false, this.b.i, svSess.sessResp);
       return false;
     }
@@ -172,7 +183,7 @@ export class CoopMemberService extends CdService {
       controllerInstance: this,
       model: CoopMemberModel,
     };
-
+    
     if (await this.b.validateUnique(req, res, this.validationCreateParams)) {
       if (await this.b.validateRequired(req, res, this.cRules)) {
         return true;
@@ -194,60 +205,231 @@ export class CoopMemberService extends CdService {
     }
   }
 
+  // async validateExistence(req, res, validationParams) {
+  //   const svSess = new SessionService();
+  //   console.log(
+  //     `CoopMemberService::validateExistence()/validationParams:${JSON.stringify(
+  //       validationParams
+  //     )}`
+  //   );
+  //   const promises = validationParams.map(async (param) => {
+  //     console.log(
+  //       `CoopMemberService::validateExistence()/param1(before test):${JSON.stringify(
+  //         param
+  //       )}`
+  //     );
+  //     if (
+  //       !param.query ||
+  //       !param.query.where ||
+  //       Object.keys(param.query.where).length === 0
+  //     ) {
+  //       console.log(
+  //         `CoopMemberService::validateExistence()/param2(failed): ${JSON.stringify(
+  //           param
+  //         )}`
+  //       );
+  //       this.logger.logError(
+  //         `CoopMemberService::validateExistence() - Missing or empty where clause for ${param.field}`
+  //       );
+  //       this.b.i.app_msg = `${param.field} reference is invalid`;
+  //       this.b.err.push(this.b.i.app_msg);
+  //       await this.b.setAppState(false, this.b.i, svSess.sessResp);
+  //       return false; // 🚀 Immediately return false on failure
+  //     }
+  //     console.log(
+  //       `CoopMemberService::validateExistence()/param3(passed):${JSON.stringify(
+  //         param
+  //       )}`
+  //     );
+
+  //     const serviceInput = {
+  //       serviceModel: param.model,
+  //       docName: `CoopMemberService::validateExistence(${param.field})`,
+  //       cmd: {
+  //         action: "find",
+  //         query: { where: param.query.where }, // Ensure where is not empty
+  //       },
+  //       dSource: 1,
+  //     };
+
+  //     console.log(
+  //       "CoopMemberService::validateExistence/serviceInput:",
+  //       JSON.stringify(serviceInput)
+  //     );
+
+  //     const b = new BaseService();
+  //     try {
+  //       const r = await b.read(req, res, serviceInput);
+  //       this.logger.logInfo(
+  //         `coop/CoopMemberService::validateExistence()/r:${r}`
+  //       );
+
+  //       if (r.length > 0) {
+  //         this.logger.logInfo(
+  //           `coop/CoopMemberService::validateExistence() - ${param.field} exists`
+  //         );
+  //         return true;
+  //       } else {
+  //         this.logger.logError(
+  //           `coop/CoopMemberService::validateExistence() - Invalid ${param.field}`
+  //         );
+  //         this.b.i.app_msg = `${param.field} reference is invalid`;
+  //         this.b.err.push(this.b.i.app_msg);
+  //         await this.b.setAppState(false, this.b.i, svSess.sessResp);
+  //         return false;
+  //       }
+  //     } catch (error) {
+  //       this.logger.logError(
+  //         `coop/CoopMemberService::validateExistence() - Error processing ${param.field}: ${error.message}`
+  //       );
+  //       this.b.i.app_msg = `coop/CoopMemberService::validateExistence() - Error processing ${param.field}: ${error.message}`;
+  //       this.b.err.push(this.b.i.app_msg);
+  //       await this.b.setAppState(true, this.b.i, svSess.sessResp);
+  //       return false;
+  //     }
+
+  //   });
+
+  //   const results = await Promise.all(promises);
+  //   console.log("CoopMemberService::validateExistence/results:", results);
+  //   console.log(
+  //     "CoopMemberService::validateExistence/this.b.err2:",
+  //     JSON.stringify(this.b.err)
+  //   );
+
+  //   // If any validation fails, return false
+  //   return results.every((result) => result === true);
+  // }
   async validateExistence(req, res, validationParams) {
-    const promises = validationParams.map((param) => {
+    const svSess = new SessionService();
+    console.log(
+      `CoopMemberService::validateExistence()/validationParams: ${JSON.stringify(
+        validationParams
+      )}`
+    );
+
+    for (const param of validationParams) {
+      // 🔥 Process each validation sequentially
+      console.log(
+        `CoopMemberService::validateExistence()/param1(before test): ${JSON.stringify(
+          param
+        )}`
+      );
+
+      console.log(
+        `CoopMemberService::validateExistence()/Object.keys(param.query.where).length: ${
+          Object.keys(param.query.where).length
+        }`
+      );
+
+      console.log(
+        `CoopMemberService::validateExistence()/where:`,
+        param.query.where
+      );
+      console.log(
+        `CoopMemberService::validateExistence()/Object.keys(where):`,
+        Object.keys(param.query.where)
+      );
+      console.log(
+        `CoopMemberService::validateExistence()/Object.getOwnPropertyNames(where):`,
+        Object.getOwnPropertyNames(param.query.where)
+      );
+      console.log(
+        `CoopMemberService::validateExistence()/JSON.stringify(where):`,
+        JSON.stringify(param.query.where)
+      );
+      console.log(
+        `CoopMemberService::validateExistence()/Type of where:`,
+        typeof param.query.where
+      );
+      console.log(
+        `CoopMemberService::validateExistence()/Instance of Object:`,
+        param.query.where instanceof Object
+      );
+
+      if (
+        !param.query ||
+        !param.query.where ||
+        // Object.keys(param.query.where).length === 0
+        Object.values(param.query.where).every(value => value === undefined)
+      ) {
+        console.log(
+          `CoopMemberService::validateExistence()/param2(failed): ${JSON.stringify(
+            param
+          )}`
+        );
+        this.logger.logError(
+          `CoopMemberService::validateExistence() - Missing or empty where clause for ${param.field}`
+        );
+        this.b.i.app_msg = `${param.field} reference is invalid`;
+        this.b.err.push(this.b.i.app_msg);
+        await this.b.setAppState(false, this.b.i, svSess.sessResp);
+        return false; // 🚀 Immediately return false if validation fails
+      }
+
+      console.log(
+        `CoopMemberService::validateExistence()/param3(passed): ${JSON.stringify(
+          param
+        )}`
+      );
+
       const serviceInput = {
         serviceModel: param.model,
         docName: `CoopMemberService::validateExistence(${param.field})`,
         cmd: {
           action: "find",
-          query: { where: param.query },
+          query: { where: param.query.where },
         },
         dSource: 1,
       };
-      console.log(
-        "CoopMemberService::validateExistence/param.model:",
-        param.model
-      );
+
       console.log(
         "CoopMemberService::validateExistence/serviceInput:",
         JSON.stringify(serviceInput)
       );
+
       const b = new BaseService();
-      return b.read(req, res, serviceInput).then((r) => {
+      try {
+        const r = await b.read(req, res, serviceInput);
+        this.logger.logInfo(
+          `coop/CoopMemberService::validateExistence()/r:${JSON.stringify(r)}`
+        );
+
         if (r.length > 0) {
           this.logger.logInfo(
             `coop/CoopMemberService::validateExistence() - ${param.field} exists`
           );
-          return true;
+          continue; // ✅ Continue checking next param
         } else {
           this.logger.logError(
             `coop/CoopMemberService::validateExistence() - Invalid ${param.field}`
           );
           this.b.i.app_msg = `${param.field} reference is invalid`;
           this.b.err.push(this.b.i.app_msg);
-          console.log(
-            "CoopMemberService::validateExistence/this.b.err1:",
-            JSON.stringify(this.b.err)
-          );
-          return false;
+          await this.b.setAppState(false, this.b.i, svSess.sessResp);
+          return false; // 🚀 Stop validation immediately on failure
         }
-      });
-    });
+      } catch (error) {
+        this.logger.logError(
+          `coop/CoopMemberService::validateExistence() - Error processing ${param.field}: ${error.message}`
+        );
+        this.b.i.app_msg = `Error processing ${param.field}: ${error.message}`;
+        this.b.err.push(this.b.i.app_msg);
+        await this.b.setAppState(false, this.b.i, svSess.sessResp);
+        return false; // 🚀 Stop validation immediately on error
+      }
+    }
 
-    const results = await Promise.all(promises);
-    console.log("CoopMemberService::validateExistence/results:", results);
-    console.log(
-      "CoopMemberService::validateExistence/this.b.err2:",
-      JSON.stringify(this.b.err)
-    );
-    // If any of the validations fail, return false
-    return results.every((result) => result === true);
+    return true; // ✅ If all checks pass, return true
   }
 
   async beforeCreate(req, res): Promise<any> {
     this.b.setPlData(req, { key: "coopMemberGuid", value: this.b.getGuid() });
     this.b.setPlData(req, { key: "coopMemberEnabled", value: true });
+    // stringify coopMemberProfile
+    const pl: CoopMemberModel = this.b.getPlData(req);
+    const strProfile = JSON.stringify(pl.coopMemberProfile)
+    this.b.setPlData(req, { key: "coopMemberProfile", value: strProfile });
     return true;
   }
 
@@ -334,7 +516,7 @@ export class CoopMemberService extends CdService {
     //
   }
 
-  async activateCoop(req, res, byToken?:boolean) {
+  async activateCoop(req, res, byToken?: boolean) {
     try {
       if (!this.validateActiveCoop(req, res)) {
         const e = "could not validate the request";
@@ -404,7 +586,11 @@ export class CoopMemberService extends CdService {
         retActivate
       );
       this.b.cdResp.data = {
-        coopCoopMemberProfile: await this.getCoopMemberProfileI(req, res, byToken),
+        coopCoopMemberProfile: await this.getCoopMemberProfileI(
+          req,
+          res,
+          byToken
+        ),
       };
       this.b.respond(req, res);
     } catch (e) {
@@ -582,7 +768,7 @@ export class CoopMemberService extends CdService {
     return ret;
   }
 
-  async getCoopMemberProfileI(req, res, byToken:boolean) {
+  async getCoopMemberProfileI(req, res, byToken: boolean) {
     try {
       await this.setCoopMemberProfileI(req, res, byToken);
       return this.mergedProfile;
@@ -739,7 +925,7 @@ export class CoopMemberService extends CdService {
    * @param req
    * @param res
    */
-  async setCoopMemberProfileI(req, res, byToken:boolean) {
+  async setCoopMemberProfileI(req, res, byToken: boolean) {
     console.log("CoopMemberService::setCoopMemberProfileI()/01");
 
     // note that 'ignoreCache' is set to true because old data may introduce confussion
@@ -785,8 +971,8 @@ export class CoopMemberService extends CdService {
     // }
     const plQuery = await this.b.getPlQuery(req);
     console.log("CoopMemberService::setCoopMemberProfileI()/plQuery:", plQuery);
-    if(!byToken){
-        uid = plQuery.where.userId;
+    if (!byToken) {
+      uid = plQuery.where.userId;
     }
     console.log("CoopMemberService::setCoopMemberProfileI()/uid0:", uid);
     const svUser = new UserService();
@@ -869,7 +1055,7 @@ export class CoopMemberService extends CdService {
     }
   }
 
-  async resetCoopMemberProfileI(req, res, byToken:boolean) {
+  async resetCoopMemberProfileI(req, res, byToken: boolean) {
     console.log("CoopMemberService::resetCoopMemberProfileI()/01");
     // note that 'ignoreCache' is set to true because old data may introduce confusion
     const svSess = new SessionService();
@@ -969,7 +1155,12 @@ export class CoopMemberService extends CdService {
     }
   }
 
-  async mergeUserProfile(req, res, userProfile, byToken): Promise<ICoopMemberProfile> {
+  async mergeUserProfile(
+    req,
+    res,
+    userProfile,
+    byToken
+  ): Promise<ICoopMemberProfile> {
     console.log("CoopMemberService::mergeUserProfile()/01");
     const svSess = new SessionService();
     console.log("CoopMemberService::mergeUserProfile()/02");
@@ -992,8 +1183,8 @@ export class CoopMemberService extends CdService {
     //   uid = plQuery.where.userId;
     // }
     const plQuery = this.b.getPlQuery(req);
-    if(!byToken){
-        uid = plQuery.where.userId;
+    if (!byToken) {
+      uid = plQuery.where.userId;
     }
     console.log("CoopMemberService::mergeUserProfile()/uid:", uid);
     const q = { where: { userId: uid } };
