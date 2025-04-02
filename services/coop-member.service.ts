@@ -426,6 +426,7 @@ export class CoopMemberService extends CdService {
   async beforeCreate(req, res): Promise<any> {
     this.b.setPlData(req, { key: "coopMemberGuid", value: this.b.getGuid() });
     this.b.setPlData(req, { key: "coopMemberEnabled", value: true });
+    this.b.setPlData(req, { key: "coopMemberTypeId", value: 108 }); // set as applicant
     // stringify coopMemberProfile
     const pl: CoopMemberModel = this.b.getPlData(req);
     const strProfile = JSON.stringify(pl.coopMemberProfile)
