@@ -1191,7 +1191,8 @@ export class CoopMemberService extends CdService {
     const q = { where: { userId: uid } };
     console.log("CoopMemberService::mergeUserProfile()/q:", q);
     const coopMemberData = await this.getCoopMemberI(req, res, q);
-    let aclData = await this.existingCoopMemberProfile(req, res, uid);
+    let existingProfile: ICoopMemberProfile  = await this.existingCoopMemberProfile(req, res, uid);
+    let aclData = existingProfile.coopMembership.acl;
     console.log("CoopMemberService::mergeUserProfile()/aclData1:", aclData);
     if (!aclData) {
       aclData = coopMemberProfileDefault.coopMembership.acl;

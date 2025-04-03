@@ -138,3 +138,1716 @@ MBEYA 12,874,169,978.73 6.32 64,649,686,878.96 5.28 50,119,781,420.81 4.80 45,53
 MORO-
 GORO
 5,771,427,010.35 2.83 39,605,304,832.41 3.23 32,448,089,879.26 3.11 46,460,884,243.34 5.33
+
+-------------------------------------------------------------------------
+Investigating inconsistent behaviour with the action UpdateCoopMemberProfile in CoopMember controller.
+Case 1:
+// current state of profile:
+{
+  "userData": {
+    "docId": 21684,
+    "email": "accosca-6@empservices.co.ke",
+    "fName": null,
+    "lName": null,
+    "mName": null,
+    "gender": null,
+    "mobile": null,
+    "userId": 1618,
+    "zipCode": null,
+    "userGuid": "daa5b5d0-5ec4-4946-9cfb-f41073182084",
+    "userName": "accosca-6",
+    "birthDate": null,
+    "companyId": null,
+    "nationalId": null,
+    "passportId": null,
+    "postalAddr": null,
+    "userTypeId": null,
+    "userEnabled": true,
+    "activationKey": "e80a2286-de78-4dbe-9625-b508274b6a1d"
+  },
+  "coopMembership": {
+    "acl": [
+      {
+        "coopId": -1,
+        "aclRole": {
+          "aclRoleName": "guest",
+          "permissions": {
+            "userPermissions": [
+              {
+                "read": false,
+                "field": "",
+                "write": false,
+                "hidden": true,
+                "cdObjId": 0,
+                "execute": false
+              }
+            ],
+            "groupPermissions": [
+              {
+                "read": false,
+                "field": "",
+                "write": false,
+                "hidden": true,
+                "cdObjId": 0,
+                "execute": false
+              }
+            ]
+          }
+        },
+        "coopRole": [
+          {
+            "scope": 11,
+            "geoLocationId": null
+          }
+        ],
+        "coopActive": false
+      },
+      {
+        "coopId": 3,
+        "coopRole": [
+          {
+            "scope": 20,
+            "geoLocationId": null
+          }
+        ],
+        "coopActive": true
+      }
+    ],
+    "memberData": [
+      {
+        "coopId": 3,
+        "companyName": "Tanzania-Dar-SACCO-01",
+        "cdGeoLocationId": 249
+      },
+      {
+        "coopId": 4,
+        "companyName": "Tanzania-Dar-SACCO-02",
+        "cdGeoLocationId": 250
+      }
+    ]
+  },
+  "fieldPermissions": {
+    "userPermissions": [
+      {
+        "read": true,
+        "field": "userName",
+        "write": false,
+        "hidden": false,
+        "userId": 1000,
+        "execute": false
+      }
+    ],
+    "groupPermissions": [
+      {
+        "read": true,
+        "field": "userName",
+        "write": false,
+        "hidden": false,
+        "execute": false,
+        "groupId": 0
+      }
+    ]
+  }
+}
+
+Request to replace the data at the json path: ["coopMembership","memberData",[1]],
+with value = {
+                                "coopId": 5,
+                                "companyName": "Tanzania-Dar-SACCO-03",
+                                "cdGeoLocationId": 251
+                            }
+
+{
+    "ctx": "App",
+    "m": "Coops",
+    "c": "CoopMember",
+    "a": "UpdateCoopMemberProfile",
+    "dat": {
+        "f_vals": [
+            {
+                "query": {
+                    "update": null,
+                    "where": {
+                        "userId": 1618
+                    }
+                },
+                "jsonUpdate": [
+                    {
+                        "path": [
+                            "coopMembership",
+                            "memberData",
+                            [1]
+                        ],
+                        "value": [
+                            {
+                                "coopId": 5,
+                                "companyName": "Tanzania-Dar-SACCO-03",
+                                "cdGeoLocationId": 251
+                            }
+                        ],
+                        "action": "create"
+                    }
+                ]
+            }
+        ],
+        "token": "6c7b1143-eafe-4841-bcd5-e75a7342d684"
+    },
+    "args": {}
+}
+
+----------------------------------------------------
+Database profile results:
+[
+  {
+    "coopId": -1,
+    "aclRole": {
+      "aclRoleName": "guest",
+      "permissions": {
+        "userPermissions": [
+          {
+            "read": false,
+            "field": "",
+            "write": false,
+            "hidden": true,
+            "cdObjId": 0,
+            "execute": false
+          }
+        ],
+        "groupPermissions": [
+          {
+            "read": false,
+            "field": "",
+            "write": false,
+            "hidden": true,
+            "cdObjId": 0,
+            "execute": false
+          }
+        ]
+      }
+    },
+    "coopRole": [
+      {
+        "scope": 11,
+        "geoLocationId": null
+      }
+    ],
+    "coopActive": false
+  },
+  {
+    "coopId": 3,
+    "coopRole": [
+      {
+        "scope": 20,
+        "geoLocationId": null
+      }
+    ],
+    "coopActive": true
+  }
+]
+
+// Request response:
+{
+    "app_state": {
+        "success": true,
+        "info": {
+            "messages": [],
+            "code": "",
+            "app_msg": "1 record/s updated"
+        },
+        "sess": {
+            "cd_token": "",
+            "jwt": null,
+            "ttl": 600
+        },
+        "cache": {},
+        "sConfig": {
+            "usePush": true,
+            "usePolling": true,
+            "useCacheStore": true
+        }
+    },
+    "data": {
+        "updateRet": {
+            "generatedMaps": [],
+            "raw": [],
+            "affected": 1
+        },
+        "userUpdateRet": {
+            "generatedMaps": [],
+            "raw": [],
+            "affected": 1
+        },
+        "newProfile": {
+            "userData": {
+                "docId": 21684,
+                "email": "accosca-6@empservices.co.ke",
+                "fName": null,
+                "lName": null,
+                "mName": null,
+                "gender": null,
+                "mobile": null,
+                "userId": 1618,
+                "zipCode": null,
+                "userGuid": "daa5b5d0-5ec4-4946-9cfb-f41073182084",
+                "userName": "accosca-6",
+                "birthDate": null,
+                "companyId": null,
+                "nationalId": null,
+                "passportId": null,
+                "postalAddr": null,
+                "userTypeId": null,
+                "userEnabled": true,
+                "activationKey": "e80a2286-de78-4dbe-9625-b508274b6a1d"
+            },
+            "fieldPermissions": {
+                "userPermissions": [
+                    {
+                        "read": true,
+                        "field": "userName",
+                        "write": false,
+                        "hidden": false,
+                        "userId": 1000,
+                        "execute": false
+                    }
+                ],
+                "groupPermissions": [
+                    {
+                        "read": true,
+                        "field": "userName",
+                        "write": false,
+                        "hidden": false,
+                        "execute": false,
+                        "groupId": 0
+                    }
+                ]
+            },
+            "coopMembership": {
+                "acl": [
+                    {
+                        "coopId": -1,
+                        "aclRole": {
+                            "aclRoleName": "guest",
+                            "permissions": {
+                                "userPermissions": [
+                                    {
+                                        "read": false,
+                                        "field": "",
+                                        "write": false,
+                                        "hidden": true,
+                                        "cdObjId": 0,
+                                        "execute": false
+                                    }
+                                ],
+                                "groupPermissions": [
+                                    {
+                                        "read": false,
+                                        "field": "",
+                                        "write": false,
+                                        "hidden": true,
+                                        "cdObjId": 0,
+                                        "execute": false
+                                    }
+                                ]
+                            }
+                        },
+                        "coopRole": [
+                            {
+                                "scope": 11,
+                                "geoLocationId": null
+                            }
+                        ],
+                        "coopActive": false
+                    },
+                    {
+                        "coopId": 3,
+                        "coopRole": [
+                            {
+                                "scope": 20,
+                                "geoLocationId": null
+                            }
+                        ],
+                        "coopActive": true
+                    }
+                ],
+                "memberData": [
+                    {
+                        "coopMemberId": 129926,
+                        "coopMemberGuid": "b4289342-c872-4780-9ade-2c57b6f7f17f",
+                        "coopMemberName": null,
+                        "coopMemberEnabled": 1,
+                        "coopMemberTypeId": 108,
+                        "coopMemberTypeGuid": "58d973c0-f0cc-4e90-ab7a-98c3c873f3f1",
+                        "coopActive": null,
+                        "coopMemberProfile": [
+                            {
+                                "coopId": -1,
+                                "aclRole": {
+                                    "aclRoleName": "guest",
+                                    "permissions": {
+                                        "userPermissions": [
+                                            {
+                                                "read": false,
+                                                "field": "",
+                                                "write": false,
+                                                "hidden": true,
+                                                "cdObjId": 0,
+                                                "execute": false
+                                            }
+                                        ],
+                                        "groupPermissions": [
+                                            {
+                                                "read": false,
+                                                "field": "",
+                                                "write": false,
+                                                "hidden": true,
+                                                "cdObjId": 0,
+                                                "execute": false
+                                            }
+                                        ]
+                                    }
+                                },
+                                "coopRole": [
+                                    {
+                                        "scope": 11,
+                                        "geoLocationId": null
+                                    }
+                                ],
+                                "coopActive": false
+                            },
+                            {
+                                "coopId": 3,
+                                "coopRole": [
+                                    {
+                                        "scope": 20,
+                                        "geoLocationId": null
+                                    }
+                                ],
+                                "coopActive": true
+                            }
+                        ],
+                        "userId": 1618,
+                        "userGuid": "daa5b5d0-5ec4-4946-9cfb-f41073182084",
+                        "userName": "accosca-6",
+                        "email": "accosca-6@empservices.co.ke",
+                        "mobile": null,
+                        "gender": null,
+                        "birthDate": null,
+                        "postalAddr": null,
+                        "fName": null,
+                        "mName": null,
+                        "lName": null,
+                        "nationalId": null,
+                        "passportId": null,
+                        "userEnabled": 1,
+                        "zipCode": null,
+                        "activationKey": "e80a2286-de78-4dbe-9625-b508274b6a1d",
+                        "userTypeId": null,
+                        "coopId": 3,
+                        "coopGuid": "b7f08050-c10a-4c3f-a934-0886c353d62f",
+                        "coopName": null,
+                        "companyId": 111169,
+                        "companyName": "Tanzania-Dar-SACCO-01",
+                        "companyTypeId": 98,
+                        "cdGeoLocationId": 249,
+                        "cdGeoLocationName": "Pwani",
+                        "cdGeoPoliticalTypeName": "region",
+                        "cdGeoPoliticalParentId": 111
+                    },
+                    [
+                        {
+                            "coopId": 5,
+                            "companyName": "Tanzania-Dar-SACCO-03",
+                            "cdGeoLocationId": 251
+                        }
+                    ]
+                ]
+            }
+        }
+    }
+}
+
+----------------------------------------------------------------------------------
+Conclusion:
+1. The database response is not in sync with the response.
+2. The response seem to capture what was amended
+3. Target item was replaced correctly but had extra [] instead of the object only.
+4. Item no 0 which was not the target is replaced with unintended data.
+The data that it was replaced with does not include coopId
+
+----------------------------------------------------------------
+Examining the logs:
+static applyJsonUpdate(profile: any, path: (string | number | string[])[], value: any) {
+        console.log("ProfileServiceHelper::applyJsonUpdate()/01")
+        console.log("ProfileServiceHelper::applyJsonUpdate()/profile:", profile)
+        console.log("ProfileServiceHelper::applyJsonUpdate()/path:", path)
+        console.log("ProfileServiceHelper::applyJsonUpdate()/value:", value)
+        let current = profile;
+
+        for (let i = 0; i < path.length - 1; i++) {
+            let key = path[i];
+            if (Array.isArray(key)) {
+                key = key.join(".");
+            }
+
+            if (!current[key]) {
+                current[key] = (typeof path[i + 1] === 'number') ? [] : {};
+            }
+
+            current = current[key];
+        }
+
+        let finalKey = path[path.length - 1];
+        if (Array.isArray(finalKey)) {
+            finalKey = finalKey.join(".");
+        }
+
+        current[finalKey] = value;
+        console.log("ProfileServiceHelper::applyJsonUpdate()/current[finalKey]:", current[finalKey])
+    }
+
+    // Profile before change:
+    {
+  "userData": {
+    "docId": 21684,
+    "email": "accosca-6@empservices.co.ke",
+    "fName": null,
+    "lName": null,
+    "mName": null,
+    "gender": null,
+    "mobile": null,
+    "userId": 1618,
+    "zipCode": null,
+    "userGuid": "daa5b5d0-5ec4-4946-9cfb-f41073182084",
+    "userName": "accosca-6",
+    "birthDate": null,
+    "companyId": null,
+    "nationalId": null,
+    "passportId": null,
+    "postalAddr": null,
+    "userTypeId": null,
+    "userEnabled": true,
+    "activationKey": "e80a2286-de78-4dbe-9625-b508274b6a1d"
+  },
+  "fieldPermissions": {
+    "userPermissions": [
+      {
+        "read": true,
+        "field": "userName",
+        "write": false,
+        "hidden": false,
+        "userId": 1000,
+        "execute": false
+      }
+    ],
+    "groupPermissions": [
+      {
+        "read": true,
+        "field": "userName",
+        "write": false,
+        "hidden": false,
+        "execute": false,
+        "groupId": 0
+      }
+    ]
+  },
+  "coopMembership": {
+    "acl": [
+      {
+        "coopId": -1,
+        "aclRole": {
+          "aclRoleName": "guest",
+          "permissions": {
+            "userPermissions": [
+              {
+                "read": false,
+                "field": "",
+                "write": false,
+                "hidden": true,
+                "cdObjId": 0,
+                "execute": false
+              }
+            ],
+            "groupPermissions": [
+              {
+                "read": false,
+                "field": "",
+                "write": false,
+                "hidden": true,
+                "cdObjId": 0,
+                "execute": false
+              }
+            ]
+          }
+        },
+        "coopRole": [
+          {
+            "scope": 11,
+            "geoLocationId": null
+          }
+        ],
+        "coopActive": false
+      },
+      {
+        "coopId": 3,
+        "coopRole": [
+          {
+            "scope": 20,
+            "geoLocationId": null
+          }
+        ],
+        "coopActive": true
+      }
+    ],
+    "memberData": [
+      {
+        "coopMemberId": 129926,
+        "coopMemberGuid": "b4289342-c872-4780-9ade-2c57b6f7f17f",
+        "coopMemberName": null,
+        "coopMemberEnabled": 1,
+        "coopMemberTypeId": 108,
+        "coopMemberTypeGuid": "58d973c0-f0cc-4e90-ab7a-98c3c873f3f1",
+        "coopActive": null,
+        "coopMemberProfile": {
+          "userData": {
+            "docId": 21684,
+            "email": "accosca-6@empservices.co.ke",
+            "fName": null,
+            "lName": null,
+            "mName": null,
+            "gender": null,
+            "mobile": null,
+            "userId": 1618,
+            "zipCode": null,
+            "userGuid": "daa5b5d0-5ec4-4946-9cfb-f41073182084",
+            "userName": "accosca-6",
+            "birthDate": null,
+            "companyId": null,
+            "nationalId": null,
+            "passportId": null,
+            "postalAddr": null,
+            "userTypeId": null,
+            "userEnabled": true,
+            "activationKey": "e80a2286-de78-4dbe-9625-b508274b6a1d"
+          },
+          "coopMembership": {
+            "acl": [
+              {
+                "coopId": -1,
+                "aclRole": {
+                  "aclRoleName": "guest",
+                  "permissions": {
+                    "userPermissions": [
+                      {
+                        "read": false,
+                        "field": "",
+                        "write": false,
+                        "hidden": true,
+                        "cdObjId": 0,
+                        "execute": false
+                      }
+                    ],
+                    "groupPermissions": [
+                      {
+                        "read": false,
+                        "field": "",
+                        "write": false,
+                        "hidden": true,
+                        "cdObjId": 0,
+                        "execute": false
+                      }
+                    ]
+                  }
+                },
+                "coopRole": [
+                  {
+                    "scope": 11,
+                    "geoLocationId": null
+                  }
+                ],
+                "coopActive": false
+              },
+              {
+                "coopId": 3,
+                "coopRole": [
+                  {
+                    "scope": 20,
+                    "geoLocationId": null
+                  }
+                ],
+                "coopActive": true
+              }
+            ],
+            "memberData": [
+              {
+                "coopId": 3,
+                "companyName": "Tanzania-Dar-SACCO-01",
+                "cdGeoLocationId": 249
+              },
+              {
+                "coopId": 4,
+                "companyName": "Tanzania-Dar-SACCO-02",
+                "cdGeoLocationId": 250
+              }
+            ]
+          },
+          "fieldPermissions": {
+            "userPermissions": [
+              {
+                "read": true,
+                "field": "userName",
+                "write": false,
+                "hidden": false,
+                "userId": 1000,
+                "execute": false
+              }
+            ],
+            "groupPermissions": [
+              {
+                "read": true,
+                "field": "userName",
+                "write": false,
+                "hidden": false,
+                "execute": false,
+                "groupId": 0
+              }
+            ]
+          }
+        },
+        "userId": 1618,
+        "userGuid": "daa5b5d0-5ec4-4946-9cfb-f41073182084",
+        "userName": "accosca-6",
+        "email": "accosca-6@empservices.co.ke",
+        "mobile": null,
+        "gender": null,
+        "birthDate": null,
+        "postalAddr": null,
+        "fName": null,
+        "mName": null,
+        "lName": null,
+        "nationalId": null,
+        "passportId": null,
+        "userEnabled": 1,
+        "zipCode": null,
+        "activationKey": "e80a2286-de78-4dbe-9625-b508274b6a1d",
+        "userTypeId": null,
+        "coopId": 3,
+        "coopGuid": "b7f08050-c10a-4c3f-a934-0886c353d62f",
+        "coopName": null,
+        "companyId": 111169,
+        "companyName": "Tanzania-Dar-SACCO-01",
+        "companyTypeId": 98,
+        "cdGeoLocationId": 249,
+        "cdGeoLocationName": "Pwani",
+        "cdGeoPoliticalTypeName": "region",
+        "cdGeoPoliticalParentId": 111
+      }
+    ]
+  }
+}
+
+// profile after change:
+
+------------------------------------------------------------------------------------
+Assist me to develop a typescript class called JMorph with method that accepts input of:
+1. jsonUpdate data with instructions on how to update
+2. jsonData to modify
+Note: I consider the usage of JMooph to universal so it should be treated as a begining of a long term project.
+Its goal it to find simple ways of strucuring, instructions for modification of a given json data.
+How jsonUpdate works:
+1. It is capable of hosting multiple instruction of changes to to the jsonData.
+For this, jsonUpdate is an array of instructions (JUpdateInstruction)
+Assume :
+jsonUpdate: JUpdateInstruction[]: 
+interfaced JUpdateInstruction{
+    path: any[], // string array of the path to the data.  Special consideration is when previous string points to an array.
+                 // The last marker that points to an array is marked with [ "<key>" ]
+                 // Where key is the guiding field. In the example below the 'key' is coopId.
+                 // It would then use the key against the value given. 
+                 // If action=='create', it still replaces the [<key>] because [<key>] must always be unique.
+                 // If action=='read' and key is marked, it will return the contents by the value of key in the value property.
+                 // If action=='update', it replaces by the value of key given.
+                 // If action=='update' and the node is array items and [<key>] is not given, it will be considered a validation error.
+                 // If action=='delete' and the value of key is provided in the value section, it will delet that data.
+    value: object,
+    action: string // create, read, update or delete
+}
+
+// Below is an example of jsonUpdate.
+"jsonUpdate": [
+                    {
+                        "path": [
+                            "coopMembership",
+                            "memberData",
+                            ["coopId"]
+                        ],
+                        "value": [
+                            {
+                                "coopId": 5,
+                                "companyName": "Tanzania-Dar-SACCO-03",
+                                "cdGeoLocationId": 251
+                            }
+                        ],
+                        "action": "update"
+                    }
+                ]
+
+// Below is an example of jsonData
+
+{
+  "userData": {
+    "docId": 21684,
+    "email": "accosca-6@empservices.co.ke",
+    "fName": null,
+    "lName": null,
+    "mName": null,
+    "gender": null,
+    "mobile": null,
+    "userId": 1618,
+    "zipCode": null,
+    "userGuid": "daa5b5d0-5ec4-4946-9cfb-f41073182084",
+    "userName": "accosca-6",
+    "birthDate": null,
+    "companyId": null,
+    "nationalId": null,
+    "passportId": null,
+    "postalAddr": null,
+    "userTypeId": null,
+    "userEnabled": true,
+    "activationKey": "e80a2286-de78-4dbe-9625-b508274b6a1d"
+  },
+  "coopMembership": {
+    "acl": [
+      {
+        "coopId": -1,
+        "aclRole": {
+          "aclRoleName": "guest",
+          "permissions": {
+            "userPermissions": [
+              {
+                "read": false,
+                "field": "",
+                "write": false,
+                "hidden": true,
+                "cdObjId": 0,
+                "execute": false
+              }
+            ],
+            "groupPermissions": [
+              {
+                "read": false,
+                "field": "",
+                "write": false,
+                "hidden": true,
+                "cdObjId": 0,
+                "execute": false
+              }
+            ]
+          }
+        },
+        "coopRole": [
+          {
+            "scope": 11,
+            "geoLocationId": null
+          }
+        ],
+        "coopActive": false
+      },
+      {
+        "coopId": 3,
+        "coopRole": [
+          {
+            "scope": 20,
+            "geoLocationId": null
+          }
+        ],
+        "coopActive": true
+      }
+    ],
+    "memberData": [
+      {
+        "coopId": 3,
+        "companyName": "Tanzania-Dar-SACCO-01",
+        "cdGeoLocationId": 249
+      },
+      {
+        "coopId": 4,
+        "companyName": "Tanzania-Dar-SACCO-02",
+        "cdGeoLocationId": 250
+      }
+    ]
+  },
+  "fieldPermissions": {
+    "userPermissions": [
+      {
+        "read": true,
+        "field": "userName",
+        "write": false,
+        "hidden": false,
+        "userId": 1000,
+        "execute": false
+      }
+    ],
+    "groupPermissions": [
+      {
+        "read": true,
+        "field": "userName",
+        "write": false,
+        "hidden": false,
+        "execute": false,
+        "groupId": 0
+      }
+    ]
+  }
+}
+
+-----------------------------------------------------------
+Consider a case where:
+"jsonUpdate": [
+                    {
+                        "path": [
+                            "coopMembership",
+                            "memberData"
+                        ],
+                        "value": [
+                            {
+                                "coopId": 5,
+                                "companyName": "Tanzania-Dar-SACCO-03",
+                                "cdGeoLocationId": 251
+                            }
+                        ],
+                        "action": "update"
+                    }
+                ]
+In this case, the node "memberData" is still an array but [<key>] is not given.
+The logical implication should be to either given an error the [<key>] must be provided.
+Otherwise, it tends to mean that we replace the whole node with the data that is provided.
+Which may only be applicable if it was an object but not an array.
+Assist in delving in to this scenario.
+After integrating this consideration, redo the class with coments on each seation and additional introductory part that explains what the class objectives are.
+
+-------------------------------------------------------------------
+The response from this method suggests: TypeError: Cannot read properties of undefined"
+So I put loging points in the method as shown below.
+Compare with the logs below:
+JMorph::applyUpdate()/01
+JMorph::applyUpdate()/jsonData: {"userData":{"docId":21684,"email":"accosca-6@empservices.co.ke","fName":null,"lName":null,"mName":null,"gender":null,"mobile":null,"userId":1618,"zipCode":null,"userGuid":"daa5b5d0-5ec4-4946-9cfb-f41073182084","userName":"accosca-6","birthDate":null,"companyId":null,"nationalId":null,"passportId":null,"postalAddr":null,"userTypeId":null,"userEnabled":true,"activationKey":"e80a2286-de78-4dbe-9625-b508274b6a1d"},"fieldPermissions":{"userPermissions":[{"read":true,"field":"userName","write":false,"hidden":false,"userId":1000,"execute":false}],"groupPermissions":[{"read":true,"field":"userName","write":false,"hidden":false,"execute":false,"groupId":0}]},"coopMembership":{"acl":[{"coopId":-1,"aclRole":{"aclRoleName":"guest","permissions":{"userPermissions":[{"read":false,"field":"","write":false,"hidden":true,"cdObjId":0,"execute":false}],"groupPermissions":[{"read":false,"field":"","write":false,"hidden":true,"cdObjId":0,"execute":false}]}},"coopRole":[{"scope":11,"geoLocationId":null}],"coopActive":false},{"coopId":3,"coopRole":[{"scope":20,"geoLocationId":null}],"coopActive":true}],"memberData":[{"coopMemberId":129926,"coopMemberGuid":"b4289342-c872-4780-9ade-2c57b6f7f17f","coopMemberName":null,"coopMemberEnabled":1,"coopMemberTypeId":108,"coopMemberTypeGuid":"58d973c0-f0cc-4e90-ab7a-98c3c873f3f1","coopActive":null,"coopMemberProfile":{"userData":{"docId":21684,"email":"accosca-6@empservices.co.ke","fName":null,"lName":null,"mName":null,"gender":null,"mobile":null,"userId":1618,"zipCode":null,"userGuid":"daa5b5d0-5ec4-4946-9cfb-f41073182084","userName":"accosca-6","birthDate":null,"companyId":null,"nationalId":null,"passportId":null,"postalAddr":null,"userTypeId":null,"userEnabled":true,"activationKey":"e80a2286-de78-4dbe-9625-b508274b6a1d"},"coopMembership":{"acl":[{"coopId":-1,"aclRole":{"aclRoleName":"guest","permissions":{"userPermissions":[{"read":false,"field":"","write":false,"hidden":true,"cdObjId":0,"execute":false}],"groupPermissions":[{"read":false,"field":"","write":false,"hidden":true,"cdObjId":0,"execute":false}]}},"coopRole":[{"scope":11,"geoLocationId":null}],"coopActive":false},{"coopId":3,"coopRole":[{"scope":20,"geoLocationId":null}],"coopActive":true}],"memberData":[{"coopId":3,"companyName":"Tanzania-Dar-SACCO-01","cdGeoLocationId":249},{"coopId":4,"companyName":"Tanzania-Dar-SACCO-02","cdGeoLocationId":250}]},"fieldPermissions":{"userPermissions":[{"read":true,"field":"userName","write":false,"hidden":false,"userId":1000,"execute":false}],"groupPermissions":[{"read":true,"field":"userName","write":false,"hidden":false,"execute":false,"groupId":0}]}},"userId":1618,"userGuid":"daa5b5d0-5ec4-4946-9cfb-f41073182084","userName":"accosca-6","email":"accosca-6@empservices.co.ke","mobile":null,"gender":null,"birthDate":null,"postalAddr":null,"fName":null,"mName":null,"lName":null,"nationalId":null,"passportId":null,"userEnabled":1,"zipCode":null,"activationKey":"e80a2286-de78-4dbe-9625-b508274b6a1d","userTypeId":null,"coopId":3,"coopGuid":"b7f08050-c10a-4c3f-a934-0886c353d62f","coopName":null,"companyId":111169,"companyName":"Tanzania-Dar-SACCO-01","companyTypeId":98,"cdGeoLocationId":249,"cdGeoLocationName":"Pwani","cdGeoPoliticalTypeName":"region","cdGeoPoliticalParentId":111}]}}
+JMorph::applyUpdate()/instruction: {"path":["coopMembership","memberData",["coopId"]],"value":{"coopId":5,"companyName":"Tanzania-Dar-SACCO-03","cdGeoLocationId":251},"action":"create"}
+JMorph::applyUpdate()/02
+JMorph::applyUpdate()/03/0
+JMorph::applyUpdate()/08/0
+JMorph::applyUpdate()/03/1
+JMorph::applyUpdate()/04/1
+JMorph::applyUpdate()/05/1
+JMorph::applyUpdate()/06/1
+JMorph::applyUpdate()/07/1
+JMorph::applyUpdate()/08/1
+JMorph::applyUpdate()/09
+JMorph::applyUpdate()/target:undefined
+JMorph::applyUpdate()/lastKey:coopId
+
+From my observations, JMorph::applyUpdate()/jsonData: shows that jsonData has data and was assigned to variable 'target'.
+The log series starting JMorph::applyUpdate()/03/0, shows that iteration was being processed properly.
+For target to appear to be undefined, it is possible that this could be due to async processes.
+Perhaps we need to use async await or promise strategies to manage the flow in this class methods.
+
+// method codes with log points.
+private static applyUpdate(jsonData: any, instruction: JUpdateInstruction): void {
+        console.log("JMorph::applyUpdate()/01")
+        console.log("JMorph::applyUpdate()/jsonData:", JSON.stringify(jsonData))
+        console.log("JMorph::applyUpdate()/instruction:", JSON.stringify(instruction))
+        const { path, value, action } = instruction;
+        console.log("JMorph::applyUpdate()/02")
+        let target = jsonData;
+        
+        for (let i = 0; i < path.length - 1; i++) {
+            console.log(`JMorph::applyUpdate()/03/${i}`)
+            if (Array.isArray(path[i + 1]) && typeof path[i + 1][0] === 'string') {
+                console.log(`JMorph::applyUpdate()/04/${i}`)
+                const key = path[i + 1][0];
+                console.log(`JMorph::applyUpdate()/05/${i}`)
+                target = target[path[i]];
+                console.log(`JMorph::applyUpdate()/06/${i}`)
+                if (Array.isArray(target)) {
+                    console.log(`JMorph::applyUpdate()/07/${i}`)
+                    target = target.find((item: any) => item[key] === value[key]);
+                }
+                console.log(`JMorph::applyUpdate()/08/${i}`)
+                i++; // Skip the array key
+            } else {
+                target = target[path[i]];
+                console.log(`JMorph::applyUpdate()/08/${i}`)
+            }
+        }
+        
+        const lastKey = path[path.length - 1];
+        console.log(`JMorph::applyUpdate()/09`)
+        console.log(`JMorph::applyUpdate()/target:${JSON.stringify(target)}`)
+        console.log(`JMorph::applyUpdate()/lastKey:${lastKey}`)
+        if (Array.isArray(target[lastKey]) && !Array.isArray(lastKey)) {
+            console.log(`JMorph::applyUpdate()/10`)
+            throw new Error(`Update operation requires a key for array modifications at path: ${path.join('.')}`);
+        }
+        console.log(`JMorph::applyUpdate()/11`)
+        if (Array.isArray(lastKey) && typeof lastKey[0] === 'string') {
+            console.log(`JMorph::applyUpdate()/12`)
+            this.modifyArray(target, lastKey[0], value, action);
+            console.log(`JMorph::applyUpdate()/13`)
+        } else {
+            console.log(`JMorph::applyUpdate()/14`)
+            this.modifyObject(target, lastKey, value, action);
+        }
+        console.log("JMorph::applyUpdate()/target:", JSON.stringify(target))
+    }
+
+    --------------------------------------------------------------
+    From the data I am seeing in the logs, I am unable to confirm that the intended modification was successfull.
+    Rather than modify the yet, I am thinking based on the the input, it should be possible to run a confirmation before logging success message.
+    For example, in this case, it should be possible to test if the 'value' property is available in the new array of memberData.
+    Because it was a 'create' operation, it could either have been added or rejected because value of [<key>], in this case, coopId=5 cannot be repreated.
+    If coopId=5 was not available earlier, it must have been added. if it was a reapeat, there must have been an error thrown.
+    After we are able to tell failures and success, we can then be investigating why failures occure.
+    // JMorph::applyUpdate()/jsonData: 
+    {
+  "userData": {
+    "docId": 21684,
+    "email": "accosca-6@empservices.co.ke",
+    "fName": null,
+    "lName": null,
+    "mName": null,
+    "gender": null,
+    "mobile": null,
+    "userId": 1618,
+    "zipCode": null,
+    "userGuid": "daa5b5d0-5ec4-4946-9cfb-f41073182084",
+    "userName": "accosca-6",
+    "birthDate": null,
+    "companyId": null,
+    "nationalId": null,
+    "passportId": null,
+    "postalAddr": null,
+    "userTypeId": null,
+    "userEnabled": true,
+    "activationKey": "e80a2286-de78-4dbe-9625-b508274b6a1d"
+  },
+  "fieldPermissions": {
+    "userPermissions": [
+      {
+        "read": true,
+        "field": "userName",
+        "write": false,
+        "hidden": false,
+        "userId": 1000,
+        "execute": false
+      }
+    ],
+    "groupPermissions": [
+      {
+        "read": true,
+        "field": "userName",
+        "write": false,
+        "hidden": false,
+        "execute": false,
+        "groupId": 0
+      }
+    ]
+  },
+  "coopMembership": {
+    "acl": [
+      {
+        "coopId": -1,
+        "aclRole": {
+          "aclRoleName": "guest",
+          "permissions": {
+            "userPermissions": [
+              {
+                "read": false,
+                "field": "",
+                "write": false,
+                "hidden": true,
+                "cdObjId": 0,
+                "execute": false
+              }
+            ],
+            "groupPermissions": [
+              {
+                "read": false,
+                "field": "",
+                "write": false,
+                "hidden": true,
+                "cdObjId": 0,
+                "execute": false
+              }
+            ]
+          }
+        },
+        "coopRole": [
+          {
+            "scope": 11,
+            "geoLocationId": null
+          }
+        ],
+        "coopActive": false
+      },
+      {
+        "coopId": 3,
+        "coopRole": [
+          {
+            "scope": 20,
+            "geoLocationId": null
+          }
+        ],
+        "coopActive": true
+      }
+    ],
+    "memberData": [
+      {
+        "coopMemberId": 129926,
+        "coopMemberGuid": "b4289342-c872-4780-9ade-2c57b6f7f17f",
+        "coopMemberName": null,
+        "coopMemberEnabled": 1,
+        "coopMemberTypeId": 108,
+        "coopMemberTypeGuid": "58d973c0-f0cc-4e90-ab7a-98c3c873f3f1",
+        "coopActive": null,
+        "coopMemberProfile": {
+          "userData": {
+            "docId": 21684,
+            "email": "accosca-6@empservices.co.ke",
+            "fName": null,
+            "lName": null,
+            "mName": null,
+            "gender": null,
+            "mobile": null,
+            "userId": 1618,
+            "zipCode": null,
+            "userGuid": "daa5b5d0-5ec4-4946-9cfb-f41073182084",
+            "userName": "accosca-6",
+            "birthDate": null,
+            "companyId": null,
+            "nationalId": null,
+            "passportId": null,
+            "postalAddr": null,
+            "userTypeId": null,
+            "userEnabled": true,
+            "activationKey": "e80a2286-de78-4dbe-9625-b508274b6a1d"
+          },
+          "coopMembership": {
+            "acl": [
+              {
+                "coopId": -1,
+                "aclRole": {
+                  "aclRoleName": "guest",
+                  "permissions": {
+                    "userPermissions": [
+                      {
+                        "read": false,
+                        "field": "",
+                        "write": false,
+                        "hidden": true,
+                        "cdObjId": 0,
+                        "execute": false
+                      }
+                    ],
+                    "groupPermissions": [
+                      {
+                        "read": false,
+                        "field": "",
+                        "write": false,
+                        "hidden": true,
+                        "cdObjId": 0,
+                        "execute": false
+                      }
+                    ]
+                  }
+                },
+                "coopRole": [
+                  {
+                    "scope": 11,
+                    "geoLocationId": null
+                  }
+                ],
+                "coopActive": false
+              },
+              {
+                "coopId": 3,
+                "coopRole": [
+                  {
+                    "scope": 20,
+                    "geoLocationId": null
+                  }
+                ],
+                "coopActive": true
+              }
+            ],
+            "memberData": [
+              {
+                "coopId": 3,
+                "companyName": "Tanzania-Dar-SACCO-01",
+                "cdGeoLocationId": 249
+              },
+              {
+                "coopId": 4,
+                "companyName": "Tanzania-Dar-SACCO-02",
+                "cdGeoLocationId": 250
+              }
+            ]
+          },
+          "fieldPermissions": {
+            "userPermissions": [
+              {
+                "read": true,
+                "field": "userName",
+                "write": false,
+                "hidden": false,
+                "userId": 1000,
+                "execute": false
+              }
+            ],
+            "groupPermissions": [
+              {
+                "read": true,
+                "field": "userName",
+                "write": false,
+                "hidden": false,
+                "execute": false,
+                "groupId": 0
+              }
+            ]
+          }
+        },
+        "userId": 1618,
+        "userGuid": "daa5b5d0-5ec4-4946-9cfb-f41073182084",
+        "userName": "accosca-6",
+        "email": "accosca-6@empservices.co.ke",
+        "mobile": null,
+        "gender": null,
+        "birthDate": null,
+        "postalAddr": null,
+        "fName": null,
+        "mName": null,
+        "lName": null,
+        "nationalId": null,
+        "passportId": null,
+        "userEnabled": 1,
+        "zipCode": null,
+        "activationKey": "e80a2286-de78-4dbe-9625-b508274b6a1d",
+        "userTypeId": null,
+        "coopId": 3,
+        "coopGuid": "b7f08050-c10a-4c3f-a934-0886c353d62f",
+        "coopName": null,
+        "companyId": 111169,
+        "companyName": "Tanzania-Dar-SACCO-01",
+        "companyTypeId": 98,
+        "cdGeoLocationId": 249,
+        "cdGeoLocationName": "Pwani",
+        "cdGeoPoliticalTypeName": "region",
+        "cdGeoPoliticalParentId": 111
+      }
+    ]
+  }
+}
+
+// after modification
+{
+  "userData": {
+    "docId": 21684,
+    "email": "accosca-6@empservices.co.ke",
+    "fName": null,
+    "lName": null,
+    "mName": null,
+    "gender": null,
+    "mobile": null,
+    "userId": 1618,
+    "zipCode": null,
+    "userGuid": "daa5b5d0-5ec4-4946-9cfb-f41073182084",
+    "userName": "accosca-6",
+    "birthDate": null,
+    "companyId": null,
+    "nationalId": null,
+    "passportId": null,
+    "postalAddr": null,
+    "userTypeId": null,
+    "userEnabled": true,
+    "activationKey": "e80a2286-de78-4dbe-9625-b508274b6a1d"
+  },
+  "fieldPermissions": {
+    "userPermissions": [
+      {
+        "read": true,
+        "field": "userName",
+        "write": false,
+        "hidden": false,
+        "userId": 1000,
+        "execute": false
+      }
+    ],
+    "groupPermissions": [
+      {
+        "read": true,
+        "field": "userName",
+        "write": false,
+        "hidden": false,
+        "execute": false,
+        "groupId": 0
+      }
+    ]
+  },
+  "coopMembership": {
+    "acl": [
+      {
+        "coopId": -1,
+        "aclRole": {
+          "aclRoleName": "guest",
+          "permissions": {
+            "userPermissions": [
+              {
+                "read": false,
+                "field": "",
+                "write": false,
+                "hidden": true,
+                "cdObjId": 0,
+                "execute": false
+              }
+            ],
+            "groupPermissions": [
+              {
+                "read": false,
+                "field": "",
+                "write": false,
+                "hidden": true,
+                "cdObjId": 0,
+                "execute": false
+              }
+            ]
+          }
+        },
+        "coopRole": [
+          {
+            "scope": 11,
+            "geoLocationId": null
+          }
+        ],
+        "coopActive": false
+      },
+      {
+        "coopId": 3,
+        "coopRole": [
+          {
+            "scope": 20,
+            "geoLocationId": null
+          }
+        ],
+        "coopActive": true
+      }
+    ],
+    "memberData": [
+      {
+        "coopMemberId": 129926,
+        "coopMemberGuid": "b4289342-c872-4780-9ade-2c57b6f7f17f",
+        "coopMemberName": null,
+        "coopMemberEnabled": 1,
+        "coopMemberTypeId": 108,
+        "coopMemberTypeGuid": "58d973c0-f0cc-4e90-ab7a-98c3c873f3f1",
+        "coopActive": null,
+        "coopMemberProfile": {
+          "userData": {
+            "docId": 21684,
+            "email": "accosca-6@empservices.co.ke",
+            "fName": null,
+            "lName": null,
+            "mName": null,
+            "gender": null,
+            "mobile": null,
+            "userId": 1618,
+            "zipCode": null,
+            "userGuid": "daa5b5d0-5ec4-4946-9cfb-f41073182084",
+            "userName": "accosca-6",
+            "birthDate": null,
+            "companyId": null,
+            "nationalId": null,
+            "passportId": null,
+            "postalAddr": null,
+            "userTypeId": null,
+            "userEnabled": true,
+            "activationKey": "e80a2286-de78-4dbe-9625-b508274b6a1d"
+          },
+          "coopMembership": {
+            "acl": [
+              {
+                "coopId": -1,
+                "aclRole": {
+                  "aclRoleName": "guest",
+                  "permissions": {
+                    "userPermissions": [
+                      {
+                        "read": false,
+                        "field": "",
+                        "write": false,
+                        "hidden": true,
+                        "cdObjId": 0,
+                        "execute": false
+                      }
+                    ],
+                    "groupPermissions": [
+                      {
+                        "read": false,
+                        "field": "",
+                        "write": false,
+                        "hidden": true,
+                        "cdObjId": 0,
+                        "execute": false
+                      }
+                    ]
+                  }
+                },
+                "coopRole": [
+                  {
+                    "scope": 11,
+                    "geoLocationId": null
+                  }
+                ],
+                "coopActive": false
+              },
+              {
+                "coopId": 3,
+                "coopRole": [
+                  {
+                    "scope": 20,
+                    "geoLocationId": null
+                  }
+                ],
+                "coopActive": true
+              }
+            ],
+            "memberData": [
+              {
+                "coopId": 3,
+                "companyName": "Tanzania-Dar-SACCO-01",
+                "cdGeoLocationId": 249
+              },
+              {
+                "coopId": 4,
+                "companyName": "Tanzania-Dar-SACCO-02",
+                "cdGeoLocationId": 250
+              }
+            ]
+          },
+          "fieldPermissions": {
+            "userPermissions": [
+              {
+                "read": true,
+                "field": "userName",
+                "write": false,
+                "hidden": false,
+                "userId": 1000,
+                "execute": false
+              }
+            ],
+            "groupPermissions": [
+              {
+                "read": true,
+                "field": "userName",
+                "write": false,
+                "hidden": false,
+                "execute": false,
+                "groupId": 0
+              }
+            ]
+          }
+        },
+        "userId": 1618,
+        "userGuid": "daa5b5d0-5ec4-4946-9cfb-f41073182084",
+        "userName": "accosca-6",
+        "email": "accosca-6@empservices.co.ke",
+        "mobile": null,
+        "gender": null,
+        "birthDate": null,
+        "postalAddr": null,
+        "fName": null,
+        "mName": null,
+        "lName": null,
+        "nationalId": null,
+        "passportId": null,
+        "userEnabled": 1,
+        "zipCode": null,
+        "activationKey": "e80a2286-de78-4dbe-9625-b508274b6a1d",
+        "userTypeId": null,
+        "coopId": 3,
+        "coopGuid": "b7f08050-c10a-4c3f-a934-0886c353d62f",
+        "coopName": null,
+        "companyId": 111169,
+        "companyName": "Tanzania-Dar-SACCO-01",
+        "companyTypeId": 98,
+        "cdGeoLocationId": 249,
+        "cdGeoLocationName": "Pwani",
+        "cdGeoPoliticalTypeName": "region",
+        "cdGeoPoliticalParentId": 111
+      }
+    ]
+  }
+}
+
+-------------------------------------------------------------
+Give me how the solution you have suggested is integrated in the JMorph class.
+Below is what we had earlier as the method applyUpdate().
+You can also seperate concern into seperate methods so all the crude methods can seperately implement similar logics in dedicated methods.
+private static applyUpdate(jsonData: any, instruction: JUpdateInstruction): void {
+        console.log("JMorph::applyUpdate()/01");
+        console.log("JMorph::applyUpdate()/jsonData:", JSON.stringify(jsonData));
+        console.log("JMorph::applyUpdate()/instruction:", JSON.stringify(instruction));
+    
+        const { path, value, action } = instruction;
+        console.log("JMorph::applyUpdate()/02");
+        let target = jsonData;
+        
+        for (let i = 0; i < path.length - 1; i++) {
+            console.log(`JMorph::applyUpdate()/03/${i}`);
+            let key = path[i];
+    
+            if (Array.isArray(key)) {
+                console.log(`JMorph::applyUpdate()/Array Detected at ${i}:`, key);
+                throw new Error(`Invalid path at ${i}: Arrays cannot be used as keys directly.`);
+            }
+    
+            if (!(key in target)) {
+                console.log(`JMorph::applyUpdate()/Key missing: Creating ${key} at level ${i}`);
+                target[key] = typeof path[i + 1] === "number" ? [] : {};
+            }
+    
+            target = target[key]; // Move deeper into the object
+    
+            if (target === undefined) {
+                console.log(`JMorph::applyUpdate()/Undefined target at level ${i}`);
+                throw new Error(`Path error: ${key} does not exist in the provided JSON structure.`);
+            }
+        }
+    
+        const lastKey = path[path.length - 1];
+        console.log("JMorph::applyUpdate()/target:", target);
+        console.log("JMorph::applyUpdate()/lastKey:", lastKey);
+    
+        if (Array.isArray(target) && !Array.isArray(lastKey)) {
+            console.log("JMorph::applyUpdate()/Error: Attempting to modify an array without key reference");
+            throw new Error(`Cannot update array at '${path.join('.')}' without specifying a unique identifier.`);
+        }
+    
+        switch (action) {
+            case "create":
+                console.log(`JMorph::applyUpdate()/Creating new data at ${lastKey}`);
+                if (Array.isArray(target[lastKey])) {
+                    target[lastKey].push(value);
+                } else {
+                    target[lastKey] = value;
+                }
+                break;
+            case "update":
+                console.log(`JMorph::applyUpdate()/Updating data at ${lastKey}`);
+                target[lastKey] = value;
+                break;
+            case "delete":
+                console.log(`JMorph::applyUpdate()/Deleting data at ${lastKey}`);
+                delete target[lastKey];
+                break;
+            default:
+                throw new Error(`Unknown action: ${action}`);
+        }
+    
+        console.log("JMorph::applyUpdate()/target2:", target);
+        console.log("JMorph::applyUpdate()/Completed");
+    }
+
+    -----------------------------------------------------------------------------
+We need to refine how createEntry() should work.
+From the logs the target is derived as below.  This is because from the path,["coopMembership","memberData",["coopId"]],
+memberData is an array of CoopMemberViewModel. And each has a coopId property.
+Now the instructions intend to 'create' or add CoopMemberViewModel item to the array.
+The value given is an object of the type CoopMemberViewModel that needs to be added to the array.
+The current code is adding:
+coopId: [
+    {
+      coopId: 5,
+      companyName: 'Tanzania-Dar-SACCO-03',
+      cdGeoLocationId: 251
+    }
+  ]
+to the array.
+Only the object {
+      coopId: 5,
+      companyName: 'Tanzania-Dar-SACCO-03',
+      cdGeoLocationId: 251
+    }
+was supposed to be added to the array.
+
+You can also see that just by the given instructions it is possible to apply Array.find() where coopId === 5 for validation and verification before and after.
+You can review the codes to align with the above descriptions.
+Below is the log of target after 'create' process.
+JMorph::applyUpdate()/target2: [
+  CoopMemberViewModel {
+    coopMemberId: 129926,
+    coopMemberGuid: 'b4289342-c872-4780-9ade-2c57b6f7f17f',
+    coopMemberName: null,
+    coopMemberEnabled: 1,
+    coopMemberTypeId: 108,
+    coopMemberTypeGuid: '58d973c0-f0cc-4e90-ab7a-98c3c873f3f1',
+    coopActive: null,
+    coopMemberProfile: {
+      userData: [Object],
+      coopMembership: [Object],
+      fieldPermissions: [Object]
+    },
+    userId: 1618,
+    userGuid: 'daa5b5d0-5ec4-4946-9cfb-f41073182084',
+    userName: 'accosca-6',
+    email: 'accosca-6@empservices.co.ke',
+    mobile: null,
+    gender: null,
+    birthDate: null,
+    postalAddr: null,
+    fName: null,
+    mName: null,
+    lName: null,
+    nationalId: null,
+    passportId: null,
+    userEnabled: 1,
+    zipCode: null,
+    activationKey: 'e80a2286-de78-4dbe-9625-b508274b6a1d',
+    userTypeId: null,
+    coopId: 3,
+    coopGuid: 'b7f08050-c10a-4c3f-a934-0886c353d62f',
+    coopName: null,
+    companyId: 111169,
+    companyName: 'Tanzania-Dar-SACCO-01',
+    companyTypeId: 98,
+    cdGeoLocationId: 249,
+    cdGeoLocationName: 'Pwani',
+    cdGeoPoliticalTypeName: 'region',
+    cdGeoPoliticalParentId: 111
+  },
+  coopId: [
+    {
+      coopId: 5,
+      companyName: 'Tanzania-Dar-SACCO-03',
+      cdGeoLocationId: 251
+    }
+  ]
+]
+
+
+    private static applyUpdate(
+    jsonData: any,
+    instruction: JUpdateInstruction
+  ): void {
+    console.log("JMorph::applyUpdate()/01");
+    console.log("JMorph::applyUpdate()/jsonData:", JSON.stringify(jsonData));
+    console.log(
+      "JMorph::applyUpdate()/instruction:",
+      JSON.stringify(instruction)
+    );
+
+    const { path, value, action } = instruction;
+    console.log("JMorph::applyUpdate()/02");
+
+    let target = jsonData;
+
+    for (let i = 0; i < path.length - 1; i++) {
+      console.log(`JMorph::applyUpdate()/03/${i}`);
+      let key = path[i];
+
+      if (Array.isArray(key)) {
+        console.log(
+          `JMorph::applyUpdate()/Error: Array Detected at ${i}:`,
+          key
+        );
+        throw new Error(
+          `Invalid path at ${i}: Arrays cannot be used as keys directly.`
+        );
+      }
+
+      if (!(key in target)) {
+        console.log(
+          `JMorph::applyUpdate()/Key missing: Creating ${key} at level ${i}`
+        );
+        target[key] = typeof path[i + 1] === "number" ? [] : {};
+      }
+
+      target = target[key]; // Move deeper into the object
+
+      if (target === undefined) {
+        console.log(`JMorph::applyUpdate()/Undefined target at level ${i}`);
+        throw new Error(
+          `Path error: ${key} does not exist in the provided JSON structure.`
+        );
+      }
+    }
+
+    const lastKey = path[path.length - 1];
+    console.log("JMorph::applyUpdate()/target:", target);
+    console.log("JMorph::applyUpdate()/lastKey:", lastKey);
+
+    if (Array.isArray(target) && !Array.isArray(lastKey)) {
+      console.log(
+        "JMorph::applyUpdate()/Error: Attempting to modify an array without key reference"
+      );
+      throw new Error(
+        `Cannot update array at '${path.join(
+          "."
+        )}' without specifying a unique identifier.`
+      );
+    }
+
+    // Delegate actions to separate methods
+    switch (action) {
+      case "create":
+        JMorph.createEntry(target, lastKey, value);
+        break;
+      case "update":
+        JMorph.updateEntry(target, lastKey, value);
+        break;
+      case "delete":
+        JMorph.deleteEntry(target, lastKey);
+        break;
+      default:
+        throw new Error(`Unknown action: ${action}`);
+    }
+
+    console.log("JMorph::applyUpdate()/Completed");
+    console.log("JMorph::applyUpdate()/target2:", target);
+  }
+
+  private static createEntry(target: any, key: string, value: any): void {
+    console.log(`JMorph::createEntry()/Creating new data at ${key}`);
+
+    if (!Array.isArray(target[key])) {
+      console.log(
+        `JMorph::createEntry()/Target is not an array. Creating as array.`
+      );
+      target[key] = [];
+    }
+
+    const keyField = Object.keys(value)[0]; // Derive the key dynamically (e.g., "coopId")
+
+    if (!(keyField in value)) {
+      console.log(
+        `JMorph::createEntry()/Error: Key '${keyField}' not found in value.`
+      );
+      throw new Error(`Missing unique key in the object.`);
+    }
+
+    const keyValue = value[keyField];
+    const alreadyExists = target[key].some(
+      (item: any) => item[keyField] === keyValue
+    );
+
+    if (alreadyExists) {
+      console.log(
+        `JMorph::createEntry()/Error: Entry with ${keyField}=${keyValue} already exists.`
+      );
+      throw new Error(
+        `Duplicate entry: ${keyField}=${keyValue} already exists.`
+      );
+    }
+
+    target[key].push(value);
+    console.log(
+      `JMorph::createEntry()/Success: Entry with ${keyField}=${keyValue} added.`
+    );
+  }
