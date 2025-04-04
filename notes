@@ -2069,3 +2069,9 @@ export const coopMemberProfileDefault: ICoopMemberProfile = {
         ]
     }
 }
+
+------------------------------------------------------
+The profile data has an issue:
+profileData.coopMembership.acl is not complete
+But each of the profileData.coopMembership.memberData has a correct acl info
+These data are compiled during svCoopMember.getCoopMemberProfile(req, res, true) at the backend.
