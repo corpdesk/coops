@@ -1851,3 +1851,221 @@ JMorph::applyUpdate()/target2: [
       `JMorph::createEntry()/Success: Entry with ${keyField}=${keyValue} added.`
     );
   }
+
+  ------------------------------------------------------------------------
+  // Issue with GetCoopMemberProfileByToken request
+  ------------------------------------------------------------------------
+  {
+  "ctx": "App",
+  "m": "Coops",
+  "c": "CoopMember",
+  "a": "GetCoopMemberProfileByToken",
+  "dat": {
+    "f_vals": [
+      {
+        "query": {
+          "where": {
+            "userId": -1
+          }
+        }
+      }
+    ],
+    "token": "f9d0ba7b-2cea-4ffb-a712-9dc3b5733510"
+  },
+  "args": {}
+}
+
+// response
+{
+    "app_state": {
+        "success": false,
+        "info": {
+            "messages": [
+                "BaseService::validatePlData/requested property is missing",
+                "BaseService::validatePlData/requested property is missing",
+                "TypeError: Cannot read properties of null (reading 'coopMembership')",
+                "TypeError: Cannot read properties of null (reading 'coopMembership')"
+            ],
+            "code": "CoopMemberService:getCoopMemberProfile",
+            "app_msg": "Error at CoopMemberService:getCoopMemberProfile: TypeError: Cannot read properties of null (reading 'coopMembership')"
+        },
+        "sess": {
+            "cd_token": "f9d0ba7b-2cea-4ffb-a712-9dc3b5733510",
+            "jwt": null,
+            "ttl": 600
+        },
+        "cache": {},
+        "sConfig": {
+            "usePush": true,
+            "usePolling": true,
+            "useCacheStore": true
+        }
+    },
+    "data": []
+}
+
+------------------------------------------------------
+test on localhost
+------------------
+{
+  "ctx": "App",
+  "m": "Coops",
+  "c": "CoopMember",
+  "a": "GetCoopMemberProfileByToken",
+  "dat": {
+    "f_vals": [
+      {
+        "query": {
+          "where": {
+            "userId": -1
+          }
+        }
+      }
+    ],
+    "token": "6c7b1143-eafe-4841-bcd5-e75a7342d684"
+  },
+  "args": {}
+}
+
+--------------------------------------------
+Below is a method in CoopMemberService.mergeUserProfile() at the cd-api.
+CoopMemberProfile is an extension of UserProfile.
+So at the backend, this method aggregates UserProfile and CoopMember profile so that they appear as on entyry to the front end.
+The method throw errors when returning data for a member that has not joined any sacco. We need to take care of such situtation by replacing missing data with selected secions of the default.
+Default sections are is drawn from and existing coopMemberProfileDefault.
+Refactor this method so we never have an error due to missing data.
+An example is the line:
+let aclData = existingProfile.coopMembership.acl;
+When membership data is missing, it throws error.
+An earlier attempt to fix this was placed after the line(which is not effective in this scenario):
+if (!aclData) {
+      aclData = coopMemberProfileDefault.coopMembership.acl;
+    }
+You need to make such corrections.
+async mergeUserProfile(
+    req,
+    res,
+    userProfile,
+    byToken
+  ): Promise<ICoopMemberProfile> {
+    console.log("CoopMemberService::mergeUserProfile()/01");
+    const svSess = new SessionService();
+    console.log("CoopMemberService::mergeUserProfile()/02");
+    const sessionDataExt: ISessionDataExt = await svSess.getSessionDataExt(
+      req,
+      res
+    );
+    let uid = sessionDataExt.currentUser.userId;
+    console.log("CoopMemberService::mergeUserProfile()/03");
+    const plQuery = this.b.getPlQuery(req);
+    if (!byToken) {
+      uid = plQuery.where.userId;
+    }
+    console.log("CoopMemberService::mergeUserProfile()/uid:", uid);
+    const q = { where: { userId: uid } };
+    console.log("CoopMemberService::mergeUserProfile()/q:", q);
+    const coopMemberData = await this.getCoopMemberI(req, res, q);
+    let existingProfile: ICoopMemberProfile  = await this.existingCoopMemberProfile(req, res, uid);
+    let aclData = existingProfile.coopMembership.acl;
+    console.log("CoopMemberService::mergeUserProfile()/aclData1:", aclData);
+    if (!aclData) {
+      aclData = coopMemberProfileDefault.coopMembership.acl;
+    }
+    console.log("CoopMemberService::mergeUserProfile()/aclData2:", aclData);
+    console.log(
+      "CoopMemberService::mergeUserProfile()/coopMemberData:",
+      coopMemberData
+    );
+    const mergedProfile: ICoopMemberProfile = {
+      ...userProfile,
+      coopMembership: {
+        acl: aclData,
+        memberData: coopMemberData,
+      },
+    };
+    console.log(
+      "CoopMemberService::mergeUserProfile()/mergedProfile:",
+      mergedProfile
+    );
+    return await mergedProfile;
+  }
+
+  // References:
+  export interface ICoopMemberProfile extends IUserProfile {
+    coopMembership: { 
+        memberData: CoopMemberViewModel[];
+        acl: MemberMeta[]; // affiliation with various SACCOS (privilege-related data in various SACCOS)
+    };
+}
+
+export interface MemberMeta {
+    coopId: number|null,
+    coopActive: boolean,
+    coopRole: ICoopRole;
+    aclRole?: IAclRole
+    coopMemberData?: CoopMemberViewModel[]; // affilication with various SACCOS(selection of coop_member_view where the current user appears)
+}
+
+// Define a type that excludes 'coopMembership' from ICoopMemberProfile
+export type IUserProfileOnly = Omit<ICoopMemberProfile, 'coopMembership'>;
+
+/**
+ * Note that coop membership prrofile is an extension of user profile
+ * Note that the first item is userProfile and by default has a value imported from userProfileDefault,
+ * On load, date will be set from database.
+ * the data below is just a default,
+ * details are be managed with 'roles' features
+ * 
+ */
+
+export const coopMemberProfileDefault: ICoopMemberProfile = {
+    ...userProfileDefault,  // Copy all properties from userProfileDefault
+    coopMembership:
+    {
+        memberData: [
+            {
+                userName: "",
+                fName: "",
+                lName: "",
+            }
+        ],
+        acl: [
+            {
+                coopId: -1,
+                coopActive: false,
+                coopRole: [
+                    { scope: CoopsAclScope.COOPS_GUEST, geoLocationId: null },
+                ],
+                /**
+                 * specified permission setting for given members to specified fields
+                 */
+                aclRole: {
+                    aclRoleName: "guest",
+                    permissions: {
+                        userPermissions: [
+                            {
+                                cdObjId: 0,
+                                hidden: true,
+                                field: "",
+                                read: false,
+                                write: false,
+                                execute: false
+                            }
+                        ],
+                        groupPermissions: [
+                            {
+                                cdObjId: 0,
+                                hidden: true,
+                                field: "",
+                                read: false,
+                                write: false,
+                                execute: false
+                            }
+
+                        ]
+                    }
+                }
+            }
+        ]
+    }
+}
