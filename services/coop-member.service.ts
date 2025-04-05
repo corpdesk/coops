@@ -1254,7 +1254,7 @@ export class CoopMemberService extends CdService {
     const mergedProfile: ICoopMemberProfile = {
       ...userProfile,
       coopMembership: {
-        acl: existingProfile,
+        acl: existingProfile.coopMembership.acl,
         memberData: memberData,
       },
     };
