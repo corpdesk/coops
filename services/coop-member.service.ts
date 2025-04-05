@@ -989,12 +989,15 @@ export class CoopMemberService extends CdService {
         console.log("CoopMemberService::setCoopMemberProfile()/uid:", uid);
         const uRet = await svUser.getUserByID(req, res, uid);
         console.log("CoopMemberService::setCoopMemberProfile()/uRet:", uRet);
-        const { password, userProfile, ...filteredUserData } = uRet[0];
-        console.log(
-          "CoopMemberService::setCoopMemberProfile()/filteredUserData:",
-          filteredUserData
-        );
-        userProfileDefault.userData = filteredUserData;
+        if(uRet.length > 0){
+          const { password, userProfile, ...filteredUserData } = uRet[0];
+          console.log(
+            "CoopMemberService::setCoopMemberProfile()/filteredUserData:",
+            filteredUserData
+          );
+          userProfileDefault.userData = filteredUserData;
+        } 
+        
       } else {
         console.log("CoopMemberService::setCoopMemberProfileI()/06");
         const { password, userProfile, ...filteredUserData } =
