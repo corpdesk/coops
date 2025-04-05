@@ -1239,6 +1239,10 @@ export class CoopMemberService extends CdService {
       existingProfile
     );
 
+    if(!existingProfile){
+      existingProfile = coopMemberProfileDefault
+    }
+
     // ✅ Defensive fallback: If coopMembership or acl is missing, fall back to defaults
     const aclData =
       existingProfile?.coopMembership?.acl ??
