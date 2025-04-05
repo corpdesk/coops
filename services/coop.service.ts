@@ -18,6 +18,7 @@ import { IUserProfile, userProfileDefault } from '../../../sys/user/models/user.
 import { CoopMemberViewModel } from '../models/coop-member-view.model';
 import { Like, Not } from 'typeorm';
 import { QueryTransformer } from '../../../sys/utils/query-transformer';
+import { safeStringify } from '../../../sys/utils/safe-stringify';
 
 export class CoopService extends CdService {
     logger: Logging;
@@ -179,7 +180,7 @@ export class CoopService extends CdService {
                 dSource: 1
             };
             console.log("CoopService::validateExistence/param.model:", param.model);
-            console.log("CoopService::validateExistence/serviceInput:", JSON.stringify(serviceInput));
+            console.log("CoopService::validateExistence/serviceInput:", safeStringify(serviceInput));
             const b = new BaseService();
             return b.read(req, res, serviceInput).then(r => {
                 if (r.length > 0) {
