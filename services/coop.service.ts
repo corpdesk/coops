@@ -180,7 +180,7 @@ export class CoopService extends CdService {
                 dSource: 1
             };
             console.log("CoopService::validateExistence/param.model:", param.model);
-            console.log("CoopService::validateExistence/serviceInput:", safeStringify(serviceInput));
+            console.log("CoopService::validateExistence/serviceInput:", JSON.stringify(serviceInput));
             const b = new BaseService();
             return b.read(req, res, serviceInput).then(r => {
                 if (r.length > 0) {

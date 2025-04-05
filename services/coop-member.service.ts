@@ -156,7 +156,7 @@ export class CoopMemberService extends CdService {
       },
     ];
     console.log(
-      `CoopMemberService::validateCreate()/validationParams: ${safeStringify(
+      `CoopMemberService::validateCreate()/validationParams: ${JSON.stringify(
         validationParams
       )}`
     );
@@ -165,7 +165,7 @@ export class CoopMemberService extends CdService {
 
     console.log(
       "CoopMemberService::validateCreate/this.b.err1:",
-      safeStringify(this.b.err)
+      JSON.stringify(this.b.err)
     );
 
     if (!valid) {
@@ -209,13 +209,13 @@ export class CoopMemberService extends CdService {
   // async validateExistence(req, res, validationParams) {
   //   const svSess = new SessionService();
   //   console.log(
-  //     `CoopMemberService::validateExistence()/validationParams:${safeStringify(
+  //     `CoopMemberService::validateExistence()/validationParams:${JSON.stringify(
   //       validationParams
   //     )}`
   //   );
   //   const promises = validationParams.map(async (param) => {
   //     console.log(
-  //       `CoopMemberService::validateExistence()/param1(before test):${safeStringify(
+  //       `CoopMemberService::validateExistence()/param1(before test):${JSON.stringify(
   //         param
   //       )}`
   //     );
@@ -225,7 +225,7 @@ export class CoopMemberService extends CdService {
   //       Object.keys(param.query.where).length === 0
   //     ) {
   //       console.log(
-  //         `CoopMemberService::validateExistence()/param2(failed): ${safeStringify(
+  //         `CoopMemberService::validateExistence()/param2(failed): ${JSON.stringify(
   //           param
   //         )}`
   //       );
@@ -238,7 +238,7 @@ export class CoopMemberService extends CdService {
   //       return false; // 🚀 Immediately return false on failure
   //     }
   //     console.log(
-  //       `CoopMemberService::validateExistence()/param3(passed):${safeStringify(
+  //       `CoopMemberService::validateExistence()/param3(passed):${JSON.stringify(
   //         param
   //       )}`
   //     );
@@ -255,7 +255,7 @@ export class CoopMemberService extends CdService {
 
   //     console.log(
   //       "CoopMemberService::validateExistence/serviceInput:",
-  //       safeStringify(serviceInput)
+  //       JSON.stringify(serviceInput)
   //     );
 
   //     const b = new BaseService();
@@ -295,7 +295,7 @@ export class CoopMemberService extends CdService {
   //   console.log("CoopMemberService::validateExistence/results:", results);
   //   console.log(
   //     "CoopMemberService::validateExistence/this.b.err2:",
-  //     safeStringify(this.b.err)
+  //     JSON.stringify(this.b.err)
   //   );
 
   //   // If any validation fails, return false
@@ -304,7 +304,7 @@ export class CoopMemberService extends CdService {
   async validateExistence(req, res, validationParams) {
     const svSess = new SessionService();
     console.log(
-      `CoopMemberService::validateExistence()/validationParams: ${safeStringify(
+      `CoopMemberService::validateExistence()/validationParams: ${JSON.stringify(
         validationParams
       )}`
     );
@@ -312,7 +312,7 @@ export class CoopMemberService extends CdService {
     for (const param of validationParams) {
       // 🔥 Process each validation sequentially
       console.log(
-        `CoopMemberService::validateExistence()/param1(before test): ${safeStringify(
+        `CoopMemberService::validateExistence()/param1(before test): ${JSON.stringify(
           param
         )}`
       );
@@ -336,8 +336,8 @@ export class CoopMemberService extends CdService {
         Object.getOwnPropertyNames(param.query.where)
       );
       console.log(
-        `CoopMemberService::validateExistence()/safeStringify(where):`,
-        safeStringify(param.query.where)
+        `CoopMemberService::validateExistence()/JSON.stringify(where):`,
+        JSON.stringify(param.query.where)
       );
       console.log(
         `CoopMemberService::validateExistence()/Type of where:`,
@@ -355,7 +355,7 @@ export class CoopMemberService extends CdService {
         Object.values(param.query.where).every((value) => value === undefined)
       ) {
         console.log(
-          `CoopMemberService::validateExistence()/param2(failed): ${safeStringify(
+          `CoopMemberService::validateExistence()/param2(failed): ${JSON.stringify(
             param
           )}`
         );
@@ -369,7 +369,7 @@ export class CoopMemberService extends CdService {
       }
 
       console.log(
-        `CoopMemberService::validateExistence()/param3(passed): ${safeStringify(
+        `CoopMemberService::validateExistence()/param3(passed): ${JSON.stringify(
           param
         )}`
       );
@@ -386,14 +386,14 @@ export class CoopMemberService extends CdService {
 
       console.log(
         "CoopMemberService::validateExistence/serviceInput:",
-        safeStringify(serviceInput)
+        JSON.stringify(serviceInput)
       );
 
       const b = new BaseService();
       try {
         const r = await b.read(req, res, serviceInput);
         this.logger.logInfo(
-          `coop/CoopMemberService::validateExistence()/r:${safeStringify(r)}`
+          `coop/CoopMemberService::validateExistence()/r:${JSON.stringify(r)}`
         );
 
         if (r.length > 0) {
@@ -430,7 +430,7 @@ export class CoopMemberService extends CdService {
     this.b.setPlData(req, { key: "coopMemberTypeId", value: 108 }); // set as applicant
     // stringify coopMemberProfile
     const pl: CoopMemberModel = this.b.getPlData(req);
-    const strProfile = safeStringify(pl.coopMemberProfile);
+    const strProfile = JSON.stringify(pl.coopMemberProfile);
     this.b.setPlData(req, { key: "coopMemberProfile", value: strProfile });
     return true;
   }
@@ -1039,7 +1039,7 @@ export class CoopMemberService extends CdService {
       );
       console.log(
         "CoopMemberService::setCoopMemberProfile()/this.mergedProfile2:",
-        safeStringify(this.mergedProfile)
+        JSON.stringify(this.mergedProfile)
       );
     }
   }
@@ -1325,7 +1325,7 @@ export class CoopMemberService extends CdService {
         );
 
         // modified profile
-        strModifiedCoopMemberProfile = safeStringify(
+        strModifiedCoopMemberProfile = JSON.stringify(
           modifiedCoopMemberProfile
         );
         console.log(
@@ -1333,13 +1333,13 @@ export class CoopMemberService extends CdService {
           strModifiedCoopMemberProfile
         );
         // userProfile
-        strUserProfile = safeStringify(await this.extractUserProfile());
+        strUserProfile = JSON.stringify(await this.extractUserProfile());
         // acl
-        strCoopMemberData = safeStringify(
+        strCoopMemberData = JSON.stringify(
           modifiedCoopMemberProfile.coopMembership.memberData
         );
         // memberData
-        strAcl = safeStringify(modifiedCoopMemberProfile.coopMembership.acl);
+        strAcl = JSON.stringify(modifiedCoopMemberProfile.coopMembership.acl);
       } else {
         /*
                 - if null or invalid, 
@@ -1364,15 +1364,15 @@ export class CoopMemberService extends CdService {
           "CoopMemberService::updateCoopMemberProfile()/modifiedCoopMemberProfile2:",
           modifiedCoopMemberProfile
         );
-        // strCoopMemberData = safeStringify(modifiedCoopMemberProfile)
+        // strCoopMemberData = JSON.stringify(modifiedCoopMemberProfile)
         // userProfile
-        strUserProfile = safeStringify(await this.extractUserProfile());
+        strUserProfile = JSON.stringify(await this.extractUserProfile());
         // acl
-        strCoopMemberData = safeStringify(
+        strCoopMemberData = JSON.stringify(
           modifiedCoopMemberProfile.coopMembership.memberData
         );
         // memberData
-        strAcl = safeStringify(modifiedCoopMemberProfile.coopMembership.acl);
+        strAcl = JSON.stringify(modifiedCoopMemberProfile.coopMembership.acl);
       }
 
       console.log("CoopMemberService::updateCoopMemberProfile()/03");
@@ -1383,18 +1383,18 @@ export class CoopMemberService extends CdService {
       );
       console.log(
         "CoopMemberService::updateCoopMemberProfile()/strUserProfile1-0:",
-        safeStringify(await modifiedCoopMemberProfile)
+        JSON.stringify(await modifiedCoopMemberProfile)
       );
 
       const existingCoopMember = await this.beforeUpdateMemberProfile(req, res);
       console.log(
         "CoopMemberService::updateCoopMemberProfile()/existingCoopMember:",
-        safeStringify(existingCoopMember)
+        JSON.stringify(existingCoopMember)
       );
 
       console.log(
         "CoopMemberService::updateCoopMemberProfile()/requestQuery:",
-        safeStringify(requestQuery)
+        JSON.stringify(requestQuery)
       );
 
       // update coopMemberProfile
@@ -1450,11 +1450,11 @@ export class CoopMemberService extends CdService {
       });
       console.log(
         "CoopMemberService::updateCoopMemberProfile()/fullProfile:",
-        safeStringify(await fullProfile)
+        JSON.stringify(await fullProfile)
       );
       console.log(
         "CoopMemberService::updateCoopMemberProfile()/strUserProfile1-1:",
-        safeStringify(await modifiedCoopMemberProfile)
+        JSON.stringify(await modifiedCoopMemberProfile)
       );
       const finalRet = {
         updateRet: updateCoopMemberRet,
@@ -1529,7 +1529,7 @@ export class CoopMemberService extends CdService {
           coopMemberGuid: this.b.getGuid(),
           userId: uid,
           coopId: coopId,
-          coopMemberProfile: safeStringify(coopMemberProfileDefault),
+          coopMemberProfile: JSON.stringify(coopMemberProfileDefault),
           coopMemberTypeId: 103, // Initially the member should be viewed as Guest. Later to be promoted by SACCO admin
           coopMemberEnabled: true,
           coopActive: true,
@@ -1630,13 +1630,13 @@ export class CoopMemberService extends CdService {
         );
 
         // userProfile
-        strUserProfile = safeStringify(await this.extractUserProfile());
+        strUserProfile = JSON.stringify(await this.extractUserProfile());
         // acl
-        strCoopMemberData = safeStringify(
+        strCoopMemberData = JSON.stringify(
           modifiedCoopMemberProfile.coopMembership.memberData
         );
         // memberData
-        strAcl = safeStringify(modifiedCoopMemberProfile.coopMembership.acl);
+        strAcl = JSON.stringify(modifiedCoopMemberProfile.coopMembership.acl);
       } else {
         /*
                 - if null or invalid, 
@@ -1661,23 +1661,23 @@ export class CoopMemberService extends CdService {
           "CoopMemberService::updateCoopMemberProfile()/modifiedCoopMemberProfile4:",
           modifiedCoopMemberProfile
         );
-        // strCoopMemberData = safeStringify(modifiedCoopMemberProfile)
+        // strCoopMemberData = JSON.stringify(modifiedCoopMemberProfile)
         // userProfile
-        strUserProfile = safeStringify(await this.extractUserProfile());
+        strUserProfile = JSON.stringify(await this.extractUserProfile());
         // acl
-        strCoopMemberData = safeStringify(
+        strCoopMemberData = JSON.stringify(
           modifiedCoopMemberProfile.coopMembership.memberData
         );
         // memberData
-        strAcl = safeStringify(modifiedCoopMemberProfile.coopMembership.acl);
+        strAcl = JSON.stringify(modifiedCoopMemberProfile.coopMembership.acl);
       }
 
       // // userProfile
-      // strUserProfile = safeStringify(modifiedCoopMemberProfile.userProfile)
+      // strUserProfile = JSON.stringify(modifiedCoopMemberProfile.userProfile)
       // // acl
-      // strCoopMemberData = safeStringify(modifiedCoopMemberProfile.coopMembership.memberData)
+      // strCoopMemberData = JSON.stringify(modifiedCoopMemberProfile.coopMembership.memberData)
       // // memberData
-      // strAcl = safeStringify(modifiedCoopMemberProfile.coopMembership.acl)
+      // strAcl = JSON.stringify(modifiedCoopMemberProfile.coopMembership.acl)
 
       console.log(
         "CoopMemberService::updateCoopMemberProfile()/modifiedCoopMemberProfile3:",

@@ -1053,8 +1053,8 @@ Perhaps we need to use async await or promise strategies to manage the flow in t
 // method codes with log points.
 private static applyUpdate(jsonData: any, instruction: JUpdateInstruction): void {
         console.log("JMorph::applyUpdate()/01")
-        console.log("JMorph::applyUpdate()/jsonData:", safeStringify(jsonData))
-        console.log("JMorph::applyUpdate()/instruction:", safeStringify(instruction))
+        console.log("JMorph::applyUpdate()/jsonData:", JSON.stringify(jsonData))
+        console.log("JMorph::applyUpdate()/instruction:", JSON.stringify(instruction))
         const { path, value, action } = instruction;
         console.log("JMorph::applyUpdate()/02")
         let target = jsonData;
@@ -1081,7 +1081,7 @@ private static applyUpdate(jsonData: any, instruction: JUpdateInstruction): void
         
         const lastKey = path[path.length - 1];
         console.log(`JMorph::applyUpdate()/09`)
-        console.log(`JMorph::applyUpdate()/target:${safeStringify(target)}`)
+        console.log(`JMorph::applyUpdate()/target:${JSON.stringify(target)}`)
         console.log(`JMorph::applyUpdate()/lastKey:${lastKey}`)
         if (Array.isArray(target[lastKey]) && !Array.isArray(lastKey)) {
             console.log(`JMorph::applyUpdate()/10`)
@@ -1096,7 +1096,7 @@ private static applyUpdate(jsonData: any, instruction: JUpdateInstruction): void
             console.log(`JMorph::applyUpdate()/14`)
             this.modifyObject(target, lastKey, value, action);
         }
-        console.log("JMorph::applyUpdate()/target:", safeStringify(target))
+        console.log("JMorph::applyUpdate()/target:", JSON.stringify(target))
     }
 
     --------------------------------------------------------------
@@ -1592,8 +1592,8 @@ Below is what we had earlier as the method applyUpdate().
 You can also seperate concern into seperate methods so all the crude methods can seperately implement similar logics in dedicated methods.
 private static applyUpdate(jsonData: any, instruction: JUpdateInstruction): void {
         console.log("JMorph::applyUpdate()/01");
-        console.log("JMorph::applyUpdate()/jsonData:", safeStringify(jsonData));
-        console.log("JMorph::applyUpdate()/instruction:", safeStringify(instruction));
+        console.log("JMorph::applyUpdate()/jsonData:", JSON.stringify(jsonData));
+        console.log("JMorph::applyUpdate()/instruction:", JSON.stringify(instruction));
     
         const { path, value, action } = instruction;
         console.log("JMorph::applyUpdate()/02");
@@ -1737,10 +1737,10 @@ JMorph::applyUpdate()/target2: [
     instruction: JUpdateInstruction
   ): void {
     console.log("JMorph::applyUpdate()/01");
-    console.log("JMorph::applyUpdate()/jsonData:", safeStringify(jsonData));
+    console.log("JMorph::applyUpdate()/jsonData:", JSON.stringify(jsonData));
     console.log(
       "JMorph::applyUpdate()/instruction:",
-      safeStringify(instruction)
+      JSON.stringify(instruction)
     );
 
     const { path, value, action } = instruction;
