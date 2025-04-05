@@ -1230,22 +1230,22 @@ export class CoopMemberService extends CdService {
     );
 
     /**
-     * get profile data only
+     * get collection profile data only
      */
-    let existingProfile: ICoopMemberProfile =
+    let existingProfile: any[] =
       await this.existingCoopMemberProfile(req, res, uid);
     console.log(
       "CoopMemberService::mergeUserProfile()/existingProfile:",
-      existingProfile
+      JSON.stringify(existingProfile)
     );
 
     if (!existingProfile) {
-      existingProfile = coopMemberProfileDefault;
+      existingProfile = [coopMemberProfileDefault];
     }
 
     // ✅ Defensive fallback: If coopMembership or acl is missing, fall back to defaults
     const aclData =
-      existingProfile?.coopMembership?.acl ??
+      existingProfile[0]?.coopMembership?.acl ??
       coopMemberProfileDefault.coopMembership.acl;
     console.log("CoopMemberService::mergeUserProfile()/aclData:", aclData);
     const memberData =
@@ -1254,6 +1254,10 @@ export class CoopMemberService extends CdService {
         : coopMemberProfileDefault.coopMembership.memberData;
 
     console.log(
+      "CoopMemberService::mergeUserProfile()/existingProfile[0]:",
+      existingProfile[0]
+    );
+    console.log(
       "CoopMemberService::mergeUserProfile()/memberData:",
       memberData
     );
@@ -1261,7 +1265,7 @@ export class CoopMemberService extends CdService {
     const mergedProfile: ICoopMemberProfile = {
       ...userProfile,
       coopMembership: {
-        acl: existingProfile.coopMembership.acl,
+        acl: existingProfile[0].coopMemberProfile,
         memberData: memberData,
       },
     };
@@ -1779,7 +1783,9 @@ export class CoopMemberService extends CdService {
       serviceInstance: this,
       serviceModel: CoopMemberModel,
       docName: "CoopMemberService::existingUserProfile",
+      dSource: 1,
       cmd: {
+        action: "find",
         query: { select: ["coopMemberProfile"], where: { userId: cuid } },
       },
       // mapping: { profileField: "coopMemberProfile" },
