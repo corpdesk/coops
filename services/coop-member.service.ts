@@ -989,15 +989,14 @@ export class CoopMemberService extends CdService {
         console.log("CoopMemberService::setCoopMemberProfile()/uid:", uid);
         const uRet = await svUser.getUserByID(req, res, uid);
         console.log("CoopMemberService::setCoopMemberProfile()/uRet:", uRet);
-        if(uRet.length > 0){
+        if (uRet.length > 0) {
           const { password, userProfile, ...filteredUserData } = uRet[0];
           console.log(
             "CoopMemberService::setCoopMemberProfile()/filteredUserData:",
             filteredUserData
           );
           userProfileDefault.userData = filteredUserData;
-        } 
-        
+        }
       } else {
         console.log("CoopMemberService::setCoopMemberProfileI()/06");
         const { password, userProfile, ...filteredUserData } =
@@ -1239,8 +1238,8 @@ export class CoopMemberService extends CdService {
       existingProfile
     );
 
-    if(!existingProfile){
-      existingProfile = coopMemberProfileDefault
+    if (!existingProfile) {
+      existingProfile = coopMemberProfileDefault;
     }
 
     // ✅ Defensive fallback: If coopMembership or acl is missing, fall back to defaults
@@ -1780,9 +1779,9 @@ export class CoopMemberService extends CdService {
       serviceModel: CoopMemberModel,
       docName: "CoopMemberService::existingUserProfile",
       cmd: {
-        query: { where: { userId: cuid } },
+        query: { select: ["coopMemberProfile"], where: { userId: cuid } },
       },
-      mapping: { profileField: "coopMemberProfile" },
+      // mapping: { profileField: "coopMemberProfile" },
     };
     return ProfileServiceHelper.fetchProfile(req, res, si);
   }
