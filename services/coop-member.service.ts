@@ -743,6 +743,7 @@ export class CoopMemberService extends CdService {
         memberProfile: this.mergedProfile,
         coopMemberData: this.coopMemberData,
       };
+      console.log("CoopMemberService::getCoopMemberProfile()/responseData:", responseData);
       this.b.cdResp.data = responseData;
       this.b.respond(req, res);
     } catch (e) {
@@ -1295,7 +1296,7 @@ export class CoopMemberService extends CdService {
 
     const mergedProfile: ICoopMemberProfile = {
       ...userProfile,
-      memberMeta: existingProfile[0],
+      memberMeta: existingProfile,
     };
 
     console.log(
