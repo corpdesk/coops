@@ -73,7 +73,7 @@ export class CoopMemberViewModel {
     coopActive?: boolean;
 
     @ViewColumn({ name: 'coop_member_profile' })
-    coopMemberProfile?: string | object;
+    coopMemberProfile?: string;
 
     @ViewColumn({ name: 'user_id' })
     userId?: number;

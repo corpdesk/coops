@@ -1146,7 +1146,7 @@ export class CoopService extends CdService {
                      * to user member profile data.
                      * This mechanism can be applied to all corpdesk resources
                      */
-                    coopMemberProfileJSON.coopMembership.memberData = coopMember
+                    coopMemberProfileJSON[0].coopMemberData = coopMember
                 }
                 return coopMemberProfileJSON;  // Parse the JSON field
 

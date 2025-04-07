@@ -188,7 +188,7 @@ export const coopMemberDataDefault: CoopMemberViewModel = {
   coopId: -1,
   userId: -1,
   coopActive: false,
-  coopMemberProfile: coopMemberProfileDefault,
+  coopMemberProfile: JSON.stringify(coopMemberProfileDefault),
 };
 
 export const coopMembershipDefault: ICoopMembership = {
