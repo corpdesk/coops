@@ -1,15 +1,12 @@
+import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { v4 as uuidv4 } from "uuid";
+import { validateOrReject } from "class-validator";
 import {
-    Entity,
-    PrimaryGeneratedColumn,
-    Column,
-} from 'typeorm';
-import { v4 as uuidv4 } from 'uuid';
-import {
-    validateOrReject,
-} from 'class-validator';
-import { IUserProfile, userProfileDefault } from '../../../sys/user/models/user.model';
-import { IAclRole } from '../../../sys/base/IBase';
-import { CoopMemberViewModel } from './coop-member-view.model';
+  IUserProfile,
+  userProfileDefault,
+} from "../../../sys/user/models/user.model";
+import { IAclRole } from "../../../sys/base/IBase";
+import { CoopMemberViewModel } from "./coop-member-view.model";
 
 // `coop_member`.`coop_member_id`,
 // `coop_member`.`coop_member_guid`,
@@ -19,153 +16,128 @@ import { CoopMemberViewModel } from './coop-member-view.model';
 // `coop_member`.`coop_member_enabled`,
 // `coop_member`.`coop_id`
 
-
-
-@Entity(
-    {
-        name: 'coop_member',
-        synchronize: false
-    }
-)
+@Entity({
+  name: "coop_member",
+  synchronize: false,
+})
 // @CdModel
 export class CoopMemberModel {
+  @PrimaryGeneratedColumn({
+    name: "coop_member_id",
+  })
+  coopMemberId?: number;
 
-    @PrimaryGeneratedColumn(
-        {
-            name: 'coop_member_id'
-        }
-    )
-    coopMemberId?: number;
+  @Column({
+    name: "coop_member_guid",
+    length: 40,
+    default: uuidv4(),
+  })
+  coopMemberGuid?: string;
 
-    @Column({
-        name: 'coop_member_guid',
-        length: 40,
-        default: uuidv4()
-    })
-    coopMemberGuid?: string;
+  @Column({
+    name: "coop_member_type_id",
+    nullable: true,
+  })
+  coopMemberTypeId: number;
 
-    @Column(
-        {
-            name: 'coop_member_type_id',
-            nullable: true
-        }
-    )
-    coopMemberTypeId: number;
+  @Column({
+    name: "user_id",
+    nullable: true,
+  })
+  userId: number;
 
-    @Column(
-        {
-            name: 'user_id',
-            nullable: true
-        }
-    )
-    userId: number;
+  @Column({
+    name: "doc_id",
+    nullable: true,
+  })
+  docId?: number;
 
-    @Column(
-        {
-            name: 'doc_id',
-            nullable: true
-        }
-    )
-    docId?: number;
+  @Column({
+    name: "coop_member_enabled",
+    nullable: true,
+  })
+  coopMemberEnabled: boolean;
 
-    @Column(
-        {
-            name: 'coop_member_enabled',
-            nullable: true
-        }
-    )
-    coopMemberEnabled: boolean;
+  @Column({
+    name: "coop_id",
+    nullable: true,
+  })
+  coopId: number;
 
-    @Column(
-        {
-            name: 'coop_id',
-            nullable: true
-        }
-    )
-    coopId: number;
+  // coop_member_approved
+  @Column({
+    name: "coop_member_approved",
+    nullable: true,
+  })
+  coopMemberApproved?: string;
 
-    // coop_member_approved
-    @Column(
-        {
-            name: 'coop_member_approved',
-            nullable: true
-        }
-    )
-    coopMemberApproved?: string;
+  @Column({
+    name: "coop_active",
+    nullable: true,
+  })
+  coopActive: boolean;
 
-    @Column(
-        {
-            name: 'coop_active',
-            nullable: true
-        }
-    )
-    coopActive: boolean;
-
-    @Column(
-        {
-            name: 'coop_member_profile',
-            nullable: true
-        }
-    )
-    coopMemberProfile: string;
-
+  @Column({
+    name: "coop_member_profile",
+    nullable: true,
+  })
+  coopMemberProfile: string;
 }
 
 export interface IMemberProfileAccess {
-    userPermissions: IProfileMemberAccess[],
-    groupPermissions: IProfileGroupAccess[]
+  userPermissions: IProfileMemberAccess[];
+  groupPermissions: IProfileGroupAccess[];
 }
 
 /**
- * Improved versin should have just one interface and 
+ * Improved versin should have just one interface and
  * instead of userId or groupId, cdObjId is applied.
  * This would then allow any object permissions to be set
  * Automation and 'role' concept can then be used to manage permission process
  */
 export interface IProfileMemberAccess {
-    userId: number,
-    hidden: boolean,
-    field: string,
-    read: boolean,
-    write: boolean,
-    execute: boolean
+  userId: number;
+  hidden: boolean;
+  field: string;
+  read: boolean;
+  write: boolean;
+  execute: boolean;
 }
 
 export interface IProfileGroupAccess {
-    groupId: number,
-    field: string,
-    hidden: boolean,
-    read: boolean,
-    write: boolean,
-    execute: boolean
+  groupId: number;
+  field: string;
+  hidden: boolean;
+  read: boolean;
+  write: boolean;
+  execute: boolean;
 }
 
-// export interface ICoopMemberProfile {
-//     userProfile: IUserProfile;
-//     // coopMemberFieldPermissions: IMemberProfileAccess; // accessibility of personal data
-//     coopMembership: { 
+// export interface ICoopMemberProfile extends IUserProfile {
+//     memberMeta: {
 //         memberData: CoopMemberViewModel[];
-//         acl: MemberMeta[]; // affilication with various SACCOS(privilage related data in various SACCOS)
-//     }
+//         acl: MemberMeta[]; // affiliation with various SACCOS (privilege-related data in various SACCOS)
+//     };
 // }
 
+export interface ICoopMembership {
+  memberProfile: ICoopMemberProfile; // affiliation with various SACCOS (privilege-related data in various SACCOS)
+  coopMemberData?: CoopMemberViewModel[]; // affilication with various SACCOS(selection of coop_member_view where the current user appears)
+}
+
 export interface ICoopMemberProfile extends IUserProfile {
-    coopMembership: { 
-        memberData: CoopMemberViewModel[];
-        acl: MemberMeta[]; // affiliation with various SACCOS (privilege-related data in various SACCOS)
-    };
+  memberMeta: MemberMeta[]; // affiliation with various SACCOS (privilege-related data in various SACCOS)
 }
 
 export interface MemberMeta {
-    coopId: number|null,
-    coopActive: boolean,
-    coopRole: ICoopRole;
-    aclRole?: IAclRole
-    coopMemberData?: CoopMemberViewModel[]; // affilication with various SACCOS(selection of coop_member_view where the current user appears)
+  coopId: number | null;
+  coopActive: boolean;
+  coopRole: ICoopRole;
+  aclRole?: IAclRole;
 }
 
-// Define a type that excludes 'coopMembership' from ICoopMemberProfile
-export type IUserProfileOnly = Omit<ICoopMemberProfile, 'coopMembership'>;
+// Define a type that excludes 'memberMeta' from ICoopMemberProfile
+// export type IUserProfileOnly = Omit<ICoopMemberProfile, "memberMeta">;
 
 /**
  * Note that coop membership prrofile is an extension of user profile
@@ -173,60 +145,56 @@ export type IUserProfileOnly = Omit<ICoopMemberProfile, 'coopMembership'>;
  * On load, date will be set from database.
  * the data below is just a default,
  * details are be managed with 'roles' features
- * 
+ *
  */
 
 export const coopMemberProfileDefault: ICoopMemberProfile = {
-    ...userProfileDefault,  // Copy all properties from userProfileDefault
-    coopMembership:
+  ...userProfileDefault, // Copy all properties from userProfileDefault
+  memberMeta: [
     {
-        memberData: [
+      coopId: -1,
+      aclRole: {
+        aclRoleName: "guest",
+        permissions: {
+          userPermissions: [
             {
-                userName: "",
-                fName: "",
-                lName: "",
-            }
-        ],
-        acl: [
+              read: false,
+              field: "",
+              write: false,
+              hidden: true,
+              cdObjId: 0,
+              execute: false,
+            },
+          ],
+          groupPermissions: [
             {
-                coopId: -1,
-                coopActive: false,
-                coopRole: [
-                    { scope: CoopsAclScope.COOPS_GUEST, geoLocationId: null },
-                ],
-                /**
-                 * specified permission setting for given members to specified fields
-                 */
-                aclRole: {
-                    aclRoleName: "guest",
-                    permissions: {
-                        userPermissions: [
-                            {
-                                cdObjId: 0,
-                                hidden: true,
-                                field: "",
-                                read: false,
-                                write: false,
-                                execute: false
-                            }
-                        ],
-                        groupPermissions: [
-                            {
-                                cdObjId: 0,
-                                hidden: true,
-                                field: "",
-                                read: false,
-                                write: false,
-                                execute: false
-                            }
+              read: false,
+              field: "",
+              write: false,
+              hidden: true,
+              cdObjId: 0,
+              execute: false,
+            },
+          ],
+        },
+      },
+      coopActive: false,
+      coopRole: [],
+    },
+  ],
+};
 
-                        ]
-                    }
-                }
-            }
-        ]
-    }
-}
+export const coopMemberDataDefault: CoopMemberViewModel = {
+  coopId: -1,
+  userId: -1,
+  coopActive: false,
+  coopMemberProfile: coopMemberProfileDefault,
+};
+
+export const coopMembershipDefault: ICoopMembership = {
+  memberProfile: coopMemberProfileDefault,
+  coopMemberData: [coopMemberDataDefault],
+};
 
 /**
  * Example usage
@@ -236,22 +204,21 @@ export const coopMemberProfileDefault: ICoopMemberProfile = {
 
 // Enum for ACL Scope
 export const enum CoopsAclScope {
-    COOPS_GUEST = 11,
-    COOPS_USER = 12,
-    COOPS_MEMBER = 13,
-    COOPS_SACCO_ADMIN = 14,
-    COOPS_REGIONAL_ADMIN = 15,
-    COOPS_NATIONAL_ADMIN = 16,
-    COOPS_CONTINENTAL_ADMIN = 17,
-    COOPS_GLOBAL_ADMIN = 18
+  COOPS_GUEST = 11,
+  COOPS_USER = 12,
+  COOPS_MEMBER = 13,
+  COOPS_SACCO_ADMIN = 14,
+  COOPS_REGIONAL_ADMIN = 15,
+  COOPS_NATIONAL_ADMIN = 16,
+  COOPS_CONTINENTAL_ADMIN = 17,
+  COOPS_GLOBAL_ADMIN = 18,
 }
 
 // Interface for ICoopAcl
 export interface ICoopAcl {
-    scope: CoopsAclScope;
-    geoLocationId: number | null;
+  scope: CoopsAclScope;
+  geoLocationId: number | null;
 }
-
 
 /**
  * Interface for CoopScope, which is an array of CoopAcl
@@ -264,6 +231,4 @@ export interface ICoopAcl {
 
 console.log(coopScope);
  */
-export interface ICoopRole extends Array<ICoopAcl> { }
-
-
+export interface ICoopRole extends Array<ICoopAcl> {}

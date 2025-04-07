@@ -165,7 +165,7 @@ Case 1:
     "userEnabled": true,
     "activationKey": "e80a2286-de78-4dbe-9625-b508274b6a1d"
   },
-  "coopMembership": {
+  "memberMeta": {
     "acl": [
       {
         "coopId": -1,
@@ -250,7 +250,7 @@ Case 1:
   }
 }
 
-Request to replace the data at the json path: ["coopMembership","memberData",[1]],
+Request to replace the data at the json path: ["memberMeta","memberData",[1]],
 with value = {
                                 "coopId": 5,
                                 "companyName": "Tanzania-Dar-SACCO-03",
@@ -274,7 +274,7 @@ with value = {
                 "jsonUpdate": [
                     {
                         "path": [
-                            "coopMembership",
+                            "memberMeta",
                             "memberData",
                             [1]
                         ],
@@ -421,7 +421,7 @@ Database profile results:
                     }
                 ]
             },
-            "coopMembership": {
+            "memberMeta": {
                 "acl": [
                     {
                         "coopId": -1,
@@ -650,7 +650,7 @@ static applyJsonUpdate(profile: any, path: (string | number | string[])[], value
       }
     ]
   },
-  "coopMembership": {
+  "memberMeta": {
     "acl": [
       {
         "coopId": -1,
@@ -729,7 +729,7 @@ static applyJsonUpdate(profile: any, path: (string | number | string[])[], value
             "userEnabled": true,
             "activationKey": "e80a2286-de78-4dbe-9625-b508274b6a1d"
           },
-          "coopMembership": {
+          "memberMeta": {
             "acl": [
               {
                 "coopId": -1,
@@ -876,7 +876,7 @@ interfaced JUpdateInstruction{
 "jsonUpdate": [
                     {
                         "path": [
-                            "coopMembership",
+                            "memberMeta",
                             "memberData",
                             ["coopId"]
                         ],
@@ -915,7 +915,7 @@ interfaced JUpdateInstruction{
     "userEnabled": true,
     "activationKey": "e80a2286-de78-4dbe-9625-b508274b6a1d"
   },
-  "coopMembership": {
+  "memberMeta": {
     "acl": [
       {
         "coopId": -1,
@@ -1005,7 +1005,7 @@ Consider a case where:
 "jsonUpdate": [
                     {
                         "path": [
-                            "coopMembership",
+                            "memberMeta",
                             "memberData"
                         ],
                         "value": [
@@ -1030,8 +1030,8 @@ The response from this method suggests: TypeError: Cannot read properties of und
 So I put loging points in the method as shown below.
 Compare with the logs below:
 JMorph::applyUpdate()/01
-JMorph::applyUpdate()/jsonData: {"userData":{"docId":21684,"email":"accosca-6@empservices.co.ke","fName":null,"lName":null,"mName":null,"gender":null,"mobile":null,"userId":1618,"zipCode":null,"userGuid":"daa5b5d0-5ec4-4946-9cfb-f41073182084","userName":"accosca-6","birthDate":null,"companyId":null,"nationalId":null,"passportId":null,"postalAddr":null,"userTypeId":null,"userEnabled":true,"activationKey":"e80a2286-de78-4dbe-9625-b508274b6a1d"},"fieldPermissions":{"userPermissions":[{"read":true,"field":"userName","write":false,"hidden":false,"userId":1000,"execute":false}],"groupPermissions":[{"read":true,"field":"userName","write":false,"hidden":false,"execute":false,"groupId":0}]},"coopMembership":{"acl":[{"coopId":-1,"aclRole":{"aclRoleName":"guest","permissions":{"userPermissions":[{"read":false,"field":"","write":false,"hidden":true,"cdObjId":0,"execute":false}],"groupPermissions":[{"read":false,"field":"","write":false,"hidden":true,"cdObjId":0,"execute":false}]}},"coopRole":[{"scope":11,"geoLocationId":null}],"coopActive":false},{"coopId":3,"coopRole":[{"scope":20,"geoLocationId":null}],"coopActive":true}],"memberData":[{"coopMemberId":129926,"coopMemberGuid":"b4289342-c872-4780-9ade-2c57b6f7f17f","coopMemberName":null,"coopMemberEnabled":1,"coopMemberTypeId":108,"coopMemberTypeGuid":"58d973c0-f0cc-4e90-ab7a-98c3c873f3f1","coopActive":null,"coopMemberProfile":{"userData":{"docId":21684,"email":"accosca-6@empservices.co.ke","fName":null,"lName":null,"mName":null,"gender":null,"mobile":null,"userId":1618,"zipCode":null,"userGuid":"daa5b5d0-5ec4-4946-9cfb-f41073182084","userName":"accosca-6","birthDate":null,"companyId":null,"nationalId":null,"passportId":null,"postalAddr":null,"userTypeId":null,"userEnabled":true,"activationKey":"e80a2286-de78-4dbe-9625-b508274b6a1d"},"coopMembership":{"acl":[{"coopId":-1,"aclRole":{"aclRoleName":"guest","permissions":{"userPermissions":[{"read":false,"field":"","write":false,"hidden":true,"cdObjId":0,"execute":false}],"groupPermissions":[{"read":false,"field":"","write":false,"hidden":true,"cdObjId":0,"execute":false}]}},"coopRole":[{"scope":11,"geoLocationId":null}],"coopActive":false},{"coopId":3,"coopRole":[{"scope":20,"geoLocationId":null}],"coopActive":true}],"memberData":[{"coopId":3,"companyName":"Tanzania-Dar-SACCO-01","cdGeoLocationId":249},{"coopId":4,"companyName":"Tanzania-Dar-SACCO-02","cdGeoLocationId":250}]},"fieldPermissions":{"userPermissions":[{"read":true,"field":"userName","write":false,"hidden":false,"userId":1000,"execute":false}],"groupPermissions":[{"read":true,"field":"userName","write":false,"hidden":false,"execute":false,"groupId":0}]}},"userId":1618,"userGuid":"daa5b5d0-5ec4-4946-9cfb-f41073182084","userName":"accosca-6","email":"accosca-6@empservices.co.ke","mobile":null,"gender":null,"birthDate":null,"postalAddr":null,"fName":null,"mName":null,"lName":null,"nationalId":null,"passportId":null,"userEnabled":1,"zipCode":null,"activationKey":"e80a2286-de78-4dbe-9625-b508274b6a1d","userTypeId":null,"coopId":3,"coopGuid":"b7f08050-c10a-4c3f-a934-0886c353d62f","coopName":null,"companyId":111169,"companyName":"Tanzania-Dar-SACCO-01","companyTypeId":98,"cdGeoLocationId":249,"cdGeoLocationName":"Pwani","cdGeoPoliticalTypeName":"region","cdGeoPoliticalParentId":111}]}}
-JMorph::applyUpdate()/instruction: {"path":["coopMembership","memberData",["coopId"]],"value":{"coopId":5,"companyName":"Tanzania-Dar-SACCO-03","cdGeoLocationId":251},"action":"create"}
+JMorph::applyUpdate()/jsonData: {"userData":{"docId":21684,"email":"accosca-6@empservices.co.ke","fName":null,"lName":null,"mName":null,"gender":null,"mobile":null,"userId":1618,"zipCode":null,"userGuid":"daa5b5d0-5ec4-4946-9cfb-f41073182084","userName":"accosca-6","birthDate":null,"companyId":null,"nationalId":null,"passportId":null,"postalAddr":null,"userTypeId":null,"userEnabled":true,"activationKey":"e80a2286-de78-4dbe-9625-b508274b6a1d"},"fieldPermissions":{"userPermissions":[{"read":true,"field":"userName","write":false,"hidden":false,"userId":1000,"execute":false}],"groupPermissions":[{"read":true,"field":"userName","write":false,"hidden":false,"execute":false,"groupId":0}]},"memberMeta":{"acl":[{"coopId":-1,"aclRole":{"aclRoleName":"guest","permissions":{"userPermissions":[{"read":false,"field":"","write":false,"hidden":true,"cdObjId":0,"execute":false}],"groupPermissions":[{"read":false,"field":"","write":false,"hidden":true,"cdObjId":0,"execute":false}]}},"coopRole":[{"scope":11,"geoLocationId":null}],"coopActive":false},{"coopId":3,"coopRole":[{"scope":20,"geoLocationId":null}],"coopActive":true}],"memberData":[{"coopMemberId":129926,"coopMemberGuid":"b4289342-c872-4780-9ade-2c57b6f7f17f","coopMemberName":null,"coopMemberEnabled":1,"coopMemberTypeId":108,"coopMemberTypeGuid":"58d973c0-f0cc-4e90-ab7a-98c3c873f3f1","coopActive":null,"coopMemberProfile":{"userData":{"docId":21684,"email":"accosca-6@empservices.co.ke","fName":null,"lName":null,"mName":null,"gender":null,"mobile":null,"userId":1618,"zipCode":null,"userGuid":"daa5b5d0-5ec4-4946-9cfb-f41073182084","userName":"accosca-6","birthDate":null,"companyId":null,"nationalId":null,"passportId":null,"postalAddr":null,"userTypeId":null,"userEnabled":true,"activationKey":"e80a2286-de78-4dbe-9625-b508274b6a1d"},"memberMeta":{"acl":[{"coopId":-1,"aclRole":{"aclRoleName":"guest","permissions":{"userPermissions":[{"read":false,"field":"","write":false,"hidden":true,"cdObjId":0,"execute":false}],"groupPermissions":[{"read":false,"field":"","write":false,"hidden":true,"cdObjId":0,"execute":false}]}},"coopRole":[{"scope":11,"geoLocationId":null}],"coopActive":false},{"coopId":3,"coopRole":[{"scope":20,"geoLocationId":null}],"coopActive":true}],"memberData":[{"coopId":3,"companyName":"Tanzania-Dar-SACCO-01","cdGeoLocationId":249},{"coopId":4,"companyName":"Tanzania-Dar-SACCO-02","cdGeoLocationId":250}]},"fieldPermissions":{"userPermissions":[{"read":true,"field":"userName","write":false,"hidden":false,"userId":1000,"execute":false}],"groupPermissions":[{"read":true,"field":"userName","write":false,"hidden":false,"execute":false,"groupId":0}]}},"userId":1618,"userGuid":"daa5b5d0-5ec4-4946-9cfb-f41073182084","userName":"accosca-6","email":"accosca-6@empservices.co.ke","mobile":null,"gender":null,"birthDate":null,"postalAddr":null,"fName":null,"mName":null,"lName":null,"nationalId":null,"passportId":null,"userEnabled":1,"zipCode":null,"activationKey":"e80a2286-de78-4dbe-9625-b508274b6a1d","userTypeId":null,"coopId":3,"coopGuid":"b7f08050-c10a-4c3f-a934-0886c353d62f","coopName":null,"companyId":111169,"companyName":"Tanzania-Dar-SACCO-01","companyTypeId":98,"cdGeoLocationId":249,"cdGeoLocationName":"Pwani","cdGeoPoliticalTypeName":"region","cdGeoPoliticalParentId":111}]}}
+JMorph::applyUpdate()/instruction: {"path":["memberMeta","memberData",["coopId"]],"value":{"coopId":5,"companyName":"Tanzania-Dar-SACCO-03","cdGeoLocationId":251},"action":"create"}
 JMorph::applyUpdate()/02
 JMorph::applyUpdate()/03/0
 JMorph::applyUpdate()/08/0
@@ -1151,7 +1151,7 @@ private static applyUpdate(jsonData: any, instruction: JUpdateInstruction): void
       }
     ]
   },
-  "coopMembership": {
+  "memberMeta": {
     "acl": [
       {
         "coopId": -1,
@@ -1230,7 +1230,7 @@ private static applyUpdate(jsonData: any, instruction: JUpdateInstruction): void
             "userEnabled": true,
             "activationKey": "e80a2286-de78-4dbe-9625-b508274b6a1d"
           },
-          "coopMembership": {
+          "memberMeta": {
             "acl": [
               {
                 "coopId": -1,
@@ -1391,7 +1391,7 @@ private static applyUpdate(jsonData: any, instruction: JUpdateInstruction): void
       }
     ]
   },
-  "coopMembership": {
+  "memberMeta": {
     "acl": [
       {
         "coopId": -1,
@@ -1470,7 +1470,7 @@ private static applyUpdate(jsonData: any, instruction: JUpdateInstruction): void
             "userEnabled": true,
             "activationKey": "e80a2286-de78-4dbe-9625-b508274b6a1d"
           },
-          "coopMembership": {
+          "memberMeta": {
             "acl": [
               {
                 "coopId": -1,
@@ -1657,7 +1657,7 @@ private static applyUpdate(jsonData: any, instruction: JUpdateInstruction): void
 
     -----------------------------------------------------------------------------
 We need to refine how createEntry() should work.
-From the logs the target is derived as below.  This is because from the path,["coopMembership","memberData",["coopId"]],
+From the logs the target is derived as below.  This is because from the path,["memberMeta","memberData",["coopId"]],
 memberData is an array of CoopMemberViewModel. And each has a coopId property.
 Now the instructions intend to 'create' or add CoopMemberViewModel item to the array.
 The value given is an object of the type CoopMemberViewModel that needs to be added to the array.
@@ -1691,7 +1691,7 @@ JMorph::applyUpdate()/target2: [
     coopActive: null,
     coopMemberProfile: {
       userData: [Object],
-      coopMembership: [Object],
+      memberMeta: [Object],
       fieldPermissions: [Object]
     },
     userId: 1618,
@@ -1883,11 +1883,11 @@ JMorph::applyUpdate()/target2: [
             "messages": [
                 "BaseService::validatePlData/requested property is missing",
                 "BaseService::validatePlData/requested property is missing",
-                "TypeError: Cannot read properties of null (reading 'coopMembership')",
-                "TypeError: Cannot read properties of null (reading 'coopMembership')"
+                "TypeError: Cannot read properties of null (reading 'memberMeta')",
+                "TypeError: Cannot read properties of null (reading 'memberMeta')"
             ],
             "code": "CoopMemberService:getCoopMemberProfile",
-            "app_msg": "Error at CoopMemberService:getCoopMemberProfile: TypeError: Cannot read properties of null (reading 'coopMembership')"
+            "app_msg": "Error at CoopMemberService:getCoopMemberProfile: TypeError: Cannot read properties of null (reading 'memberMeta')"
         },
         "sess": {
             "cd_token": "f9d0ba7b-2cea-4ffb-a712-9dc3b5733510",
@@ -1935,11 +1935,11 @@ The method throw errors when returning data for a member that has not joined any
 Default sections are is drawn from and existing coopMemberProfileDefault.
 Refactor this method so we never have an error due to missing data.
 An example is the line:
-let aclData = existingProfile.coopMembership.acl;
+let aclData = existingProfile.memberMeta.acl;
 When membership data is missing, it throws error.
 An earlier attempt to fix this was placed after the line(which is not effective in this scenario):
 if (!aclData) {
-      aclData = coopMemberProfileDefault.coopMembership.acl;
+      aclData = coopMemberProfileDefault.memberMeta.acl;
     }
 You need to make such corrections.
 async mergeUserProfile(
@@ -1966,10 +1966,10 @@ async mergeUserProfile(
     console.log("CoopMemberService::mergeUserProfile()/q:", q);
     const coopMemberData = await this.getCoopMemberI(req, res, q);
     let existingProfile: ICoopMemberProfile  = await this.existingCoopMemberProfile(req, res, uid);
-    let aclData = existingProfile.coopMembership.acl;
+    let aclData = existingProfile.memberMeta.acl;
     console.log("CoopMemberService::mergeUserProfile()/aclData1:", aclData);
     if (!aclData) {
-      aclData = coopMemberProfileDefault.coopMembership.acl;
+      aclData = coopMemberProfileDefault.memberMeta.acl;
     }
     console.log("CoopMemberService::mergeUserProfile()/aclData2:", aclData);
     console.log(
@@ -1978,7 +1978,7 @@ async mergeUserProfile(
     );
     const mergedProfile: ICoopMemberProfile = {
       ...userProfile,
-      coopMembership: {
+      memberMeta: {
         acl: aclData,
         memberData: coopMemberData,
       },
@@ -1992,7 +1992,7 @@ async mergeUserProfile(
 
   // References:
   export interface ICoopMemberProfile extends IUserProfile {
-    coopMembership: { 
+    memberMeta: { 
         memberData: CoopMemberViewModel[];
         acl: MemberMeta[]; // affiliation with various SACCOS (privilege-related data in various SACCOS)
     };
@@ -2006,8 +2006,8 @@ export interface MemberMeta {
     coopMemberData?: CoopMemberViewModel[]; // affilication with various SACCOS(selection of coop_member_view where the current user appears)
 }
 
-// Define a type that excludes 'coopMembership' from ICoopMemberProfile
-export type IUserProfileOnly = Omit<ICoopMemberProfile, 'coopMembership'>;
+// Define a type that excludes 'memberMeta' from ICoopMemberProfile
+export type IUserProfileOnly = Omit<ICoopMemberProfile, 'memberMeta'>;
 
 /**
  * Note that coop membership prrofile is an extension of user profile
@@ -2020,7 +2020,7 @@ export type IUserProfileOnly = Omit<ICoopMemberProfile, 'coopMembership'>;
 
 export const coopMemberProfileDefault: ICoopMemberProfile = {
     ...userProfileDefault,  // Copy all properties from userProfileDefault
-    coopMembership:
+    memberMeta:
     {
         memberData: [
             {
@@ -2072,6 +2072,6 @@ export const coopMemberProfileDefault: ICoopMemberProfile = {
 
 ------------------------------------------------------
 The profile data has an issue:
-profileData.coopMembership.acl is not complete
-But each of the profileData.coopMembership.memberData has a correct acl info
+profileData.memberMeta.acl is not complete
+But each of the profileData.memberMeta.memberData has a correct acl info
 These data are compiled during svCoopMember.getCoopMemberProfile(req, res, true) at the backend.
