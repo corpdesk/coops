@@ -739,13 +739,16 @@ export class CoopMemberService extends CdService {
       svSess.sessResp.cd_token = req.post.dat.token;
       svSess.sessResp.ttl = svSess.getTtl();
       this.b.setAppState(true, this.b.i, svSess.sessResp);
-      
+
       // const responseData: ICoopMembership = {
       //   memberProfile: this.mergedProfile,
       //   coopMemberData: this.coopMemberData,
       // };
-      const responseData: ICoopMembership = this.mergedProfile
-      console.log("CoopMemberService::getCoopMemberProfile()/responseData:", responseData);
+      const responseData: ICoopMembership = this.mergedProfile;
+      console.log(
+        "CoopMemberService::getCoopMemberProfile()/responseData:",
+        responseData
+      );
       this.b.cdResp.data = responseData;
       this.b.respond(req, res);
     } catch (e) {
@@ -976,19 +979,21 @@ export class CoopMemberService extends CdService {
     if (!byToken) {
       this.uid = plQuery.where.userId;
     }
-    
+
     console.log("CoopMemberService::setCoopMemberProfileI()/uid0:", this.uid);
 
     /**
      * get member data
      */
-    this.coopMemberData = await this.getCoopMemberI(req, res, {where:{userId: this.uid}});
-    if(!this.coopMemberData){
-      this.coopMemberData = [coopMemberDataDefault]
+    this.coopMemberData = await this.getCoopMemberI(req, res, {
+      where: { userId: this.uid },
+    });
+    if (!this.coopMemberData) {
+      this.coopMemberData = [coopMemberDataDefault];
     }
 
-    if(this.coopMemberData.length === 0){
-      this.coopMemberData = [coopMemberDataDefault]
+    if (this.coopMemberData.length === 0) {
+      this.coopMemberData = [coopMemberDataDefault];
     }
     console.log(
       "CoopMemberService::mergeUserProfile()/this.coopMemberData:",
@@ -996,13 +1001,17 @@ export class CoopMemberService extends CdService {
     );
 
     const svUser = new UserService();
-    let userProfileResult = await svUser.existingUserProfile(req, res, this.uid);
-    if(!userProfileResult){
-      userProfileResult = userProfileDefault
+    let userProfileResult = await svUser.existingUserProfile(
+      req,
+      res,
+      this.uid
+    );
+    if (!userProfileResult) {
+      userProfileResult = userProfileDefault;
     }
-    if(userProfileResult.length === 0){
-      userProfileResult = userProfileDefault
-    } else{
+    if (userProfileResult.length === 0) {
+      userProfileResult = userProfileDefault;
+    } else {
       this.existingUserProfile = userProfileResult[0];
     }
     console.log(
@@ -1028,7 +1037,10 @@ export class CoopMemberService extends CdService {
       console.log("CoopMemberService::setCoopMemberProfileI()/04");
       if (this.validateGetCoopMemberProfile(req, res, byToken)) {
         console.log("CoopMemberService::setCoopMemberProfileI()/05");
-        console.log("CoopMemberService::setCoopMemberProfile()/this.uid:", this.uid);
+        console.log(
+          "CoopMemberService::setCoopMemberProfile()/this.uid:",
+          this.uid
+        );
         const uRet = await svUser.getUserByID(req, res, this.uid);
         console.log("CoopMemberService::setCoopMemberProfile()/uRet:", uRet);
         if (uRet.length > 0) {
@@ -1192,7 +1204,6 @@ export class CoopMemberService extends CdService {
     byToken
   ): Promise<ICoopMembership> {
     console.log("CoopMemberService::mergeUserProfile()/01");
-    
 
     CdLogger.debug("CoopMemberService::mergeUserProfile()/03");
 
@@ -1207,8 +1218,6 @@ export class CoopMemberService extends CdService {
     const q = { where: { userId: this.uid } };
     console.log("CoopMemberService::mergeUserProfile()/q:", q);
 
-    
-
     /**
      * get collection profile data only
      */
@@ -1219,15 +1228,17 @@ export class CoopMemberService extends CdService {
       JSON.stringify(existingProfileData)
     );
 
-    let existingMemberMeta: MemberMeta[] = await this.extractMemberMeta(existingProfileData)
+    let existingMemberMeta: MemberMeta[] = await this.extractMemberMeta(
+      existingProfileData
+    );
 
     if (!existingMemberMeta) {
-      CdLogger.debug('CoopMemberService::mergeUserProfile()/05:')
+      CdLogger.debug("CoopMemberService::mergeUserProfile()/05:");
       existingMemberMeta = coopMemberProfileDefault.memberMeta;
     }
 
     if (existingMemberMeta.length === 0) {
-      CdLogger.debug('CoopMemberService::mergeUserProfile()/06:')
+      CdLogger.debug("CoopMemberService::mergeUserProfile()/06:");
       existingMemberMeta = coopMemberProfileDefault.memberMeta;
     }
 
@@ -1237,12 +1248,12 @@ export class CoopMemberService extends CdService {
     );
 
     const mergedProfile: ICoopMembership = {
-        memberProfile: {
-            ...userProfile,
-            memberMeta: existingMemberMeta,
-          },
-        coopMemberData: this.coopMemberData,
-      };
+      memberProfile: {
+        ...userProfile,
+        memberMeta: existingMemberMeta,
+      },
+      coopMemberData: this.coopMemberData,
+    };
 
     console.log(
       "CoopMemberService::mergeUserProfile()/mergedProfile:",
@@ -1267,12 +1278,16 @@ export class CoopMemberService extends CdService {
       const svUser = new UserService();
       const requestQuery: IQuery = req.post.dat.f_vals[0].query;
       const jsonUpdate = req.post.dat.f_vals[0].jsonUpdate;
-      let modifiedCoopMemberProfile: ICoopMemberProfile;
+      let modifiedCoopMemberProfile: ICoopMembership;
       let strModifiedCoopMemberProfile;
       let strUserProfile;
       let strCoopMemberData;
       let strAcl;
-      let userProfile = await svUser.getUserProfileI(req,res,sessionDataExt.currentUser.userId)
+      let userProfile = await svUser.getUserProfileI(
+        req,
+        res,
+        sessionDataExt.currentUser.userId
+      );
 
       /**
        * extract from db and merge with user profile to form coopMemberProfile
@@ -1312,13 +1327,13 @@ export class CoopMemberService extends CdService {
           strModifiedCoopMemberProfile
         );
         // userProfile
-        strUserProfile = JSON.stringify(userProfile);
+        strUserProfile = safeStringify(userProfile);
         // acl
         // strCoopMemberData = JSON.stringify(
         //   modifiedCoopMemberProfile.memberMeta[0].coopMemberData
         // );
         // memberData
-        strAcl = JSON.stringify(modifiedCoopMemberProfile.memberMeta);
+        strAcl = safeStringify(modifiedCoopMemberProfile.memberProfile.memberMeta);
       } else {
         /*
                 - if null or invalid, 
@@ -1351,7 +1366,7 @@ export class CoopMemberService extends CdService {
         //   modifiedCoopMemberProfile.memberMeta[0].coopMemberData
         // );
         // memberData
-        strAcl = JSON.stringify(modifiedCoopMemberProfile.memberMeta);
+        strAcl = JSON.stringify(modifiedCoopMemberProfile.memberProfile.memberMeta);
       }
 
       console.log("CoopMemberService::updateCoopMemberProfile()/03");
@@ -1376,6 +1391,19 @@ export class CoopMemberService extends CdService {
         JSON.stringify(requestQuery)
       );
 
+      if (!requestQuery.update) {
+        const e = "Update data is not defined";
+        CdLogger.error(e);
+        this.b.err.push(e);
+        const i = {
+          messages: this.b.err,
+          code: "CoopMemberService:updateCurrentUserProfile",
+          app_msg: "",
+        };
+        await this.b.serviceErr(req, res, e, i.code);
+        await this.b.respond(req, res);
+      }
+
       // update coopMemberProfile
       let serviceInput: IServiceInput = {
         serviceInstance: this,
@@ -1386,8 +1414,8 @@ export class CoopMemberService extends CdService {
         },
       };
       console.log(
-        "CoopMemberService::updateCoopMemberProfile()/serviceInput:",
-        serviceInput
+        "CoopMemberService::updateCoopMemberProfile()/serviceInput.cmd:",
+        serviceInput.cmd
       );
       const updateCoopMemberRet = await this.updateI(req, res, serviceInput);
       const newCoopMemberProfile = await this.existingCoopMemberData(
@@ -1433,13 +1461,18 @@ export class CoopMemberService extends CdService {
       );
       console.log(
         "CoopMemberService::updateCoopMemberProfile()/strUserProfile1-1:",
-        JSON.stringify(await modifiedCoopMemberProfile)
+        JSON.stringify(modifiedCoopMemberProfile)
       );
       const finalRet = {
         updateRet: updateCoopMemberRet,
         userUpdateRet: userUpdateRet,
-        newProfile: await modifiedCoopMemberProfile,
+        newProfile: modifiedCoopMemberProfile,
       };
+
+      console.log(
+        "CoopMemberService::updateCoopMemberProfile()/finalRet:",
+        JSON.stringify(finalRet)
+      );
 
       // Respond with the retrieved profile data
       this.b.cdResp.data = finalRet;
@@ -1562,7 +1595,11 @@ export class CoopMemberService extends CdService {
       let strUserProfile;
       let strCoopMemberData;
       let strAcl;
-      let userProfile = await svUser.getUserProfileI(req, res, sessionDataExt.currentUser.userId)
+      let userProfile = await svUser.getUserProfileI(
+        req,
+        res,
+        sessionDataExt.currentUser.userId
+      );
 
       /**
        * extract from db and merge with user profile to form coopMemberProfile
@@ -1711,12 +1748,11 @@ export class CoopMemberService extends CdService {
     }
   }
 
-
   /////////////////////////////////////////////
   // NEW USER PROFILE METHODS...USING COMMON CLASS ProfileServiceHelper
   //
 
-  async existingCoopMemberData(req, res, cuid):Promise<CoopMemberViewModel[]> {
+  async existingCoopMemberData(req, res, cuid): Promise<CoopMemberViewModel[]> {
     const si: IServiceInput = {
       serviceInstance: this,
       serviceModel: CoopMemberViewModel,
@@ -1728,37 +1764,52 @@ export class CoopMemberService extends CdService {
       },
       // mapping: { profileField: "coopMemberProfile" },
     };
-    const existinCoopMemberData: CoopMemberViewModel[] = await this.b.read(req, res, si);
-    console.log("CoopMemberService::existingCoopMemberData()/existinCoopMemberData:", existinCoopMemberData);
-    console.log("CoopMemberService::existingCoopMemberData()/existinCoopMemberData.length:", existinCoopMemberData.length);
+    const existinCoopMemberData: CoopMemberViewModel[] = await this.b.read(
+      req,
+      res,
+      si
+    );
+    console.log(
+      "CoopMemberService::existingCoopMemberData()/existinCoopMemberData:",
+      existinCoopMemberData
+    );
+    console.log(
+      "CoopMemberService::existingCoopMemberData()/existinCoopMemberData.length:",
+      existinCoopMemberData.length
+    );
     return existinCoopMemberData;
     // return formatedExistingData = await this.extractMemberMeta(existinCoopMemberData);
   }
 
-  async extractMemberMeta(existingProfileData: CoopMemberViewModel[]): Promise<MemberMeta[]> {
+  async extractMemberMeta(
+    existingProfileData: CoopMemberViewModel[]
+  ): Promise<MemberMeta[]> {
     const uniqueMap = new Map<string, MemberMeta>();
-  
+
     for (const viewModel of existingProfileData) {
       const profileList = viewModel.coopMemberProfile ?? [];
-  
+
       for (const meta of profileList) {
         // Generate a unique key for comparison
-        const key = `${meta.coopId}-${meta.coopRole?.id ?? 'null'}`;
-  
+        const key = `${meta.coopId}-${meta.coopRole?.id ?? "null"}`;
+
         // Only add if not already present
         if (!uniqueMap.has(key)) {
           uniqueMap.set(key, meta);
         }
       }
     }
-  
+
     // Return array of unique MemberMeta
     return Array.from(uniqueMap.values());
   }
-  
 
   // Helper method to validate profile data
-  async validateProfileData(req, res, profileData: ICoopMembership): Promise<boolean> {
+  async validateProfileData(
+    req,
+    res,
+    profileData: ICoopMembership
+  ): Promise<boolean> {
     console.log(
       "CoopMemberService::validateProfileData()/profileData:",
       profileData
@@ -1772,7 +1823,10 @@ export class CoopMemberService extends CdService {
     }
 
     // Validate that the required fields of IUserProfile exist
-    if (!profileData.memberProfile.fieldPermissions || !profileData.memberProfile.userData) {
+    if (
+      !profileData.memberProfile.fieldPermissions ||
+      !profileData.memberProfile.userData
+    ) {
       console.log("CoopMemberService::validateProfileData()/02");
       console.log(
         "CoopMemberService::validateProfileData()/profileData.userData:",
@@ -1786,7 +1840,10 @@ export class CoopMemberService extends CdService {
     }
 
     // Example validation for bio length
-    if (profileData.memberProfile.bio && profileData.memberProfile.bio.length > 500) {
+    if (
+      profileData.memberProfile.bio &&
+      profileData.memberProfile.bio.length > 500
+    ) {
       console.log("CoopMemberService::validateProfileData()/03");
       const e = "Bio data is too long";
       this.b.err.push(e);
@@ -1830,9 +1887,7 @@ export class CoopMemberService extends CdService {
     coopId: number,
     newRole: ICoopAcl
   ): boolean {
-    const memberMeta = profile.memberMeta?.find(
-      (m) => m.coopId === coopId
-    );
+    const memberMeta = profile.memberMeta?.find((m) => m.coopId === coopId);
     if (memberMeta) {
       memberMeta.coopRole.push(newRole);
       return true;
@@ -1847,9 +1902,7 @@ export class CoopMemberService extends CdService {
    * @returns An array of ICoopAcl representing all coop roles, or null if not found
    */
   getCoopRoles(profile: ICoopMemberProfile, coopId: number): ICoopRole | null {
-    const memberMeta = profile.memberMeta?.find(
-      (m) => m.coopId === coopId
-    );
+    const memberMeta = profile.memberMeta?.find((m) => m.coopId === coopId);
     return memberMeta ? memberMeta.coopRole : null;
   }
 
@@ -1867,9 +1920,7 @@ export class CoopMemberService extends CdService {
     scope: CoopsAclScope,
     updatedRole: ICoopAcl
   ): boolean {
-    const memberMeta = profile.memberMeta?.find(
-      (m) => m.coopId === coopId
-    );
+    const memberMeta = profile.memberMeta?.find((m) => m.coopId === coopId);
     if (memberMeta) {
       const roleIndex = memberMeta.coopRole.findIndex(
         (role) => role.scope === scope
@@ -1894,9 +1945,7 @@ export class CoopMemberService extends CdService {
     coopId: number,
     scope: CoopsAclScope
   ): boolean {
-    const memberMeta = profile.memberMeta?.find(
-      (m) => m.coopId === coopId
-    );
+    const memberMeta = profile.memberMeta?.find((m) => m.coopId === coopId);
     if (memberMeta) {
       const roleIndex = memberMeta.coopRole.findIndex(
         (role) => role.scope === scope
