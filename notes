@@ -2075,3 +2075,51 @@ The profile data has an issue:
 profileData.memberMeta.acl is not complete
 But each of the profileData.memberMeta.memberData has a correct acl info
 These data are compiled during svCoopMember.getCoopMemberProfile(req, res, true) at the backend.
+
+----------------------------------------------------------
+We need to implement method extractMemberMeta(existinData:CoopMemberViewModel[]):Promise<MemberMeta> based on the requirements given below.
+export class CoopMemberService{
+	async existingCoopMemberData(req, res, cuid):Promise<CoopMemberViewModel[]> {
+	    const si: IServiceInput = {
+	      serviceInstance: this,
+	      serviceModel: CoopMemberViewModel,
+	      docName: "CoopMemberService::existingUserProfile",
+	      dSource: 1,
+	      cmd: {
+		action: "find",
+		query: { select: ["coopMemberProfile"], where: { userId: cuid } },
+	      },
+	      // mapping: { profileField: "coopMemberProfile" },
+	    };
+	    const existinCoopMemberData: CoopMemberViewModel[] = await this.b.read(req, res, si);
+	    return existinCoopMemberData;
+	  }
+
+	  async extractMemberMeta(existinData:CoopMemberViewModel[]):Promise<MemberMeta[]>{
+		// to implement in a way that we iterate through all the MemberMeta in each of the coopMemberProfile item but filtering out any duplicates
+	  }
+  
+ } 
+In the existingCoopMemberData(), query: { select: ["coopMemberProfile"], where: { userId: cuid } } is equivalent to sql statement:
+select distinct coop_member_profile from coop_member_view where user_id = cuid;
+The output results from the logs is shown below
+The field coop_member_profile stores data in the form MemberMeta[].
+So what is showing as [Object] are MemberMeta object.
+extractMemberMeta should be able iterate through all the MemberMeta in each of the coopMemberProfile item but filtering out any duplicates.
+// sample of output log for existinCoopMemberData
+[
+  CoopMemberViewModel {
+    coopMemberProfile: [ [Object], [Object], [Object], [Object] ]
+  },
+  CoopMemberViewModel {
+    coopMemberProfile: [ [Object], [Object], [Object], [Object] ]
+  }
+]
+
+References:
+export interface MemberMeta {
+  coopId: number | null;
+  coopActive: boolean;
+  coopRole: ICoopRole;
+  aclRole?: IAclRole;
+}
