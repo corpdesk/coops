@@ -2123,3 +2123,196 @@ export interface MemberMeta {
   coopRole: ICoopRole;
   aclRole?: IAclRole;
 }
+
+/////////////////////////////////////////////////////////////////////////////////////
+// Issue: Sql error when requesting to search coop data
+// Request for coop data
+{
+  "ctx": "App",
+  "m": "Coops",
+  "c": "Coop",
+  "a": "GetCount",
+  "dat": {
+      "f_vals": [
+          {
+              "query": {
+                  "select": [
+                      "coopId",
+                      "coopName",
+                      "coopGuid",
+                      "coopTypeId",
+                      "coopEnabled",
+                      "coopTypeGuid",
+                      "companyId",
+                      "cdGeoLocationId",
+                      "companyTypeId",
+                      "companyTypeName",
+                      "directoryCategoryGuid",
+                      "companyName",
+                      "postalAddress",
+                      "phone",
+                      "email",
+                      "website",
+                      "physicalLocation",
+                      "city",
+                      "cityGuid",
+                      "countyGuid",
+                      "companyGuid",
+                      "parentGuid",
+                      "consumerId",
+                      "mobile",
+                      "companyTypeGuid",
+                      "consumerGuid",
+                      "searchTags",
+                      "cdGeoLocationGuid",
+                      "cdGeoLocationName",
+                      "lat",
+                      "long",
+                      "cdGeoLocationCode",
+                      "cdGeoLocationIcon",
+                      "cdGeoPoliticalTypeId",
+                      "cdGeoPoliticalParentId",
+                      "cdGeoLocationNameAlt",
+                      "geoBoundaryData",
+                      "cdGeoLocationEnabled",
+                      "cdGeoLocationAssoc",
+                      "cdGeoLocationPopulation",
+                      "cdGeoLocationDisplay",
+                      "cdGeoPoliticalTypeGuid",
+                      "cdGeoPoliticalTypeName"
+                  ],
+                  "where": [
+                      {
+                          "coopId": "Like('%Tan%')"
+                      },
+                      {
+                          "companyName": "Like('%Tan%')"
+                      },
+                      {
+                          "email": "Like('%Tan%')"
+                      }
+                  ],
+                  "take": 10,
+                  "skip": 0
+              }
+          }
+      ],
+      "token": "f7ead73f-3db9-4011-96a2-31d2a11dee86"
+  },
+  "args": {}
+}
+
+// Response:
+{
+  "app_state": {
+      "success": false,
+      "info": {
+          "messages": [
+              "QueryFailedError: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'long, cd_geo_location_code, cd_geo_location_icon, cd_geo_political_type_id, cd_g' at line 1"
+          ],
+          "code": "BaseService:readQB",
+          "app_msg": "Error at BaseService:readQB: QueryFailedError: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'long, cd_geo_location_code, cd_geo_location_icon, cd_geo_political_type_id, cd_g' at line 1"
+      },
+      "sess": {
+          "cd_token": "f7ead73f-3db9-4011-96a2-31d2a11dee86",
+          "jwt": null,
+          "ttl": 600
+      },
+      "cache": {},
+      "sConfig": {
+          "usePush": true,
+          "usePolling": true,
+          "useCacheStore": true
+      }
+  },
+  "data": []
+}
+
+// Sql statement:
+// query: 
+SELECT 
+  coop_id, 
+  coop_name, 
+  coop_guid, 
+  coop_type_id, 
+  coop_enabled, 
+  coop_type_guid, 
+  company_id, 
+  cd_geo_location_id, 
+  company_type_id, 
+  company_type_name, 
+  directory_category_guid, 
+  company_name, 
+  postal_address, 
+  phone, 
+  email, 
+  website, 
+  physical_location, 
+  city, 
+  city_guid, 
+  county_guid, 
+  company_guid, 
+  parent_guid, 
+  consumer_id, 
+  mobile, 
+  company_type_guid, 
+  consumer_guid, 
+  search_tags, 
+  cd_geo_location_guid, 
+  cd_geo_location_name, 
+  lat, 
+  long, 
+  cd_geo_location_code, 
+  cd_geo_location_icon, 
+  cd_geo_political_type_id, 
+  cd_geo_political_parent_id, 
+  cd_geo_location_name_alt, 
+  geo_boundary_data, 
+  cd_geo_location_enabled, 
+  cd_geo_location_assoc, 
+  cd_geo_location_population, 
+  cd_geo_location_display, 
+  cd_geo_political_type_guid, 
+  cd_geo_political_type_name 
+FROM 
+  `coop_view` `CoopViewModel` 
+WHERE 
+  `CoopViewModel`.`coop_id` LIKE ? 
+  OR `CoopViewModel`.`company_name` LIKE ? 
+  OR `CoopViewModel`.`email` LIKE ? 
+LIMIT 
+  10
+
+  // parameters: [ '%Tan%', '%Tan%', '%Tan%' ]
+
+  // -----------------------------------------------------
+  // Why is company_type_id not being registered.
+  {
+    "ctx": "Sys",
+    "m": "Moduleman",
+    "c": "Company",
+    "a": "Create",
+    "dat": {
+      "f_vals": [
+        {
+          "data": {
+            "companyName": "Tanzania-Dar-SACCO-05",
+            "searchTags": "SACCO",
+            "companyTypeGuid": "0bce0fdf-f2f9-4482-80bd-b1c1252e91db",
+            "postalAddress": "130 Xyz",
+            "phone": "07143111144",
+            "mobile": "07143111144",
+            "email": "tz-dar-sacco-05@tz-sacco.org",
+            "website": "www.tz-sacco-5.org",
+            "city": "Dodoma",
+            "country": "Tanzania",
+            "physicalLocation": "Dodoma",
+            "logo": "http://xx.logo"
+          }
+        }
+      ],
+      "token": "5e40f9d2-47ef-41bc-a562-2d1a418044f9"
+    },
+    "args": {}
+  }
+
