@@ -879,7 +879,7 @@ export class CoopMemberService extends CdService {
       },
       dSource: 1,
     };
-    this.b.readCount$(req, res, serviceInput).subscribe((r) => {
+    this.b.readQB$(req, res, serviceInput).subscribe((r) => {
       this.b.i.code = "CoopMemberController::Get";
       const svSess = new SessionService();
       svSess.sessResp.cd_token = req.post.dat.token;
