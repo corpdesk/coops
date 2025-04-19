@@ -37,6 +37,7 @@ import { Logging } from "../../../sys/base/winston.log";
 import { ProfileServiceHelper } from "../../../sys/utils/profile-service-helper";
 import { safeStringify } from "../../../sys/utils/safe-stringify";
 import { CdLogger } from "../../../sys/utils/cd-logger";
+import { distinct } from "rxjs";
 
 export class CoopMemberService extends CdService {
   logger: Logging;
@@ -1216,7 +1217,10 @@ export class CoopMemberService extends CdService {
 
     console.log("CoopMemberService::mergeUserProfile()/this.uid:", this.uid);
 
-    const q = { where: { userId: this.uid } };
+    const q = { 
+      where: { userId: this.uid },
+      distinct: true
+    };
     console.log("CoopMemberService::mergeUserProfile()/q:", q);
 
     /**
