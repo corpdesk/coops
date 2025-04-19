@@ -2316,3 +2316,82 @@ LIMIT
     "args": {}
   }
 
+  -------------------------------------------------------------
+// Redefine coop_view to have agregated fields for country and region.
+  CREATE OR REPLACE VIEW `coop_view` AS
+    SELECT 
+        `coop`.`coop_id` AS `coop_id`,
+        `coop`.`coop_name` AS `coop_name`,
+        `coop`.`coop_description` AS `coop_description`,
+        `coop`.`coop_guid` AS `coop_guid`,
+        `coop`.`coop_type_id` AS `coop_type_id`,
+        `coop`.`coop_enabled` AS `coop_enabled`,
+        `coop`.`company_id` AS `company_id`,
+        `coop`.`cd_geo_location_id` AS `cd_geo_location_id`,
+        `coop_type`.`coop_type_guid` AS `coop_type_guid`,
+        `coop_type`.`coop_type_name` AS `coop_type_name`,
+        `company`.`company_type_id` AS `company_type_id`,
+        `company`.`directory_category_guid` AS `directory_category_guid`,
+        `company`.`company_name` AS `company_name`,
+        `company`.`postal_address` AS `postal_address`,
+        `company`.`phone` AS `phone`,
+        `company`.`email` AS `email`,
+        `company`.`website` AS `website`,
+        `company`.`physical_location` AS `physical_location`,
+        `company`.`city` AS `city`,
+        `company`.`country` AS `country`,
+        `company`.`logo` AS `logo`,
+        `company`.`company_enabled` AS `company_enabled`,
+        `company`.`doc_id` AS `doc_id`,
+        `company`.`city_guid` AS `city_guid`,
+        `company`.`county_guid` AS `county_guid`,
+        `company`.`company_guid` AS `company_guid`,
+        `company`.`company_description` AS `company_description`,
+        `company`.`parent_guid` AS `parent_guid`,
+        `company`.`consumer_id` AS `consumer_id`,
+        `company`.`mobile` AS `mobile`,
+        `company`.`company_type_guid` AS `company_type_guid`,
+        `company`.`consumer_guid` AS `consumer_guid`,
+        `company`.`search_tags` AS `search_tags`,
+        `company_type`.`company_type_name` AS `company_type_name`,
+        `cd_geo_country_regions_view`.`cd_geo_location_guid` AS `cd_geo_location_guid`,
+        `cd_geo_country_regions_view`.`cd_geo_location_name` AS `cd_geo_location_name`,
+        `cd_geo_country_regions_view`.`cd_geo_location_description` AS `cd_geo_location_description`,
+        `cd_geo_country_regions_view`.`lat` AS `lat`,
+        `cd_geo_country_regions_view`.`long` AS `long`,
+        `cd_geo_country_regions_view`.`cd_geo_boundary_data` AS `cd_geo_boundary_data`,
+        `cd_geo_country_regions_view`.`cd_geo_location_code` AS `cd_geo_location_code`,
+        `cd_geo_country_regions_view`.`cd_geo_location_icon` AS `cd_geo_location_icon`,
+        `cd_geo_country_regions_view`.`back4app_obectId` AS `back4app_obectId`,
+        `cd_geo_country_regions_view`.`cd_geo_political_type_id` AS `cd_geo_political_type_id`,
+        `cd_geo_country_regions_view`.`cd_geo_political_parent_id` AS `cd_geo_political_parent_id`,
+        `cd_geo_country_regions_view`.`cd_geo_location_name_alt` AS `cd_geo_location_name_alt`,
+        `cd_geo_country_regions_view`.`geo_boundary_data` AS `geo_boundary_data`,
+        `cd_geo_country_regions_view`.`cd_geo_location_enabled` AS `cd_geo_location_enabled`,
+        `cd_geo_country_regions_view`.`cd_geo_location_assoc` AS `cd_geo_location_assoc`,
+        `cd_geo_country_regions_view`.`cd_geo_location_population` AS `cd_geo_location_population`,
+        `cd_geo_country_regions_view`.`cd_geo_location_display` AS `cd_geo_location_display`,
+        `cd_geo_country_regions_view`.`cd_geo_political_type_guid` AS `cd_geo_political_type_guid`,
+        `cd_geo_country_regions_view`.`cd_geo_political_type_name` AS `cd_geo_political_type_name`,
+        `cd_geo_country_regions_view`.`cd_geo_political_type_description` AS `cd_geo_political_type_description`,
+        `cd_geo_country_regions_view`.`country_name` AS `country_name`,
+        `cd_geo_country_regions_view`.`region_name` AS `region_name`
+    FROM
+        ((((`coop`
+        JOIN `company` ON ((`coop`.`company_id` = `company`.`company_id`)))
+        JOIN `company_type` ON ((`company`.`company_type_id` = `company_type`.`company_type_id`)))
+        JOIN `coop_type` ON ((`coop`.`coop_type_id` = `coop_type`.`coop_type_id`)))
+        JOIN `cd_geo_country_regions_view` ON ((`coop`.`cd_geo_location_id` = `cd_geo_country_regions_view`.`cd_geo_location_id`)))
+
+
+--------------------------------------------------------------------------------
+Building capacity for automatic user scope filtering:
+-- 1. Create a view that aggregates region_id and country_id columns: cd_geo_country_regions_view
+-- 2. Derive region_id_2 and filter by region categories to generate: cd_geo_country_regions2_view
+-- 3. Use cd_geo_country_regions2_view to generate a coop_view dedicated to region to country data: coop_region_view
+-- 4. Create a view that aggregates country_id and global_id columns: cd_geo_global_country_view
+-- 5. Derive country_id_2 and filter for countries to generate: cd_geo_global_country2_view
+-- 6. Use cd_geo_global_country2_view to generate a coop_view dedicated to country to global data: coop_country_view
+-- 7. Create a full coop view via UNION of coop_region_view and coop_country_view: coop_view
+-- 8. coop_member_view is now able to filter with region, country or continent based on user scope.
+

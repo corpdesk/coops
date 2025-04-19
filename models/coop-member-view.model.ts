@@ -156,4 +156,16 @@ export class CoopMemberViewModel {
     @ViewColumn({ name: 'cd_geo_political_parent_id' })
     cdGeoPoliticalParentId?: number; 
 
+    @ViewColumn({ name: 'country_id' })
+    countryId?: number;
+
+    @ViewColumn({ name: 'country_name' })
+    countryName?: string;
+
+    @ViewColumn({ name: 'region_id' })
+    regionId?: number;
+
+    @ViewColumn({ name: 'region_name' })
+    regionName?: string;
+
 }

@@ -241,5 +241,17 @@ export class CoopViewModel {
 
     @ViewColumn({ name: 'cd_geo_political_type_description' })
     cdGeoPoliticalTypeDescription: string;
+
+    @ViewColumn({ name: 'country_id' })
+    countryId: number;
+
+    @ViewColumn({ name: 'country_name' })
+    countryName: string;
+
+    @ViewColumn({ name: 'region_id' })
+    regionId: number;
+
+    @ViewColumn({ name: 'region_name' })
+    regionName: string;
 }
 
