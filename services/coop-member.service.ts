@@ -990,6 +990,7 @@ export class CoopMemberService extends CdService {
       where: { userId: this.uid },
       distinct: true
     });
+
     if (!this.coopMemberData) {
       this.coopMemberData = [coopMemberDataDefault];
     }
@@ -997,6 +998,11 @@ export class CoopMemberService extends CdService {
     if (this.coopMemberData.length === 0) {
       this.coopMemberData = [coopMemberDataDefault];
     }
+
+    /**
+     * Remove any duplicates
+     */
+    this.coopMemberData = this.coopMemberCleaner(this.coopMemberData);
     console.log(
       "CoopMemberService::mergeUserProfile()/this.coopMemberData:",
       this.coopMemberData
@@ -1097,6 +1103,19 @@ export class CoopMemberService extends CdService {
         JSON.stringify(this.mergedProfile)
       );
     }
+  }
+
+  coopMemberCleaner(data: CoopMemberViewModel[]): CoopMemberViewModel[] {
+    const seen = new Set<string>();
+  
+    return data.filter((item) => {
+      const key = `${item.coopMemberId}-${item.companyId}`;
+      if (seen.has(key)) {
+        return false;
+      }
+      seen.add(key);
+      return true;
+    });
   }
 
   async resetCoopMemberProfileI(req, res, byToken: boolean) {
