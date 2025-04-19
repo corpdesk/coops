@@ -987,6 +987,7 @@ export class CoopMemberService extends CdService {
      */
     this.coopMemberData = await this.getCoopMemberI(req, res, {
       where: { userId: this.uid },
+      distinct: true
     });
     if (!this.coopMemberData) {
       this.coopMemberData = [coopMemberDataDefault];
