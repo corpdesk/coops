@@ -1002,7 +1002,7 @@ export class CoopMemberService extends CdService {
     /**
      * Remove any duplicates
      */
-    this.coopMemberData = this.coopMemberCleaner(this.coopMemberData);
+    // this.coopMemberData = this.coopMemberCleaner(this.coopMemberData);
     console.log(
       "CoopMemberService::mergeUserProfile()/this.coopMemberData:",
       this.coopMemberData
