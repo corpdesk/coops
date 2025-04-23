@@ -153,6 +153,9 @@ export class CoopMemberViewModel {
     @ViewColumn({ name: 'cd_geo_political_type_name' })
     cdGeoPoliticalTypeName?: string;
 
+    @ViewColumn({ name: 'cd_geo_political_type_id' })
+    cdGeoPoliticalTypeId?: string;
+
     @ViewColumn({ name: 'cd_geo_political_parent_id' })
     cdGeoPoliticalParentId?: number; 
 
