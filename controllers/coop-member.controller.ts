@@ -120,6 +120,19 @@ export class CoopMemberController extends CdController {
     }
   }
 
+  async GetScopedCoopMembers(req, res) {
+    try {
+      await this.svCoopMember.getScopedCoopMembers(req, res);
+    } catch (e) {
+      await this.b.serviceErr(
+        req,
+        res,
+        e,
+        "CoopMemberController:GetCoopMemberProfileByToken"
+      );
+    }
+  }
+
   /**
      * 
      * {

@@ -721,6 +721,54 @@ export class CoopMemberService extends CdService {
     }
   }
 
+  /**
+   * Get members based on current user scope
+   * Input should include:
+   * - scopeIndex
+   * - cdGeoLocationId
+   * Scope Switch:
+   * - scope switch to allow configuration based on administration policy
+   * @param req 
+   * @param res 
+   */
+  async getScopedCoopMembers(req, res, q?: IQuery){
+    if (q === null) {
+      q = this.b.getQuery(req);
+    }
+    console.log("CoopMemberService::getScopedCoopMembers/f:", q);
+    const serviceInput = {
+      serviceModel: CoopMemberViewModel,
+      docName: "CoopMemberService::getScopedCoopMembers$",
+      cmd: {
+        action: "find",
+        query: q,
+      },
+      dSource: 1,
+    };
+    try {
+      this.b.read$(req, res, serviceInput).subscribe((r) => {
+        console.log("CoopMemberService::read$()/r:", r);
+        this.b.i.code = "CoopMemberController::Get";
+        const svSess = new SessionService();
+        svSess.sessResp.cd_token = req.post.dat.token;
+        svSess.sessResp.ttl = svSess.getTtl();
+        this.b.setAppState(true, this.b.i, svSess.sessResp);
+        this.b.cdResp.data = r;
+        this.b.respond(req, res);
+      });
+    } catch (e) {
+      console.log("CoopMemberService::getCoopMember()/e:", e);
+      this.b.err.push(e.toString());
+      const i = {
+        messages: this.b.err,
+        code: "CoopMemberService:getCoopMember",
+        app_msg: "",
+      };
+      await this.b.serviceErr(req, res, e, i.code);
+      await this.b.respond(req, res);
+    }
+  }
+
   async getCoopMemberProfile(req, res, byToken?: boolean) {
     try {
       if (!this.validateGetCoopMemberProfile(req, res, byToken)) {

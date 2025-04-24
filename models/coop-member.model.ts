@@ -212,7 +212,22 @@ export const enum CoopsAclScope {
   COOPS_NATIONAL_ADMIN = 16,
   COOPS_CONTINENTAL_ADMIN = 17,
   COOPS_GLOBAL_ADMIN = 18,
+  COOPS_NATIONAL_REGULATOR = 19,
+  COOPS_MEMBER_APPLICANT = 20,
 }
+
+export const allScopes: { value: number; label: string, order: number, cdGeoPoliticalTypeId?:number }[] = [
+  { value: CoopsAclScope.COOPS_GUEST, label: "Guest", order: 10, cdGeoPoliticalTypeId:-1 },
+  { value: CoopsAclScope.COOPS_USER, label: "User", order: 20, cdGeoPoliticalTypeId:-1 },
+  { value: CoopsAclScope.COOPS_MEMBER_APPLICANT, label: "Member Applicant", order: 30, cdGeoPoliticalTypeId:-1 },
+  { value: CoopsAclScope.COOPS_MEMBER, label: "Member", order: 40, cdGeoPoliticalTypeId:-1 },
+  { value: CoopsAclScope.COOPS_SACCO_ADMIN, label: "Sacco Admin", order: 50, cdGeoPoliticalTypeId:-1 },
+  { value: CoopsAclScope.COOPS_REGIONAL_ADMIN, label: "Regional Admin", order: 60, cdGeoPoliticalTypeId:16 },
+  { value: CoopsAclScope.COOPS_NATIONAL_ADMIN, label: "National Admin", order: 70, cdGeoPoliticalTypeId:10 },
+  { value: CoopsAclScope.COOPS_NATIONAL_REGULATOR, label: "National Regulator", order: 80, cdGeoPoliticalTypeId:10 },
+  { value: CoopsAclScope.COOPS_CONTINENTAL_ADMIN, label: "Continental Admin", order: 90, cdGeoPoliticalTypeId:11 },
+  { value: CoopsAclScope.COOPS_GLOBAL_ADMIN, label: "Global Admin", order: 100, cdGeoPoliticalTypeId:19 },
+];
 
 // Interface for ICoopAcl
 export interface ICoopAcl {
