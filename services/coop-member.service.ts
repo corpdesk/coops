@@ -689,13 +689,20 @@ export class CoopMemberService extends CdService {
     let cdFxResp = { state: false, data: null, error: null } as CdFxReturn<
       CoopMemberViewModel[]
     >;
-    // cdGeoPoliticalParent
+    
     let cdGeoPoliticalParentId = -1;
     if ("cdGeoPoliticalParentId" in qData) {
       cdGeoPoliticalParentId = qData.cdGeoPoliticalParentId;
     }
     this.logger.logDebug(
       `CoopMemberService::getScopedCoopMembers()/cdGeoPoliticalParentId:${cdGeoPoliticalParentId}`
+    );
+    let cdGeoLocationId = -1;
+    if ("cdGeoLocationId" in qData) {
+      cdGeoLocationId = qData.cdGeoLocationId;
+    }
+    this.logger.logDebug(
+      `CoopMemberService::getScopedCoopMembers()/cdGeoLocationId:${cdGeoLocationId}`
     );
     let cdGeoPoliticalTypeId = -1;
     if ("cdGeoPoliticalTypeId" in qData) {
@@ -746,7 +753,7 @@ export class CoopMemberService extends CdService {
         cdFxResp = await this.getCoopMembers4ContinentalAdmin(
           req,
           res,
-          cdGeoPoliticalParentId
+          cdGeoLocationId
         );
         if (!cdFxResp.state || !cdFxResp.data) {
           accessibleMembers = null;
@@ -897,7 +904,7 @@ export class CoopMemberService extends CdService {
                   "email"
                 ],
                 "where": {
-                  "cdGeoPoliticalParentId": 49 // Africa
+                  "cdGeoLocationId": 49 // Africa
                 },
                 "take": 10,
                 "skip": 0,
