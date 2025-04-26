@@ -863,6 +863,7 @@ export class CoopMemberService extends CdService {
         action: "find",
         query: {
           select: retFields,
+          distinct: true,
           where: {
             orWhere: getSearchQuery(searchKey),
           },
@@ -989,6 +990,7 @@ export class CoopMemberService extends CdService {
         action: "find",
         query: {
           select: retFields,
+          distinct: true,
           where: {
             orWhere: getSearchQuery(searchKey),
             andWhere: scopeFilter,
@@ -1114,6 +1116,7 @@ export class CoopMemberService extends CdService {
           action: "find",
           query: {
             select: retFields,
+            distinct: true,
             where: {
               orWhere: getSearchQuery(searchKey),
               andWhere: scopeFilter,
@@ -1252,6 +1255,7 @@ export class CoopMemberService extends CdService {
           action: "find",
           query: {
             select: retFields,
+            distinct: true,
             where: {
               orWhere: getSearchQuery(searchKey),
               andWhere: scopeFilter,
@@ -1358,6 +1362,7 @@ export class CoopMemberService extends CdService {
           action: "find",
           query: {
             select: retFields,
+            distinct: true,
             where: {
               orWhere: getSearchQuery(searchKey),
               andWhere: scopeFilter,
