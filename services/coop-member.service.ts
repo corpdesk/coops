@@ -660,26 +660,14 @@ export class CoopMemberService extends CdService {
    */
   async getScopedCoopMembers(req, res) {
     this.logger.logDebug("CoopMemberService::getScopedCoopMembers()/01:");
-    // const svSession = new SessionService();
     const svAcl = new AclService();
-    // const sessExt = svSession.getSessionDataExt(req, res);
-    /**
-     * Expect data of AclTypeModel to be sent via payload.extData set to 'aclType'
-     */
-    // const plExtData = this.b.getPlData(req, "extData");
-    // const aclType = plExtData.aclType as AclTypeModel;
     const rQuery: IQuery = this.b.getPlQuery(req);
     const aclType = rQuery.extData.aclType as AclTypeModel;
-    // const searchKey = rQuery.extData.searchKey as string;
-    // const retFields = rQuery.select as string[];
-    // const take = rQuery.take as number;
-    // const skip = rQuery.skip as number;
     this.logger.logDebug(
       `CoopMemberService::getScopedCoopMembers()/rQuery.extData:${JSON.stringify(
         rQuery.extData
       )}`
     );
-
     const qData = rQuery.where as CoopMemberViewModel;
     this.logger.logDebug(
       `CoopMemberService::getScopedCoopMembers()/rQuery.extData:${JSON.stringify(
@@ -934,7 +922,6 @@ export class CoopMemberService extends CdService {
     this.logger.logDebug(
       `CoopMemberService::getCoopMembers4ContinentalAdmin()/continentId:${continentId}`
     );
-
     const svCdGeoLocation = new CdGeoLocationService();
     const rQuery: IQuery = this.b.getPlQuery(req);
     const searchKey = rQuery.extData.searchKey as string;
@@ -1012,6 +999,10 @@ export class CoopMemberService extends CdService {
       },
       dSource: 1,
     };
+
+    this.logger.logDebug(
+      `CoopMemberService::getCoopMembers4ContinentalAdmin()/serviceInput.cmd.query: ${JSON.stringify(serviceInput.cmd.query)}`
+    );
 
     // Step 5: Perform the search
     const coopMembers = await this.b.readQB(req, res, serviceInput);

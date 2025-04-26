@@ -127,27 +127,36 @@ export class CoopMemberController extends CdController {
    * This is hosted in "extData" under "AclType" which is where aclTypeId belongs.
    * In principle "extData" is reserved for data associated with different controllers other than payload.c value.
    * {
-        "ctx": "App",
-        "m": "Coops",
-        "c": "CoopMember",
-        "a": "GetScopedCoopMembers",
-        "dat": {
-          "f_vals": [
-            {
-              "data": {
-                "cdGeoLocationId": 49
+      "ctx": "App",
+      "m": "Coops",
+      "c": "CoopMember",
+      "a": "GetScopedCoopMembers",
+      "dat": {
+        "f_vals": [
+          {
+            "query": {
+              "select": [
+                "userId",
+                "email"
+              ],
+              "where": {
+                "cdGeoPoliticalParentId": -1 // global: apex entity (does not have parent)
               },
+              "take": 10,
+              "skip": 0,
               "extData": {
-                "AclType": {
-                  "aclTypeId": 17
+                "searchKey": "acc",
+                "aclType": {
+                  "aclTypeId": 18 // global admin
                 }
               }
             }
-          ],
-          "token": "08f45393-c10e-4edd-af2c-bae1746247a1"
-        },
-        "args": null
-      }
+          }
+        ],
+        "token": "08f45393-c10e-4edd-af2c-bae1746247a1"
+      },
+      "args": null
+    }
    * @param req 
    * @param res 
    */
